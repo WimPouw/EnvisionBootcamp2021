@@ -1,21 +1,14 @@
 ---
-title: "welcome_page"
+title: "Envision Bootcamp 2021 Coding Modules"
 output: html_document
+
 ---
+<style type="text/css">
+  body{
+  font-size: 20pt;
+}
+</style>
 
 
-## Envision Bootcamp 2021
+* [Amplitude Envelope Extraction](https://wimpouw.github.io/EnvisionBootcamp2021/extract_AmplitudeEnvelope_Rmarkdown)
 
-```{r cars}
-summary(cars)
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
