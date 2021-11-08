@@ -9,4 +9,4 @@ navbar:
    href: extract_AmplitudeEnvelope_Rmarkdown.html
 output:
   html_document:
- theme: cosmo
+theme: cosmo
