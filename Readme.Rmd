@@ -1,3 +1,9 @@
+<style type="text/css">
+  body{
+  font-size: 14pt;
+}
+</style>
+
 
 # quick overview code
 If you just want to quickly overview some code from the notebooks 
