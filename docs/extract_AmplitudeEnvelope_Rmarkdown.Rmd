@@ -1,0 +1,107 @@
+---
+title: "Extracting a smoothed amplitude envelope from audio"
+output: html_document
+author: Wim Pouw (wim.pouw@donders.ru.nl)
+---
+
+## Extracting a smoothed amplitude envelope from audio
+
+This module allows us to get some fundamental information about speaking activity and rhythms from an audio file that contains speech.
+
+### Set up folders
+```{r setup}
+#first make sure to set "Session" -> "Set Working Directory" -> "To Source File Location"
+
+#FOR TESTING
+curfolder <- getwd()
+parentfolderR <- dirname(curfolder)  #what is the parentfolderR (on folder back from current folder)
+parentfolder  <- dirname(dirname(curfolder)) #the main parent folder
+
+data_to_process <- paste0(parentfolder, "/Multimedia/Audio/") #This is the folder where your wav's are saved
+                                                                      #you can set it to parentfolderR if you dropped this R code in that folder
+list_wavs <- list.files(data_to_process, pattern = ".wav")            #list of the wav's
+
+#set an output folder to save the amplitude envelope time series to
+outputfolder <- paste0(curfolder, "/output/")
+```
+
+### Main function
+
+```{r main_function, warning=FALSE, message= FALSE}
+library(seewave)
+library(signal)
+library(rPraat)
+library(dplR)
+#####################MAIN FUNCTION TO EXTRACT SMOOTHED ENVELOPE###############################
+amplitude_envelope.extract <- function(locationsound, smoothingHz, resampledHz)
+{
+  snd <- rPraat::snd.read(locationsound)                                #read the sound file into R
+  hilb <- seewave::hilbert(snd$sig, f = snd$fs, fftw =FALSE)             #apply the hilbert on the signal
+  env <- as.vector(abs(hilb))                                              #apply complex modulus
+  env_smoothed <- dplR::hanning(x= env, n = snd$fs/smoothingHz)           #smooth with a hanning window
+  env_smoothed[is.na(env_smoothed)] <- 0                        #set undeterminable at beginning and end NA's to 0
+  f <- approxfun(1:(snd$duration*snd$fs),env_smoothed)                       #resample settings at desired sampling rate
+  downsampled <- f(seq(from=0,to=snd$duration*snd$fs,by=snd$fs/resampledHz))  #resample apply
+  return(downsampled[!is.na(downsampled)])
+}
+```
+
+### Loop through audio files and execute function
+```{r pressure, echo=FALSE, warning=FALSE, message= FALSE}
+########################APPLY MAIN FUNCTION ON THE SOUNDFILES#################################
+for(wav in list_wavs)
+  {
+  if(!file.exists(paste0(outputfolder, substr(wav, 1, nchar(wav)-4), "_ENV", ".csv"))) #do not run this when these files are already generated
+  {
+  locsound <- paste0(data_to_process, wav)                    #location of the current sound file in the loop
+  env <- amplitude_envelope.extract(locsound, 5, 100)           #get the amplitude envelope at location, 5Hz Hanning, 100Hz sampling
+  time_ms <- seq(1000/100, length(env)*(1000/100), by = 1000/100)     #make a time vector based on sampling rate (1000/Hz)
+  ENV <- cbind.data.frame(time_ms, env)                                   #bind into data frame
+  write.csv(ENV, file = paste0(paste0(outputfolder, substr(wav, 1, nchar(wav)-4), "_ENV", ".csv")),row.names=FALSE) #save it to a folder
+  }
+}
+```
+
+
+## Some applications (approximate syllables)
+
+With the smoothed amplitude envelope we can identify peaks in the acoustics that are roughly corresponding with syllable production. We can for example do a simply peak analysis to get an automatic measure of speech rate.
+
+```{r some plotting, warning=FALSE, message= FALSE}
+library(pracma) #package that has a peakfinding function
+library(ggplot2) #lets have some plotting
+library(gridExtra) #some plotting extras
+
+#lets read in an amplitude envelope time series
+env_ts <- read.csv(paste0(outputfolder, "audio_cartoon_ENV.csv"))
+
+#identify peaks
+peaks <- pracma::findpeaks(env_ts$env, minpeakdistance = 10, minpeakheight = mean(env_ts$env)-(1*sd(env_ts$env))) #this will give you the height of the peak, the index, the index of the left through [,3] and the right through [,4]
+env_ts$peaks <- NA
+env_ts$peaks[peaks[,2]] <- peaks[,1]
+
+#lets plot a sample of 5 seconds
+a <- ggplot(env_ts, aes(x=time_ms, y = env) ) + geom_path() + geom_point(aes(y=peaks), color = "red", size = 3) + xlim(5000, 10000) + theme_bw()
+
+#lets also plot the original sound file to see how this compares
+snd <- rPraat::snd.read(paste0(data_to_process, "audio_cartoon.wav"))  
+waveformdat <- cbind.data.frame(snd$t, snd$sig)
+colnames(waveformdat) <- c("time_sec", "signal")
+b <- ggplot(waveformdat, aes(x=time_sec, y = signal))+ geom_path()+ xlim(5, 10) + theme_bw() + ylim(-0.15, 0.15)
+
+grid.arrange(a, b)
+```
+
+
+We can further now have information about the syllable rate per seconds, as well as the interpeak interval deviation as some measure of rhythmicity, by the following simple queries.
+```{r numerical_info, warning=FALSE, message= FALSE}
+syllable_p_sec <- sum(!is.na(env_ts$peaks))/(max(env_ts$time_ms)/1000)
+print(paste0("number of syllables produced per second: ", syllable_p_sec))
+print(paste0("standard deviation in milliseconds of the syllables interpeak intervals: ", sd(diff(env_ts$time_ms[!is.na(env_ts$peaks)]))))
+```
+
+
+# Resources
+
+1.  https://www.youtube.com/watch?v=VyLU8hlhI-I
+2. 
