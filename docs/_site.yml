@@ -1,0 +1,12 @@
+name: "EnvisionBootcamp2021"
+output_dir: "docs"
+navbar:
+  title: "EnvisionBootcamp2021"
+  left:
+  - text: "Home"
+   href: index.html
+  - text: "Amplitude Envelope"
+   href: ExtractAmplitudeEnvelope.html
+output:
+  html_document:
+ theme: cosmo
