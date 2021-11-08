@@ -3,6 +3,11 @@ title: "Extracting a smoothed amplitude envelope from audio"
 output: html_document
 author: Wim Pouw (wim.pouw@donders.ru.nl)
 ---
+<style type="text/css">
+  body{
+  font-size: 14pt;
+}
+</style>
 
 ## Extracting a smoothed amplitude envelope from audio
 
