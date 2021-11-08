@@ -5,8 +5,6 @@ navbar:
   left:
   - text: "Home"
    href: index.html
-  - text: "Amplitude Envelope"
-   href: extract_AmplitudeEnvelope_Rmarkdown.html
 output:
   html_document:
  theme: cosmo
