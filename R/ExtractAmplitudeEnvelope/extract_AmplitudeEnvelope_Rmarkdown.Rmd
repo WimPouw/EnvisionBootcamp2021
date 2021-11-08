@@ -14,10 +14,11 @@ This module allows us to get some fundamental information about speaking activit
 
 #FOR TESTING
 curfolder <- getwd()
-parentfolder <- dirname(curfolder)  #what is the parentfolder (on folder back from current folder)
+parentfolderR <- dirname(curfolder)  #what is the parentfolderR (on folder back from current folder)
+parentfolder  <- dirname(dirname(curfolder)) #the main parent folder
 
-data_to_process <- paste0(dirname(parentfolder), "/Multimedia/Audio/") #This is the folder where your wav's are saved
-                                                                      #you can set it to parentfolder if you dropped this R code in that folder
+data_to_process <- paste0(parentfolder, "/Multimedia/Audio/") #This is the folder where your wav's are saved
+                                                                      #you can set it to parentfolderR if you dropped this R code in that folder
 list_wavs <- list.files(data_to_process, pattern = ".wav")            #list of the wav's
 
 #set an output folder to save the amplitude envelope time series to
