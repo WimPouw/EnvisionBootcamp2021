@@ -12,3 +12,5 @@ output: html_document
 
 * [Amplitude Envelope Extraction](https://wimpouw.github.io/EnvisionBootcamp2021/extract_AmplitudeEnvelope_Rmarkdown)
 
+* [Body tracking with mediapipe](https://wimpouw.github.io/EnvisionBootcamp2021/extract_AmplitudeEnvelope_Rmarkdown)
+
