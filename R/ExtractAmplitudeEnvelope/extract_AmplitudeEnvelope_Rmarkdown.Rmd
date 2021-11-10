@@ -1,42 +1,48 @@
 ---
 title: "Extracting a smoothed amplitude envelope from audio"
-output: html_document
 author: Wim Pouw (wim.pouw@donders.ru.nl)
+date: "`r Sys.Date()`"
+output:
+  prettydoc::html_pretty:
+    theme:  tactile
 ---
-<style type="text/css">
-  body{
-  font-size: 14pt;
-}
-code.r{
-  font-size: 20px;
-}
-</style>
+<div class = "blue">
 
-# Extracting a smoothed amplitude envelope from audio
+## Info documents
 
+* This R coding module introduces you to the extraction of a smoothed amplitude envelope from .wav files. To run the code yourself, download the repository and run the Rmarkdown file. 
+
+* location Repository:  https://github.com/WimPouw/EnvisionBootcamp2021
+
+* location Rmarkdown: https://github.com/WimPouw/EnvisionBootcamp2021/tree/main/R/ExtractAmplitudeEnvelope
+
+* citation: xxx
+
+## Smoothed amplitude envelope
 The smoothed amplitude envelope is an acoustic measure that is correlated with for example jaw motion of speech (1. Chandresekaran et al., 2009) and contains gross information about the amplitude of the most dominant frequency of the sound. The smoothed amplitude envelope contains key information about the quasi-rhythmic structure of speech (2. Poeppel & Assaneo, 2020), as well as complex prosodic modulations that occur at multiple time scales (e.g., 2. Tilsen & Arviniti, 2013).\linebreak
 
 Lets move to the code. We first define our folders, list the waveform (.wav) files that are contained in them, and also define some output folders where to save our smoothed amplitude envelope timeseries to.
 
 ## Set up folders
-<div class = "blue">
-```{r setup}
 
+```{r seting_up}
+#When running this in Rmarkdown yourself: 
 #first make sure to set "Session" -> "Set Working Directory" -> "To Source File Location"
 
-#FOR TESTING
+#get current drive
 curfolder <- getwd()
-parentfolderR <- dirname(curfolder)  #what is the parentfolderR (on folder back from current folder)
-parentfolder  <- dirname(dirname(curfolder)) #the main parent folder
-
-data_to_process <- paste0(parentfolder, "/Multimedia/Audio/") #This is the folder where your wav's are saved
-                                                                      #you can set it to parentfolderR if you dropped this R code in that folder
-list_wavs <- list.files(data_to_process, pattern = ".wav")            #list of the wav's
-
+#what is the parentfolderR (on folder back from current folder)
+parentfolderR <- dirname(curfolder) 
+#the main parent folder
+parentfolder  <- dirname(dirname(curfolder)) 
+#This is the folder where your wav's are saved
+data_to_process <- paste0(parentfolder, "/Multimedia/Audio/") 
+#list of the wav's                                                                    
+list_wavs <- list.files(data_to_process, pattern = ".wav")            
 #set an output folder to save the amplitude envelope time series to
 outputfolder <- paste0(curfolder, "/output/")
 ```
-</div>
+
 
 ## Main function
 
@@ -52,13 +58,21 @@ library(dplR)
 #####################MAIN FUNCTION TO EXTRACT SMOOTHED ENVELOPE###############################
 amplitude_envelope.extract <- function(locationsound, smoothingHz, resampledHz)
 {
-  snd <- rPraat::snd.read(locationsound)                                #read the sound file into R
-  hilb <- seewave::hilbert(snd$sig, f = snd$fs, fftw =FALSE)             #apply the hilbert on the signal
-  env <- as.vector(abs(hilb))                                              #apply complex modulus
-  env_smoothed <- dplR::hanning(x= env, n = snd$fs/smoothingHz)           #smooth with a hanning window
-  env_smoothed[is.na(env_smoothed)] <- 0                        #set undeterminable at beginning and end NA's to 0
-  f <- approxfun(1:(snd$duration*snd$fs),env_smoothed)                       #resample settings at desired sampling rate
-  downsampled <- f(seq(from=0,to=snd$duration*snd$fs,by=snd$fs/resampledHz))  #resample apply
+  #read the sound file into R
+  snd <- rPraat::snd.read(locationsound)
+  #apply the hilbert on the signal
+  hilb <- seewave::hilbert(snd$sig, f = snd$fs, fftw =FALSE)
+  #apply complex modulus
+  env <- as.vector(abs(hilb))
+  #smooth with a hanning window
+  env_smoothed <- dplR::hanning(x= env, n = snd$fs/smoothingHz)
+  #set undeterminable at beginning and end NA's to 0
+  env_smoothed[is.na(env_smoothed)] <- 0
+  #resample settings at desired sampling rate
+  f <- approxfun(1:(snd$duration*snd$fs),env_smoothed)
+  #resample apply
+  downsampled <- f(seq(from=0,to=snd$duration*snd$fs,by=snd$fs/resampledHz))
+  #let function return the downsampled smoothed amplitude envelope
   return(downsampled[!is.na(downsampled)])
 }
 ```
@@ -68,15 +82,23 @@ Now that we have initialized our main function. We can apply it to our list of a
 ## Loop through audio files and execute function
 ```{r applyfunction, warning=FALSE, message= FALSE}
 ########################APPLY MAIN FUNCTION ON THE SOUNDFILES#################################
+
+#loop through soundfile locations
 for(wav in list_wavs)
   {
-  if(!file.exists(paste0(outputfolder, substr(wav, 1, nchar(wav)-4), "_ENV", ".csv"))) #do not run this when these files are already generated
+   #do not run this when these files are already generated
+  if(!file.exists(paste0(outputfolder, substr(wav, 1, nchar(wav)-4), "_ENV", ".csv")))
   {
-  locsound <- paste0(data_to_process, wav)                    #location of the current sound file in the loop
-  env <- amplitude_envelope.extract(locsound, 5, 100)           #get the amplitude envelope at location, 5Hz Hanning, 100Hz sampling
-  time_ms <- seq(1000/100, length(env)*(1000/100), by = 1000/100)     #make a time vector based on sampling rate (1000/Hz)
-  ENV <- cbind.data.frame(time_ms, env)                                   #bind into data frame
-  write.csv(ENV, file = paste0(paste0(outputfolder, substr(wav, 1, nchar(wav)-4), "_ENV", ".csv")),row.names=FALSE) #save it to a folder
+  #location of the current sound file in the loop  
+  locsound <- paste0(data_to_process, wav)
+  #get the amplitude envelope at location, 5Hz Hanning, 100Hz sampling
+  env <- amplitude_envelope.extract(locsound, 5, 100)
+  #make a time vector based on sampling rate (1000/Hz)
+  time_ms <- seq(1000/100, length(env)*(1000/100), by = 1000/100)
+  #bind into data frame
+  ENV <- cbind.data.frame(time_ms, env)
+  #save it to a folder
+  write.csv(ENV, file = paste0(paste0(outputfolder, substr(wav, 1, nchar(wav)-4), "_ENV", ".csv")),row.names=FALSE) 
   }
 }
 ```
@@ -93,19 +115,25 @@ library(gridExtra) #some plotting extras
 #lets read in an amplitude envelope time series
 env_ts <- read.csv(paste0(outputfolder, "audio_cartoon_ENV.csv"))
 
-#identify peaks
-peaks <- pracma::findpeaks(env_ts$env, minpeakdistance = 10, minpeakheight = mean(env_ts$env)-(1*sd(env_ts$env))) #this will give you the height of the peak, the index, the index of the left through [,3] and the right through [,4]
-env_ts$peaks <- NA #initialize a peak variable
-env_ts$peaks[peaks[,2]] <- peaks[,1] #at each location of the timeseries where there is a peak, load in the value of that peak so we can plot it later
+#identify peaks: #this will give you the height of the peak, 
+#the index, the index of the left through [,3] and the right through [,4]
+peaks <- pracma::findpeaks(env_ts$env, minpeakdistance = 10, 
+                           minpeakheight = mean(env_ts$env)-(1*sd(env_ts$env))) 
+#initialize a peak variable
+env_ts$peaks <- NA 
+#at each location of the timeseries where there is a peak, load in the value of that peak so we can plot it later
+env_ts$peaks[peaks[,2]] <- peaks[,1] 
 
 #lets plot a sample of 5 seconds
-a <- ggplot(env_ts, aes(x=time_ms, y = env) ) + geom_path() + geom_point(aes(y=peaks), color = "red", size = 3) + xlim(5000, 10000) + theme_bw()
+a <- ggplot(env_ts, aes(x=time_ms, y = env) ) + geom_path() + 
+  geom_point(aes(y=peaks), color = "red", size = 3) + xlim(5000, 10000) + theme_bw()
 
 #lets also plot the original sound file to see how this compares
 snd <- rPraat::snd.read(paste0(data_to_process, "audio_cartoon.wav"))
 waveformdat <- cbind.data.frame(snd$t, snd$sig)
 colnames(waveformdat) <- c("time_sec", "signal")
-b <- ggplot(waveformdat, aes(x=time_sec, y = signal))+ geom_path()+ xlim(5, 10) + theme_bw() + ylim(-0.15, 0.15)
+b <- ggplot(waveformdat, aes(x=time_sec, y = signal))+ 
+  geom_path()+ xlim(5, 10) + theme_bw() + ylim(-0.15, 0.15)
 
 grid.arrange(a, b)
 ```
@@ -114,15 +142,15 @@ grid.arrange(a, b)
 We can further now have information about the syllable rate per seconds, as well as the interpeak interval deviation as some measure of rhythmicity, by the following simple queries.
 ```{r numerical_info, warning=FALSE, message= FALSE}
 syllable_p_sec <- sum(!is.na(env_ts$peaks))/(max(env_ts$time_ms)/1000)
-print(paste0("number of syllables produced per second: ", syllable_p_sec))
-print(paste0("standard deviation in milliseconds of the syllables interpeak intervals: ", sd(diff(env_ts$time_ms[!is.na(env_ts$peaks)]))))
+print(paste0("N syllables produced p/s: ", syllable_p_sec))
+print(paste0("SD in ms syllable interval: ", sd(diff(env_ts$time_ms[!is.na(env_ts$peaks)]))))
 ```
 
 
 # Resources
 
-1. Chandrasekaran, C., Trubanova, A., Stillittano, S., Caplier, A., & Ghazanfar, A. A. (2009). The natural statistics of audiovisual speech. PLoS computational biology, 5(7), e1000436.
-2. Poeppel, D., & Assaneo, M. F. (2020). Speech rhythms and their neural foundations. Nature Reviews Neuroscience, 21(6), 322-334.
-3. Tilsen, S., & Arvaniti, A. (2013). Speech rhythm analysis with decomposition of the amplitude envelope: characterizing rhythmic patterns within and across languages. The Journal of the Acoustical Society of America, 134(1), 628-639.
-4. He, L. & V. Dellwo. 2017. Amplitude envelope kinematics of speech: parameter extraction and applications. J. Acoust. Soc. Am. 141: 3582–3582.
-5. Cohen, M. X. (2019). The filter-Hilbert method. https://www.youtube.com/watch?v=jy7IxIXUAJk
+1. [Chandrasekaran, C., Trubanova, A., Stillittano, S., Caplier, A., & Ghazanfar, A. A. (2009). The natural statistics of audiovisual speech. PLoS computational biology, 5(7), e1000436.](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000436)
+2. [Poeppel, D., & Assaneo, M. F. (2020). Speech rhythms and their neural foundations. Nature Reviews Neuroscience, 21(6), 322-334.](https://www.nature.com/articles/s41583-020-0304-4?utm_source=nrn_etoc&utm_medium=email&utm_campaign=toc_41583_21_6&utm_content=20200521&sap-outbound-id=32EDA6D2E7287FF0BB80C1FA49C221ECAC4714D9)
+3. [Tilsen, S., & Arvaniti, A. (2013). Speech rhythm analysis with decomposition of the amplitude envelope: characterizing rhythmic patterns within and across languages. The Journal of the Acoustical Society of America, 134(1), 628-639.](https://asa.scitation.org/doi/pdf/10.1121/1.4807565?casa_token=YnOBWSIhdcUAAAAA:AgR53yglDpX3meSKLarutz8GQWzamL9FKj1RHqe8aNmwf5AETnD66BD-Rp9QLqm_Zwp5dKTM)
+4. [He, L. & V. Dellwo. 2017. Amplitude envelope kinematics of speech: parameter extraction and applications. J. Acoust. Soc. Am. 141: 3582–3582.](http://www.essv.de/pdf/2017_107_113.pdf) 
+5. [Cohen, M. X. (2019). The filter-Hilbert method.  https://www.youtube.com/watch?v=jy7IxIXUAJk] (https://www.youtube.com/watch?v=jy7IxIXUAJk) 
