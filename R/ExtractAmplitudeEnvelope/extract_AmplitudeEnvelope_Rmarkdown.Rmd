@@ -8,6 +8,9 @@ output:
 ---
 <div class = "blue">
 
+![](../../images/envision_banner.png)
+
+
 ## Info documents
 
 * This R coding module introduces you to the extraction of a smoothed amplitude envelope from .wav files. To run the code yourself, download the repository and run the Rmarkdown file. 
