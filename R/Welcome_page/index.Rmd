@@ -18,7 +18,7 @@ output:
 
 * [Amplitude Envelope Extraction](https://wimpouw.github.io/EnvisionBootcamp2021/extract_AmplitudeEnvelope_Rmarkdown)
 
-* [Body tracking with mediapipe/Blazepose](https://wimpouw.github.io/EnvisionBootcamp2021)
+* [Body tracking with mediapipe/Blazepose](https://wimpouw.github.io/EnvisionBootcamp2021/MediaPipeBodyTracking.html)
 
 * [TODO: Merging low-sampling motion tracking with high-sampling Acoustics](https://wimpouw.github.io/EnvisionBootcamp2021)
 
