@@ -1,8 +1,14 @@
 ---
 title: "Envision Bootcamp 2021 Coding Modules"
-output: html_document
-
+author: Wim Pouw (wim.pouw@donders.ru.nl) & James Trujillo (james.trujillo@donders.ru.nl)
+date: "`r Sys.Date()`"
+output:
+  prettydoc::html_pretty:
+    theme:  tactile
 ---
+<div class = "blue">
+
+![](../../images/envision_banner.png)
 <style type="text/css">
   body{
   font-size: 20pt;
