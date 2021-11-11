@@ -1,0 +1,16 @@
+---
+title: "Merging low-sampling motion tracking with high-sampling Acoustics"
+author: Wim Pouw (wim.pouw@donders.ru.nl)
+date: "`r Sys.Date()`"
+output:
+  prettydoc::html_pretty:
+    theme:  tactile
+---
+<div class = "blue">
+
+![](../../images/envision_banner.png)
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
