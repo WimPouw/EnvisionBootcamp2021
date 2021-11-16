@@ -1,16 +1,165 @@
 ---
-title: "Merging low-sampling motion tracking with high-sampling Acoustics"
+title: "Selecting, smoothing, and deriving measures from motion tracking, and merging with acoustics and annotations"
 author: Wim Pouw (wim.pouw@donders.ru.nl)
 date: "`r Sys.Date()`"
 output:
   prettydoc::html_pretty:
     theme:  tactile
 ---
-<div class = "blue">
 
 ![](../../images/envision_banner.png)
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+library(papaja) #for using printnum
 ```
+## Info documents
+
+* This R coding module shows how we could select and derive relevant measures from motion tracking that we would like to merge with signals from other modalities (e.g., annotations, acoustics). We also apply some smoothing the motion tracking movement traces that you can try out yourself.
+
+* location Repository:  https://github.com/WimPouw/EnvisionBootcamp2021
+
+* location Rmarkdown: https://github.com/WimPouw/EnvisionBootcamp2021/tree/main/R/MerginAcoustics.Rmd
+
+* citation: Pouw, W. (`r Sys.Date()`). *Extracting a smoothed amplitude envelope from audio*. [the day you viewed the site]. Retrieved from: https://github.com/WimPouw/EnvisionBootcamp2021/tree/main/R/ExtractAmplitudeEnvelope
+
+So in multimodal analysis you will often encounter the situation that you have signals that are continuous but sampling at different rates, and such signals then also need to be related to qualitative codings such as gesture annotations, or trial information of your experiment. It is sometimes convenient to have everything you need in one time series file, so you can apply your multimodal analysis easily.  
+
+## Set up folders and check data formats
+
+For this module we will only demonstrate the steps for the cartoon retelling example that we have in our multimedia samples. For this sample we have already generated A) a motion tracking time series for a bunch of body keypoints sampling at 30Hz, B) an amplitude envelope time series of speech which was sampled at 100Hz. C) Then we also have annotations of the dominant hand (right handed gestures) that this person produced. So here we show a way to merge A, B, and C, in a way that is convenient for further analysis. Lets first identify the relevant files and set the relevant folders.
+
+```{r seting_up}
+#When running this in Rmarkdown yourself: 
+#first make sure to set "Session" -> "Set Working Directory" -> "To Source File Location"
+
+#get current drive
+curfolder <- getwd()
+#the main parent folder
+parentfolder  <- dirname(dirname(curfolder))
+#Load in the motion tracking data
+MT <- read.csv(paste0(parentfolder, "/Python/MediaBodyTracking/Timeseries_Output/video_cartoon.csv"))
+#Load in the amplitude envelope
+ENV <- read.csv(paste0(parentfolder, "/R/ExtractAmplitudeEnvelope/output/audio_cartoon_ENV.csv"))
+#load in the relevant annotations                                            
+ANNO <- read.csv(paste0(parentfolder, "/Multimedia_Annotations/ELAN_cartoon/annotations_cartoon.csv"))
+#This is the folder where your merged output is saved                                                 
+outputfolder <- paste0(curfolder, "/output/")
+```
+
+So the data we have are the motion tracking data with `r printnum(ncol(MT))` columns  (body keypoints = `r printnum(ncol(MT)-1)`, and sampling at `r printnum(median(diff(MT$time)))` ms intervals. 
+```{r}
+head(MT[,1:4]) #lets select only the first 4 columns
+```
+The data we have for the amplitude envelope is `r printnum(ncol(ENV))` columns, and sampling at `r printnum(median(diff(ENV$time_ms)))` ms intervals. 
+```{r}
+head(ENV)
+```
+And the annotations of gestures of the right hand, with begintime, endtime, and annotation information. In total we have  `r printnum(nrow(ANNO))` annotations, and three columns.
+```{r}
+head(ANNO)
+```
+
+## Select MT and merge with acoustic envelope data
+For the motion tracking output we generated for the cartoon video we may only be interested in some specific body parts, say we are interesting in the right hand index finger traces only. Lets select them first.
+
+```{r}
+selection <- c("time", "X_RIGHT_INDEX", "Y_RIGHT_INDEX" ,"Z_RIGHT_INDEX") #concatenate a some variable names in a vector "selection"
+MTs <- MT[, colnames(MT) %in% selection] #select all column positions of which the names are also in the selection variable and save to a new object called MTs
+```
+
+This selection of the motion tracking data we want to then align with the acoustic data. We use the R's native 'merge' function for this, and we align the acoustic and motion tracking data based on their common information (namely time in milliseconds). We do we want to make sure that we keep information from both objects, instead of only aligning when one and the other has a value (we therefore set the arugment 'all' to 'TRUE').
+
+```{r}
+merged <- merge(x=MTs, y = ENV, by.x = "time", by.y = "time_ms", all=TRUE)
+head(merged)
+```
+
+We can see that while we have ordered and aligned the two objects in a single merge object, we have a lot of empty non-applicable (NA) rows. This is because at the exact times the sample is taken for the amplitude envelope there is not a sample for motion tracking. The solution is to linearly interpolate and upsampling your data. We will do this by approximating for each NA for motion tracking data what its value would be given that it is at time x and we know the values at a particular time before and after. The function na.approx from library(zoo) allows us to do this, by stating what vector you want to interpolate NA's (e.g., X_RIGHT_INDEX) for, given some information about the time (x= time). We can leave NA's as is which we arent able to interpolate, e.g., if your merged time series ends with NA's we cant interpolate because we dont have values between which we can interpolate (so we set na.rm=FALSE, so we dont remove NA's that are left after linear approximation).  
+
+
+```{r}
+library(zoo)
+merged$X_RIGHT_INDEX <- na.approx(merged$X_RIGHT_INDEX, x = merged$time, na.rm=FALSE)
+merged$Y_RIGHT_INDEX <- na.approx(merged$Y_RIGHT_INDEX, x = merged$time, na.rm=FALSE)
+merged$Z_RIGHT_INDEX <- na.approx(merged$Z_RIGHT_INDEX, x = merged$time, na.rm=FALSE)
+#if you want to do this in one line of code, you can just do this:
+#merged[,2:4] <- apply(merged[,2:4], 2, FUN = function(y) na.approx(y, x = merged$time, na.rm=FALSE))
+
+head(merged)
+```
+
+We are now almost there with the merging of acoustics and motion tracking. First, we should note, that there is an important reason why we choose to upsample the motion tracking data from 30Hz to 100Hz, and this is because we would be loosing information if we would downsample the amplitude envelope from 100Hz to 30Hz. Since we have upsampled the motion tracking data, we can just go ahead and only keep information where we both have info from the amplitude envelope and and info from motion tracking; this will yield a time series object with steady sampling at 100Hz with original data points for the amplitude envelope, and interpolated and upsampled values for the motion tracking.
+```{r}
+## Lets only keep information at the original sampling rate of the amplitude envelope (so exclude envelope NA's rows)
+merged <- merged[(!is.na(merged$env)),]
+merged <- na.trim(merged) #also remove trailing Na's
+```
+
+## Inspecting data, deriving some motion tracking measures, and applying smoothing
+
+So we now have a 'merged' data file that contains fully time aligned data about movement and acoustics. Our first multimodal time series object! Lets do some plotting of the amplitude envelope against the position traced we have of the index finger for an arbitrary 5 second sample.
+
+```{r}
+library(ggplot2)
+library(plotly)
+
+a <- ggplot(merged, aes(x=time))+geom_path(aes(y=env))+xlim(13000,16000)+theme_bw()
+b <- ggplot(merged, aes(x=time))+geom_path(aes(y=Z_RIGHT_INDEX), color = "red")+geom_path(aes(y=Y_RIGHT_INDEX), color = "gold")+geom_path(aes(y=X_RIGHT_INDEX), color = "blue")+xlim(13000,16000)+ylim(-0.5, 0.05)+theme_bw()
+subplot(ggplotly(a), ggplotly(b), nrows=2)
+```
+
+### Smoothing
+One thing that you will run into when using motion tracking data, especially when using video based motion tracking data, is that you will have noise-related jitter in your time series. At some times such noise maybe minimal, e.g., when using very accurate device-based motion tracking devices. But in other cases, you will see that there are sudden jumps from timepoint to time point that have to due with tracking inaccuracies (that can be cause, by occlusions, or not ideal lighting, etc.).  
+It is good therefore to apply some smoothing to the position traces of your motion tracking data, as well as any derivates that are taken afterwards (e.g., 3D speed, vertical velocity). You can for example apply a low-pass filter, whereby you only allow fluctuations that have a slow frequency changes (gradual changes from point to point) so as to filter out the jitter that occurs at very high frequencies (because they result in sudden changes from point to point). Importantly, when using low-pass filters there can be a some time shifts, especially for a butterworth filter, so in that case it is important to undo that shift by running the smoothing forwards and backwards, if you care about precise temporal precision relative to some other timeseries for example (e.g., acoustics).  
+We can also use a different kind of smoothing filter that operates more like a running average, such that sudden changes in the time series are smoothed out by the adjacent data points.   Below we show smoothing for a low pass filter (zero-lag 1st order butterworth filter) and a type of moving average filter (Kolmogorov-Zurbenko filter).
+
+```{r}
+#Butterworth filter
+library(signal)
+butter.it <- function(x, samplingrate, order, lowpass)
+{bf <- butter(order, 1/(samplingrate/lowpass), type="low")
+x <- as.numeric(signal::filtfilt(bf, x))}
+
+#Kolmogorov-Zurbenki filter
+library(kza)
+kolmogorov.it <- function(timeseries, span, order)
+{timeseries <- kza(x= timeseries, m=span, k = order)
+return(timeseries$kz)}
+
+#apply Butterworth
+tempmerge <- merged
+tempmerge$Z_RIGHT_INDEXlowpass10 <- butter.it(tempmerge$Z_RIGHT_INDEX, samplingrate = 100, order = 1, lowpass = 10)
+tempmerge$Z_RIGHT_INDEXlowpass30 <- butter.it(tempmerge$Z_RIGHT_INDEX, samplingrate = 100, order = 1, lowpass = 30)
+
+p1 <- ggplot(tempmerge, aes(x=time))+geom_path(aes(y=Z_RIGHT_INDEX))+
+                                    geom_path(aes(y=Z_RIGHT_INDEXlowpass10), color = "red", alpha=0.5)+
+                                    geom_path(aes(y=Z_RIGHT_INDEXlowpass30), color = "purple", alpha=0.5)+
+  xlim(14000,16000)+ggtitle("zero-lag butterworth")+theme_bw()+ylim(-0.45, -0.2)
+ggplotly(p1)
+
+
+#apply kolmororov zurbenko
+tempmerge <- merged
+tempmerge$Z_RIGHT_INDEXs42 <- kolmogorov.it(timeseries = tempmerge$Z_RIGHT_INDEX, span = 4, order = 2)
+tempmerge$Z_RIGHT_INDEXs46 <- kolmogorov.it(timeseries = tempmerge$Z_RIGHT_INDEX, span = 4, order = 6)
+
+p2 <- ggplot(tempmerge, aes(x=time))+geom_path(aes(y=Z_RIGHT_INDEX))+
+                                    geom_path(aes(y=Z_RIGHT_INDEXs42), color = "red", alpha=0.5)+
+                                    geom_path(aes(y=Z_RIGHT_INDEXs46), color = "purple", alpha=0.5)+
+  xlim(14000,16000)+ggtitle("kolmogorov zurbenko")+theme_bw()+ylim(-0.45, -0.2)
+ggplotly(p2)
+
+```
+
+### Computing speed and acceleration (and smoothing again)
+
+
+## Adding annotations and saving data
+
+
+## Some applications
+
+
+
 
