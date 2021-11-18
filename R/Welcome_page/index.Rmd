@@ -20,6 +20,4 @@ output:
 
 * [Body tracking with mediapipe/Blazepose](https://wimpouw.github.io/EnvisionBootcamp2021/MediaPipeBodyTracking.html)
 
-* [TODO: Merging low-sampling motion tracking with high-sampling Acoustics](https://wimpouw.github.io/EnvisionBootcamp2021)
-
-* [TODO: Smoothing motion tracking and deriving speed & acceleration](https://wimpouw.github.io/EnvisionBootcamp2021)
+* [Selecting, smoothing, and deriving measures from motion tracking, and merging with acoustics and annotations](https://wimpouw.github.io/EnvisionBootcamp2021/MergingAcousticsMT.html)

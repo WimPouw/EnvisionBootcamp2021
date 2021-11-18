@@ -15,15 +15,17 @@ library(papaja) #for using printnum
 ```
 ## Info documents
 
-* This R coding module shows how we could select and derive relevant measures from motion tracking that we would like to merge with signals from other modalities (e.g., annotations, acoustics). We also apply some smoothing the motion tracking movement traces that you can try out yourself.
+* This R coding module shows how we could select and derive relevant measures from motion tracking that we would like to merge with signals from other modalities (e.g., annotations, acoustics). We also apply some smoothing to the motion tracking movement traces that you can try out yourself. We also show some simple applications of this merged dataframe, in the form of a peak analysis in the application section.
 
 * location Repository:  https://github.com/WimPouw/EnvisionBootcamp2021
 
-* location Rmarkdown: https://github.com/WimPouw/EnvisionBootcamp2021/tree/main/R/MerginAcoustics.Rmd
+* location Rmarkdown: https://github.com/WimPouw/EnvisionBootcamp2021/tree/main/R/MergingAcousticsMT.Rmd
 
-* citation: Pouw, W. (`r Sys.Date()`). *Extracting a smoothed amplitude envelope from audio*. [the day you viewed the site]. Retrieved from: https://github.com/WimPouw/EnvisionBootcamp2021/tree/main/R/ExtractAmplitudeEnvelope
+* citation: Pouw, W. (`r Sys.Date()`). *Selecting, smoothing, and deriving measures from motion tracking, and merging with acoustics and annotations*. [the day you viewed the site]. Retrieved from: https://github.com/WimPouw/EnvisionBootcamp2021/tree/main/R/ExtractAmplitudeEnvelope
 
-So in multimodal analysis you will often encounter the situation that you have signals that are continuous but sampling at different rates, and such signals then also need to be related to qualitative codings such as gesture annotations, or trial information of your experiment. It is sometimes convenient to have everything you need in one time series file, so you can apply your multimodal analysis easily.  
+## Background
+
+In multimodal analysis you will often encounter the situation that you have signals that are continuous but sampling at different rates, and such signals then also need to be related to qualitative codings such as ELAN gesture annotations, or trial information of your experiment. It is sometimes convenient to have everything you need in one time series file, so you can apply your multimodal analysis easily. A lot of the initial steps of even beginning to do some quantitative multimodal recording and analysis are covered in Pouw, Trujillo, Dixon (2020); here we provide some basic data wrangling steps that are often required to set up your dataset (e.g., merging data, smoothing data, extracting kinematic variables). 
 
 ## Set up folders and check data formats
 
@@ -47,7 +49,7 @@ ANNO <- read.csv(paste0(parentfolder, "/Multimedia_Annotations/ELAN_cartoon/anno
 outputfolder <- paste0(curfolder, "/output/")
 ```
 
-So the data we have are the motion tracking data with `r printnum(ncol(MT))` columns  (body keypoints = `r printnum(ncol(MT)-1)`, and sampling at `r printnum(median(diff(MT$time)))` ms intervals. 
+The data we have are the motion tracking data with `r printnum(ncol(MT))` columns  (body keypoints = `r printnum(ncol(MT)-1)`, and sampling at `r printnum(median(diff(MT$time)))` ms intervals. 
 ```{r}
 head(MT[,1:4]) #lets select only the first 4 columns
 ```
@@ -61,11 +63,11 @@ head(ANNO)
 ```
 
 ## Select MT and merge with acoustic envelope data
-For the motion tracking output we generated for the cartoon video we may only be interested in some specific body parts, say we are interesting in the right hand index finger traces only. Lets select them first.
+Lets not merge all data. For the motion tracking output we generated for the cartoon video we are now only interested in some specific body part; say we are interested in the right hand index finger traces only. Lets select them first.
 
 ```{r}
 selection <- c("time", "X_RIGHT_INDEX", "Y_RIGHT_INDEX" ,"Z_RIGHT_INDEX") #concatenate a some variable names in a vector "selection"
-MTs <- MT[, colnames(MT) %in% selection] #select all column positions of which the names are also in the selection variable and save to a new object called MTs
+MTs <- MT[,selection] #select all column positions of which the names are also in the selection variable and save to a new object called MTs
 ```
 
 This selection of the motion tracking data we want to then align with the acoustic data. We use the R's native 'merge' function for this, and we align the acoustic and motion tracking data based on their common information (namely time in milliseconds). We do we want to make sure that we keep information from both objects, instead of only aligning when one and the other has a value (we therefore set the arugment 'all' to 'TRUE').
@@ -75,7 +77,7 @@ merged <- merge(x=MTs, y = ENV, by.x = "time", by.y = "time_ms", all=TRUE)
 head(merged)
 ```
 
-We can see that while we have ordered and aligned the two objects in a single merge object, we have a lot of empty non-applicable (NA) rows. This is because at the exact times the sample is taken for the amplitude envelope there is not a sample for motion tracking. The solution is to linearly interpolate and upsampling your data. We will do this by approximating for each NA for motion tracking data what its value would be given that it is at time x and we know the values at a particular time before and after. The function na.approx from library(zoo) allows us to do this, by stating what vector you want to interpolate NA's (e.g., X_RIGHT_INDEX) for, given some information about the time (x= time). We can leave NA's as is which we arent able to interpolate, e.g., if your merged time series ends with NA's we cant interpolate because we dont have values between which we can interpolate (so we set na.rm=FALSE, so we dont remove NA's that are left after linear approximation).  
+We can see that while we have ordered and aligned the two objects in a single merge object, we have a lot of empty Non-Applicable (NA) rows. This is because at the exact times the sample is taken for the amplitude envelope there is not a sample for motion tracking. The solution is to linearly interpolate and upsample your data. We will do this by approximating for each NA for motion tracking sample what its value would be given that it is at time x and we know the values at a particular time before and after. The function na.approx from library(zoo) allows us to do this, by stating what vector you want to interpolate NA's for (e.g., X_RIGHT_INDEX), given some information about the time (x = time). We can leave NA's that we aren't able to interpolate, e.g., if your merged time series ends with NA's we cant interpolate because we dont have values we can use for interpolation (so we set na.rm=FALSE).  
 
 
 ```{r}
@@ -89,7 +91,7 @@ merged$Z_RIGHT_INDEX <- na.approx(merged$Z_RIGHT_INDEX, x = merged$time, na.rm=F
 head(merged)
 ```
 
-We are now almost there with the merging of acoustics and motion tracking. First, we should note, that there is an important reason why we choose to upsample the motion tracking data from 30Hz to 100Hz, and this is because we would be loosing information if we would downsample the amplitude envelope from 100Hz to 30Hz. Since we have upsampled the motion tracking data, we can just go ahead and only keep information where we both have info from the amplitude envelope and and info from motion tracking; this will yield a time series object with steady sampling at 100Hz with original data points for the amplitude envelope, and interpolated and upsampled values for the motion tracking.
+We are now almost done with the merging of acoustics and motion tracking. First, we should note, that there is an important reason why we choose to upsample the motion tracking data from 30Hz to 100Hz, and this is because we would be loosing information if we would downsample the amplitude envelope from 100Hz to 30Hz. Now that we have upsampled the motion tracking data, we can just go ahead and only keep information where we both have info from the amplitude envelope and info from motion tracking; this will yield a time series object with steadily samples at 100Hz with original data points for the amplitude envelope, and interpolated and upsampled values for the motion tracking (we discard the original samples from the motion tracking).
 ```{r}
 ## Lets only keep information at the original sampling rate of the amplitude envelope (so exclude envelope NA's rows)
 merged <- merged[(!is.na(merged$env)),]
@@ -106,60 +108,156 @@ library(plotly)
 
 a <- ggplot(merged, aes(x=time))+geom_path(aes(y=env))+xlim(13000,16000)+theme_bw()
 b <- ggplot(merged, aes(x=time))+geom_path(aes(y=Z_RIGHT_INDEX), color = "red")+geom_path(aes(y=Y_RIGHT_INDEX), color = "gold")+geom_path(aes(y=X_RIGHT_INDEX), color = "blue")+xlim(13000,16000)+ylim(-0.5, 0.05)+theme_bw()
-subplot(ggplotly(a), ggplotly(b), nrows=2)
+subplot(ggplotly(a), ggplotly(b), nrows=2) #we use ggplotly here as it is creates some nice interactive graphs
 ```
 
 ### Smoothing
-One thing that you will run into when using motion tracking data, especially when using video based motion tracking data, is that you will have noise-related jitter in your time series. At some times such noise maybe minimal, e.g., when using very accurate device-based motion tracking devices. But in other cases, you will see that there are sudden jumps from timepoint to time point that have to due with tracking inaccuracies (that can be cause, by occlusions, or not ideal lighting, etc.).  
-It is good therefore to apply some smoothing to the position traces of your motion tracking data, as well as any derivates that are taken afterwards (e.g., 3D speed, vertical velocity). You can for example apply a low-pass filter, whereby you only allow fluctuations that have a slow frequency changes (gradual changes from point to point) so as to filter out the jitter that occurs at very high frequencies (because they result in sudden changes from point to point). Importantly, when using low-pass filters there can be a some time shifts, especially for a butterworth filter, so in that case it is important to undo that shift by running the smoothing forwards and backwards, if you care about precise temporal precision relative to some other timeseries for example (e.g., acoustics).  
-We can also use a different kind of smoothing filter that operates more like a running average, such that sudden changes in the time series are smoothed out by the adjacent data points.   Below we show smoothing for a low pass filter (zero-lag 1st order butterworth filter) and a type of moving average filter (Kolmogorov-Zurbenko filter).
+One thing that you will run into when using motion tracking data, especially when using video based motion tracking data, is that you will have noise-related jitter in your time series. At some times such noise maybe minimal, e.g., when using very accurate device-based motion tracking devices. But in other cases, you will see that there are sudden jumps or kinks from timepoint to timepoint due to tracking inaccuracies (that can be caused by occlusions, or not ideal lighting, etc.).  
+  
+It is good therefore to apply some smoothing to the position traces of your motion tracking data, as well as any derivatives that are taken afterwards (e.g., 3D speed, vertical velocity). You can for example apply a low-pass filter, whereby you try to only allow fluctuations that have a slow frequency change (gradual changes from point to point) so as to filter out (i.e., reduce the amplitude of) the jitter that occurs at very high frequencies (because they result in sudden changes from point to point). Note that when using low-pass filters there can be some time shift, so in that case it is good to undo that shift by running the smoothing forwards and backwards. This is important if you care about precise temporal precision relative to some other timeseries for example (e.g., acoustics).  
+  
+We can also use a different kind of smoothing filter that operates more like a running average, such that sudden changes in the time series are smoothed out by relating them to adjacent data points. Below we use such a type of moving filter (Kolmogorov-Zurbenko filter). 
+  
+So we provide two filters, and we also show some differences in settings. The amount of possible filters is immense. To pick one filter without becoming an expert on filters, you can try a few and then assess it with your own data and see how a filter is capturing the variability you are interested in. For example if you care about small amplitude fluctuations in your time series that might have to do with jerky movement, a heavy filter can potentially destroy this variability. A too weak of a filter might leave the signal riddled with noise, which may look acceptable, but can cascade into dramatic noisy estimates when taking for example derivatives (e.g., speed -> acceleration -> jerk).
+
 
 ```{r}
-#Butterworth filter
+#Butterworth filter function
+  #take some time series, apply the filter, then return it
 library(signal)
-butter.it <- function(x, samplingrate, order, lowpass)
-{bf <- butter(order, 1/(samplingrate/lowpass), type="low")
-x <- as.numeric(signal::filtfilt(bf, x))}
+butter.it <- function(x, samplingrate, order, lowpasscutoff)
+{bf <- butter(order, 1/(samplingrate/lowpasscutoff), type="low")
+x <<- as.numeric(signal::filtfilt(bf, x))}
 
 #Kolmogorov-Zurbenki filter
+  #take some time series, apply the filter, then return it
 library(kza)
 kolmogorov.it <- function(timeseries, span, order)
 {timeseries <- kza(x= timeseries, m=span, k = order)
-return(timeseries$kz)}
+return(timeseries$kza)}
 
-#apply Butterworth
-tempmerge <- merged
-tempmerge$Z_RIGHT_INDEXlowpass10 <- butter.it(tempmerge$Z_RIGHT_INDEX, samplingrate = 100, order = 1, lowpass = 10)
-tempmerge$Z_RIGHT_INDEXlowpass30 <- butter.it(tempmerge$Z_RIGHT_INDEX, samplingrate = 100, order = 1, lowpass = 30)
+#apply Butterworth to our temporay dataset
+tempmerge <- merged #just copy our merged data
+tempmerge$Z_RIGHT_INDEXlowpass10 <- butter.it(tempmerge$Z_RIGHT_INDEX, samplingrate = 100, order = 1, lowpasscutoff = 10) #add a heavy filter
+tempmerge$Z_RIGHT_INDEXlowpass30 <- butter.it(tempmerge$Z_RIGHT_INDEX, samplingrate = 100, order = 1, lowpasscutoff = 30) #add a milder filter
 
+#plot the time series with the original, and the low pass filtered signals
 p1 <- ggplot(tempmerge, aes(x=time))+geom_path(aes(y=Z_RIGHT_INDEX))+
                                     geom_path(aes(y=Z_RIGHT_INDEXlowpass10), color = "red", alpha=0.5)+
                                     geom_path(aes(y=Z_RIGHT_INDEXlowpass30), color = "purple", alpha=0.5)+
-  xlim(14000,16000)+ggtitle("zero-lag butterworth")+theme_bw()+ylim(-0.45, -0.2)
+  xlim(14000,16000)+ggtitle("zero-lag butterworth, 10 Hz cutoff (red), 30 Hz cutoff (purple)")+theme_bw()+ylim(-0.45, -0.2)
 ggplotly(p1)
 
 
 #apply kolmororov zurbenko
-tempmerge <- merged
-tempmerge$Z_RIGHT_INDEXs42 <- kolmogorov.it(timeseries = tempmerge$Z_RIGHT_INDEX, span = 4, order = 2)
-tempmerge$Z_RIGHT_INDEXs46 <- kolmogorov.it(timeseries = tempmerge$Z_RIGHT_INDEX, span = 4, order = 6)
-
+tempmerge <- merged 
+tempmerge$Z_RIGHT_INDEXs42 <- kolmogorov.it(timeseries = tempmerge$Z_RIGHT_INDEX, span = 4, order = 2) #add a heavy filter
+tempmerge$Z_RIGHT_INDEXs46 <- kolmogorov.it(timeseries = tempmerge$Z_RIGHT_INDEX, span = 4, order = 6) #add a milder filter
+#repeat a similar procedure as above
 p2 <- ggplot(tempmerge, aes(x=time))+geom_path(aes(y=Z_RIGHT_INDEX))+
                                     geom_path(aes(y=Z_RIGHT_INDEXs42), color = "red", alpha=0.5)+
                                     geom_path(aes(y=Z_RIGHT_INDEXs46), color = "purple", alpha=0.5)+
-  xlim(14000,16000)+ggtitle("kolmogorov zurbenko")+theme_bw()+ylim(-0.45, -0.2)
+  xlim(14000,16000)+ggtitle("kolmogorov zurbenk, span = 4, order 2 (red), span = 4, order 6 (purple)")+theme_bw()+ylim(-0.45, -0.2)
 ggplotly(p2)
+```
 
+So in the above figures you can zoom in see the differences between different kind of filter settings. Our Mediapipe tracking sample is already quite smooth, but in our experience video based motion tracking can be quite jittery and smoothing is crucial then. For now we will apply for all our motion tracking data the 1st order butterworth filter at a frequency cutoff of 30Hz.
+
+```{r}
+to_smooth <- c("X_RIGHT_INDEX", "Y_RIGHT_INDEX" ,"Z_RIGHT_INDEX") 
+merged[,to_smooth] <- 
+  apply(merged[,to_smooth], 2, 
+        FUN = function(x) butter.it(x, samplingrate = 100, order = 1, lowpasscutoff = 30))
 ```
 
 ### Computing speed and acceleration (and smoothing again)
+We now already have only for one body joint three variables to describe its position. Sometimes we are only interested in a 1-dimensional signal, such as rate of movement in a particular dimension (e.g., vertical velocity), or the rate of movement in any direction (3D speed), or the change in the rate of 3D movement (acceleration). Below some simple examples of how to compute this from your initial position data.
+
+
+```{r}
+#FUNCTION FOR GETTING SPEED VECTOR per 1000ms time
+speedXYZ.it <- function(x,y,z, time_millisecond)
+{
+  #calculate the Euclidean distance from time point x to timepoint x+1, for 3 dimensions
+  speed <- c(0, sqrt( rowSums( cbind(diff(x)^2, diff(y)^2)) ))
+  #smooth the result
+  speed <- butter.it(speed, samplingrate = 100, order = 1, lowpasscutoff = 30)
+  #scale the speed vector so that we express it units change per second change
+  speed <<- speed/(c(1, diff(time_millisecond))/1000)  
+}
+
+#derive the change of x and smooth
+derive.it <- function(x){
+  butter.it(c(0, diff(x)), samplingrate = 100, order = 1, lowpasscutoff = 30)}
+
+#calculate speed
+merged$speed <- speedXYZ.it(merged$X_RIGHT_INDEX, merged$Y_RIGHT_INDEX, merged$Z_RIGHT_INDEX, merged$time)
+merged$vertical_velocity <- derive.it(merged$Y_RIGHT_INDEX) #in mediapipe the vertical dimenions is Z
+#calculate acceleration
+merged$acceleration <- derive.it(merged$speed)
+merged$jerk <- derive.it(merged$acceleration)
+
+#repeat a similar procedure as above
+sc.it <- function(x) {scale(x, center = FALSE)}  #lets scale all the variables, without centering
+p <- ggplot(merged, aes(x=time))+geom_path(aes(y=sc.it(speed))) +
+                                    geom_path(aes(y=sc.it(vertical_velocity)), color = "blue", alpha=0.5)+
+                                    geom_path(aes(y=sc.it(acceleration)), color = "red", alpha=0.5)+
+                                    geom_path(aes(y=sc.it(jerk)), color = "purple", alpha=0.5)+geom_hline(yintercept=0, color = "gold")+
+  xlim(14000,16000)+ggtitle("kinematic variables")+theme_bw()+ylim(-3.5, 3.5)
+ggplotly(p)
+```
+<font size="2"> Note. Notice for the figure that vertical velocity can go positive (upward rate of motion) or negative (downward rate of motion); it is a vector as the values have a direction. This is similar for acceleration (positive = acceleration, negative = deceleration) and jerk (positive = increasing acceleration, negative = decreasing acceleraiton). Speed is a scalar value and does not go negative.</font> 
 
 
 ## Adding annotations and saving data
+We now have merged the acoustic data with an upsampled selection of the motion tracking data, and we have derived some kinematic variables and added them to our time series dataset. The only thing that is left, is to merge the annotations with this dataset. The following code loads in the annotations (with begintime, endtime, and annotation) in the time series data. We also add an identifier to the gesture coding, such that each gesture event gets a unique identifier.
 
+```{r}
+#make a new gesture ID for each annotation using the original begin and end times
+ANNOID <- cbind(ANNO[,1:2], paste0("GID_", c(1:nrow(ANNO)))) 
+
+##this function loads into a time series an annotation dataframe with columns (begintime, endtime, annotation)
+load.in.event <- function(time_original, anno)
+{
+  output <- rep(NA, length(time_original))
+  for(i in 1:length(anno[,1])) #loop through each annotation event
+  {
+    #print(anno[i,3]) #you can print the value to check if this is running correctly
+    output <- ifelse((time_original >= anno[i,1] & time_original <= anno[i,2]), as.character(anno[i,3]), output)
+  }
+  return(output)
+}
+
+#make a function that loads in a 3 column annotation file, into a timeseries object
+merged$gesture_type <- merged$gesture_ID <- NA #initialize two new variables in our dataframe
+merged$gesture_type <- load.in.event(time_original = merged$time, anno = ANNO) #apply function
+merged$gesture_ID   <- load.in.event(merged$time, anno = ANNOID) #apply function
+
+#lets save the data now we have everything merged
+write.csv(merged, paste0(outputfolder, "mergedMM1.csv"))
+```
 
 ## Some applications
+So this new merged dataset is very flexible, in that we can for example, loop through relevant events and extract information from it. For example in the below lines of code, we ask for each gesture what the peak vertical upward velocity was, and then also the maximum in the amplitude envelope, and then plot the association between these for each gesture type, to see if how they scale.
 
+### peak analysis
+```{r}
+maxvc <- maxenv <- g_type <- vector() #initialize some variables that we want to fill
+for(id in unique(merged$gesture_ID)) #loop through gesture ids in our data
+{
+  if(!is.na(id)) #ignore NA events
+  {
+  indices <- which(merged$gesture_ID==id) #check which block of data has this gesture id
+  maxvc <- c(maxvc, max(merged$vertical_velocity[indices])) #fill the maxvc with a maximum vertical velocity for these indiced
+  maxenv <- c(maxenv, max(merged$env[indices]))#fill the maxenv with a maximum amplitudeve envelope for these indices
+  g_type <- c(g_type,unique(merged$gesture_type[indices]))#also retrieve the gesture type for this ID
+  }
+}
+mag_D <- cbind.data.frame(maxvc,maxenv, g_type) #merge vectors as columns into a dataframe
+ggplot(mag_D, aes(x=maxvc, y = maxenv, color = g_type))+ geom_point()+geom_smooth(method = "lm")+theme_bw()+facet_wrap(.~g_type, scales ="free")+
+  ylab("peak amplitude envelope")+xlab("peak vertical velocity")#plot
+```
 
-
+## References
+1. [Pouw, W., Trujillo, J. P., & Dixon, J. A. (2020). The quantification of gesture–speech synchrony: A tutorial and validation of multimodal data acquisition using device-based and video-based motion tracking. Behavior research methods, 52(2), 723-740.](https://link.springer.com/article/10.3758/s13428-019-01271-9)
 
