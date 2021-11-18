@@ -19,9 +19,9 @@ library(papaja) #for using printnum
 
 * location Repository:  https://github.com/WimPouw/EnvisionBootcamp2021
 
-* location Rmarkdown: https://github.com/WimPouw/EnvisionBootcamp2021/tree/main/R/MergingAcousticsMT.Rmd
+* location Rmarkdown: https://github.com/WimPouw/EnvisionBootcamp2021/blob/main/R/MergingAcousticsMT/MergingAcousticsMT.Rmd
 
-* citation: Pouw, W. (`r Sys.Date()`). *Selecting, smoothing, and deriving measures from motion tracking, and merging with acoustics and annotations*. [the day you viewed the site]. Retrieved from: https://github.com/WimPouw/EnvisionBootcamp2021/tree/main/R/ExtractAmplitudeEnvelope
+* citation: Pouw, W. (`r Sys.Date()`). *Selecting, smoothing, and deriving measures from motion tracking, and merging with acoustics and annotations*. [the day you viewed the site]. Retrieved from: https://wimpouw.github.io/EnvisionBootcamp2021/MergingAcousticsMT.html
 
 ## Background
 
