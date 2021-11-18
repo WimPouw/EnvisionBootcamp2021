@@ -93,8 +93,8 @@ for videofile in onlyfiles:
             hand_cent_x = np.median([(hand["X_" + marker]*frameWidth) for marker in markers])
             # and just above all the points
             hand_cent_y = max([(hand["Y_" + marker]*frameHeight) for marker in markers]) + 10
-            hand_text = "ID:" + str(hand["hand_ID"])+ "   pair: " + str(hand["paired_hand"])
-            cv2.putText(frameCopy, hand_text, (int(hand_cent_x), int(hand_cent_y)), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2, lineType=cv2.LINE_AA)
+            hand_text = str(hand["hand"][10]) + "  ID:" + str(hand["hand_ID"])+ "   pair: " + str(hand["paired_hand"])
+            cv2.putText(frameCopy, hand_text, (int(hand_cent_x), int(hand_cent_y)), cv2.FONT_HERSHEY_SIMPLEX, 1.5, (0, 0, 255), 1, lineType=cv2.LINE_AA)
           
            
         cv2.imshow('Frame',frameCopy)    
