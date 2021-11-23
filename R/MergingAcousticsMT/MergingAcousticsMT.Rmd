@@ -37,14 +37,12 @@ For this module we will only demonstrate the steps for the cartoon retelling exa
 
 #get current drive
 curfolder <- getwd()
-#the main parent folder
-parentfolder  <- dirname(dirname(curfolder))
 #Load in the motion tracking data
-MT <- read.csv(paste0(parentfolder, "/Python/MediaBodyTracking/Timeseries_Output/video_cartoon.csv"))
+MT <- read.csv(paste0(curfolder, "/MotionTracking/video_cartoon.csv"))
 #Load in the amplitude envelope
-ENV <- read.csv(paste0(parentfolder, "/R/ExtractAmplitudeEnvelope/output/audio_cartoon_ENV.csv"))
+ENV <- read.csv(paste0(curfolder, "/AmplitudeEnvelope/audio_cartoon_ENV.csv"))
 #load in the relevant annotations                                            
-ANNO <- read.csv(paste0(parentfolder, "/Multimedia_Annotations/ELAN_cartoon/annotations_cartoon.csv"))
+ANNO <- read.csv(paste0(curfolder, "/MultimediaAnnotations/annotations_cartoon.csv"))
 #This is the folder where your merged output is saved                                                 
 outputfolder <- paste0(curfolder, "/output/")
 ```

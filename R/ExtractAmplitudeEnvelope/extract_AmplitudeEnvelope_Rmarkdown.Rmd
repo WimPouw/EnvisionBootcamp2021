@@ -34,12 +34,8 @@ Lets move to the code. We first define our folders, list the waveform (.wav) fil
 
 #get current drive
 curfolder <- getwd()
-#what is the parentfolderR (on folder back from current folder)
-parentfolderR <- dirname(curfolder) 
-#the main parent folder
-parentfolder  <- dirname(dirname(curfolder)) 
 #This is the folder where your wav's are saved
-data_to_process <- paste0(parentfolder, "/Multimedia/Audio/") 
+data_to_process <- paste0(curfolder, "/Multimedia/Audio/") 
 #list of the wav's                                                                    
 list_wavs <- list.files(data_to_process, pattern = ".wav")            
 #set an output folder to save the amplitude envelope time series to

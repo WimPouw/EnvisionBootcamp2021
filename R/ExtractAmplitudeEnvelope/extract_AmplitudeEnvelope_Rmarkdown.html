@@ -12,7 +12,7 @@
 
 <meta name="author" content="Wim Pouw (wim.pouw@donders.ru.nl) &amp; James Trujillo (james.trujillo@donders.ru.nl)" />
 
-<meta name="date" content="2021-11-19" />
+<meta name="date" content="2021-11-23" />
 
 <title>Extracting a smoothed amplitude envelope from audio</title>
 
@@ -133,7 +133,7 @@ a.sourceLine {
 <header>
 <h1 class="title toc-ignore">Extracting a smoothed amplitude envelope from audio</h1>
 <h3 class="author">Wim Pouw (<a href="mailto:wim.pouw@donders.ru.nl" class="email">wim.pouw@donders.ru.nl</a>) &amp; James Trujillo (<a href="mailto:james.trujillo@donders.ru.nl" class="email">james.trujillo@donders.ru.nl</a>)</h3>
-<h3 class="date">2021-11-19</h3>
+<h3 class="date">2021-11-23</h3>
 </header>
 
 <hr>
@@ -149,7 +149,7 @@ a.sourceLine {
 <li><p>This R coding module introduces you to the extraction of a smoothed amplitude envelope from .wav files. To run the code yourself, download the repository and run the Rmarkdown file.</p></li>
 <li><p>location Repository: <a href="https://github.com/WimPouw/EnvisionBootcamp2021" class="uri">https://github.com/WimPouw/EnvisionBootcamp2021</a></p></li>
 <li><p>location Rmarkdown: <a href="https://github.com/WimPouw/EnvisionBootcamp2021/tree/main/R/ExtractAmplitudeEnvelope" class="uri">https://github.com/WimPouw/EnvisionBootcamp2021/tree/main/R/ExtractAmplitudeEnvelope</a></p></li>
-<li><p>citation: Pouw, W. &amp; Trujillo, J. P. (2021-11-19). <em>Extracting a smoothed amplitude envelope from audio</em>. [the day you viewed the site]. Retrieved from: <a href="https://github.com/WimPouw/EnvisionBootcamp2021/tree/main/R/ExtractAmplitudeEnvelope" class="uri">https://github.com/WimPouw/EnvisionBootcamp2021/tree/main/R/ExtractAmplitudeEnvelope</a></p></li>
+<li><p>citation: Pouw, W. &amp; Trujillo, J. P. (2021-11-23). <em>Extracting a smoothed amplitude envelope from audio</em>. [the day you viewed the site]. Retrieved from: <a href="https://github.com/WimPouw/EnvisionBootcamp2021/tree/main/R/ExtractAmplitudeEnvelope" class="uri">https://github.com/WimPouw/EnvisionBootcamp2021/tree/main/R/ExtractAmplitudeEnvelope</a></p></li>
 </ul>
 </div>
 <div id="smoothed-amplitude-envelope" class="section level2">
@@ -164,16 +164,12 @@ a.sourceLine {
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#get current drive</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>curfolder <span class="ot">&lt;-</span> <span class="fu">getwd</span>()</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#what is the parentfolderR (on folder back from current folder)</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>parentfolderR <span class="ot">&lt;-</span> <span class="fu">dirname</span>(curfolder) </span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#the main parent folder</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>parentfolder  <span class="ot">&lt;-</span> <span class="fu">dirname</span>(<span class="fu">dirname</span>(curfolder)) </span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">#This is the folder where your wav&#39;s are saved</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>data_to_process <span class="ot">&lt;-</span> <span class="fu">paste0</span>(parentfolder, <span class="st">&quot;/Multimedia/Audio/&quot;</span>) </span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">#list of the wav&#39;s                                                                    </span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>list_wavs <span class="ot">&lt;-</span> <span class="fu">list.files</span>(data_to_process, <span class="at">pattern =</span> <span class="st">&quot;.wav&quot;</span>)            </span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">#set an output folder to save the amplitude envelope time series to</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>outputfolder <span class="ot">&lt;-</span> <span class="fu">paste0</span>(curfolder, <span class="st">&quot;/output/&quot;</span>)</span></code></pre></div>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#This is the folder where your wav&#39;s are saved</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>data_to_process <span class="ot">&lt;-</span> <span class="fu">paste0</span>(curfolder, <span class="st">&quot;/Multimedia/Audio/&quot;</span>) </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#list of the wav&#39;s                                                                    </span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>list_wavs <span class="ot">&lt;-</span> <span class="fu">list.files</span>(data_to_process, <span class="at">pattern =</span> <span class="st">&quot;.wav&quot;</span>)            </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">#set an output folder to save the amplitude envelope time series to</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>outputfolder <span class="ot">&lt;-</span> <span class="fu">paste0</span>(curfolder, <span class="st">&quot;/output/&quot;</span>)</span></code></pre></div>
 </div>
 <div id="main-function" class="section level2">
 <h2>Main function</h2>

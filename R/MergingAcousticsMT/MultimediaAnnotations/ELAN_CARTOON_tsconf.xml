@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<timeseries date="2021-11-23T13:34:03+01:00" version="1.0">
+    <tracksource sample-type="Discontinuous Rate"
+        source-url="file:///D:/Research_Projects/workshops_envision_bootcamp/R/MergingAcousticsMT/output/mergedMM1.csv" time-column="1">
+        <property key="provider" value="mpi.eudico.client.annotator.timeseries.csv.CSVServiceProvider"/>
+        <track derivative="0" name="speed">
+            <property key="detect-range" value="false"/>
+            <sample-position>
+                <pos col="6" row="0"/>
+            </sample-position>
+            <description/>
+            <units/>
+            <range max="3.5" min="0.0010918091"/>
+            <color>0,0,0</color>
+        </track>
+    </tracksource>
+</timeseries>
