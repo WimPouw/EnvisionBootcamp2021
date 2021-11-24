@@ -1,0 +1,13 @@
+Input:./samples/2015-10-15-15-14.avi
+Input full path:D:\data\MoCap\OpenFace_2.2.0_win_x64\OpenFace_2.2.0_win_x64\samples\2015-10-15-15-14.avi
+Camera parameters:500,500,320,240
+Output HOG:2015-10-15-15-14.hog
+Output video:2015-10-15-15-14.avi
+Output aligned directory:2015-10-15-15-14_aligned
+Output csv:2015-10-15-15-14.csv
+Gaze: 1
+AUs: 1
+Landmarks 2D: 1
+Landmarks 3D: 1
+Pose: 1
+Shape parameters: 1
