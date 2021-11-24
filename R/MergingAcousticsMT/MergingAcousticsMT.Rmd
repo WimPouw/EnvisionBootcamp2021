@@ -236,24 +236,24 @@ write.csv(merged, paste0(outputfolder, "mergedMM1.csv"))
 ```
 
 ## Some applications
-So this new merged dataset is very flexible, in that we can for example, loop through relevant events and extract information from it. For example in the below lines of code, we ask for each gesture what the peak vertical upward velocity was, and then also the maximum in the amplitude envelope, and then plot the association between these for each gesture type, to see if how they scale.
+So this new merged dataset is very flexible, in that we can for example, loop through relevant events and extract information from it. For example in the below lines of code, we ask for each gesture what the peak speed was, and then also the maximum in the amplitude envelope, and then plot the association between these for each gesture type, to see if how they scale.
 
 ### peak analysis
 ```{r}
-maxvc <- maxenv <- g_type <- vector() #initialize some variables that we want to fill
+maxs <- maxenv <- g_type <- vector() #initialize some variables that we want to fill
 for(id in unique(merged$gesture_ID)) #loop through gesture ids in our data
 {
   if(!is.na(id)) #ignore NA events
   {
   indices <- which(merged$gesture_ID==id) #check which block of data has this gesture id
-  maxvc <- c(maxvc, max(merged$vertical_velocity[indices])) #fill the maxvc with a maximum vertical velocity for these indiced
+  maxs <- c(maxs, max(merged$speed[indices])) #fill the maxvc with a maximum vertical velocity for these indiced
   maxenv <- c(maxenv, max(merged$env[indices]))#fill the maxenv with a maximum amplitudeve envelope for these indices
   g_type <- c(g_type,unique(merged$gesture_type[indices]))#also retrieve the gesture type for this ID
   }
 }
-mag_D <- cbind.data.frame(maxvc,maxenv, g_type) #merge vectors as columns into a dataframe
-ggplot(mag_D, aes(x=maxvc, y = maxenv, color = g_type))+ geom_point()+geom_smooth(method = "lm")+theme_bw()+facet_wrap(.~g_type, scales ="free")+
-  ylab("peak amplitude envelope")+xlab("peak vertical velocity")#plot
+mag_D <- cbind.data.frame(maxs,maxenv, g_type) #merge vectors as columns into a dataframe
+ggplot(mag_D, aes(x=maxs, y = maxenv, color = g_type))+ geom_point()+geom_smooth(method = "lm")+theme_bw()+facet_wrap(.~g_type, scales ="free")+
+  ylab("peak amplitude envelope")+xlab("peak speed")#plot
 ```
 
 ## References

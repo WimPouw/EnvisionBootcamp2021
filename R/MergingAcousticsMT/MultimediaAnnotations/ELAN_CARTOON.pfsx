@@ -19,7 +19,7 @@
         <String>vertical unsmoothed</String>
     </prefList>
     <pref key="MultiTierViewer.ActiveTierName">
-        <String>annot_gesture_right</String>
+        <String>General_Comments</String>
     </pref>
     <pref key="TimeSeriesViewer.ZoomLevel">
         <Float>200.0</Float>
@@ -28,10 +28,10 @@
         <Int>2</Int>
     </pref>
     <pref key="LayoutManager.MediaAreaHeight">
-        <Int>275</Int>
+        <Int>434</Int>
     </pref>
     <pref key="SelectionEndTime">
-        <Long>0</Long>
+        <Long>142298</Long>
     </pref>
     <pref key="ExportTabDialog.SelectTiersMode">
         <String>Tier</String>
@@ -82,7 +82,7 @@
         </pref>
     </prefGroup>
     <pref key="LayoutManager.TSWavSplitPaneDividerLocation">
-        <Int>305</Int>
+        <Int>229</Int>
     </pref>
     <prefList key="ExportTabDialog.selectedTiers">
         <String>annot_gesture_right</String>
@@ -117,7 +117,7 @@
         <Object class="java.awt.Rectangle">810,390,300,300</Object>
     </pref>
     <pref key="SelectionBeginTime">
-        <Long>0</Long>
+        <Long>141808</Long>
     </pref>
     <prefGroup key="AAM-LR Phone level audio segmentation">
         <pref key="base_url">
@@ -132,10 +132,10 @@
         <Int>1</Int>
     </pref>
     <pref key="TimeScaleBeginTime">
-        <Long>0</Long>
+        <Long>135268</Long>
     </pref>
     <pref key="MediaTime">
-        <Long>66</Long>
+        <Long>143857</Long>
     </pref>
     <prefList key="MultiTierViewer.TierOrder">
         <String>General_Comments</String>
@@ -146,7 +146,7 @@
             <Object class="java.awt.Color">160,90,90</Object>
         </pref>
         <pref key="annot_gesture_right">
-            <Object class="java.awt.Color">0,160,90</Object>
+            <Object class="java.awt.Color">0,0,160</Object>
         </pref>
     </prefGroup>
     <prefGroup key="IndividualPlayerVolumes">
@@ -157,6 +157,9 @@
             <Float>1.0</Float>
         </pref>
         <pref key="video_track_sound_mp4.mp4">
+            <Float>0.0</Float>
+        </pref>
+        <pref key="video_cartoon_motion_tracking.mp4">
             <Float>0.0</Float>
         </pref>
         <pref key="AUDIO_GESTURES.wav">
@@ -170,7 +173,7 @@
         </pref>
     </prefGroup>
     <pref key="LayoutManager.SplitPaneDividerLocation">
-        <Int>477</Int>
+        <Int>282</Int>
     </pref>
     <prefList key="CommentViewer.Columns.Hidden">
         <String>Sender</String>
