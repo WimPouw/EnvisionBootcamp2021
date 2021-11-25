@@ -40,4 +40,4 @@ output:
 
 * [Analysis Kinematic Features (python)](https://wimpouw.github.io/EnvisionBootcamp2021/Analysis_kinematic_features_module.html)
 
-* [Gesture networks: Module 1 (R)](https://wimpouw.github.io/EnvisionBootcamp2021/Analysis_kinematic_features_module.html)
+* [Gesture networks: Module 1 (R)](https://wimpouw.github.io/EnvisionBootcamp2021/gesturenetworks_module1.html)
