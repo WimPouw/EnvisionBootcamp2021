@@ -1,0 +1,235 @@
+---
+title: "ProcessingKinematicsToDistances"
+author: "Wim Pouw"
+date: "3/30/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+#packages
+library(kza)        #for kolmogorov golai filter
+library(dtw)         #for dynamic time warping
+library(rjson)       #for extracting json info
+library(stringr)     #for manipulations of strings
+library(ggplot2)     #plotting
+library(plotly)     #plotting
+library(tsne)       #for dimensionality reduction
+
+#set current as working drive via session -> set working drive -> source file location
+workingdrive <- getwd() 
+basefolder   <- dirname(workingdrive)
+openposfolder <- paste0(basefolder, "/Motion_tracking_openpose/")
+timeserfolder <- paste0(basefolder, "/Time_series/")
+distancematfolder <- paste0(basefolder, "/Distance_matrices/")
+iconicityratings <- read.csv(paste0(basefolder, "/IconicityRatings/Iconicity_ratings.csv"))
+
+```
+
+## Overview processing steps
+
+This markdown file contains the following processing steps.
+
+* Create and save a time series for each video with relevant kinematics and smooth with a type of moving average filter (kolmogorov golai filter, span 5, degree 3)
+
+* Create a distance matrix with dynamic time warping distances
+
+Script procedure 1. Extract the openpose kinematics into a time series and smooth for jitter
+```{r extract_and_save_kinematics}
+files <- list.files(openposfolder) #collect motion tracking items to process
+
+####FUNCTIONS
+#set smoothing function zero-lag butterworth filter 30 Hz
+  #check out smoothing
+smooth <- function(x) 
+{
+  output <- kza::kz(x, 5, k = 3)
+}
+
+#####MAIN PROCEDURE
+#loop, collect, smooth, and save kinematic data
+for(vidfold in files)
+{
+  jsfileloc <- paste0(openposfolder, vidfold, "/")    #location json files
+  list_json <- list.files(  jsfileloc, pattern = ".json")      #index all json files
+  MT <- data.frame()                                           #initialize a motion tracking data frame
+  #loop over the json frame files
+  for(frame in list_json)
+  {
+    #load jsd$pose_keypoints_2d
+    jsd <- fromJSON(file = paste0(  jsfileloc, frame))         #load in frame
+    #get nose points, keypoint 0
+    x_nose <- jsd$people[[1]]$pose_keypoints_2d[1]       
+    y_nose <- jsd$people[[1]]$pose_keypoints_2d[2]
+    #get hand wrist points, keypoint 0
+      #left hand
+    x_wrist_left <- jsd$people[[1]]$hand_left_keypoints_2d[1]
+    y_wrist_left <- jsd$people[[1]]$hand_left_keypoints_2d[2]
+     #right hand
+    x_wrist_right <- jsd$people[[1]]$hand_right_keypoints_2d[1]
+    y_wrist_right <- jsd$people[[1]]$hand_right_keypoints_2d[2]
+    #get index points, keypoint 8
+      #left hand
+    x_index_left <- jsd$people[[1]]$hand_left_keypoints_2d[22]
+    y_index_left <- jsd$people[[1]]$hand_left_keypoints_2d[23]
+      #right hand
+    x_index_right <- jsd$people[[1]]$hand_right_keypoints_2d[22]
+    y_index_right <- jsd$people[[1]]$hand_right_keypoints_2d[23]
+      #left elbow
+    x_elbow_left <- jsd$people[[1]]$pose_keypoints_2d[21]
+    y_elbow_left <- jsd$people[[1]]$pose_keypoints_2d[22]
+      #right elbow
+    x_elbow_right <- jsd$people[[1]]$pose_keypoints_2d[12]
+    y_elbow_right <- jsd$people[[1]]$pose_keypoints_2d[13]
+      #left wrist
+    x_wrist_left <- jsd$people[[1]]$pose_keypoints_2d[25]
+    y_wrist_left <- jsd$people[[1]]$pose_keypoints_2d[26]
+      #right wrist
+    x_wrist_right <- jsd$people[[1]]$pose_keypoints_2d[16]
+    y_Wrist_right <- jsd$people[[1]]$pose_keypoints_2d[17]
+      #thumb index distance left
+    x_thumbindex_left <- (jsd$people[[1]]$hand_left_keypoints_2d[16]-x_index_left)^2
+    y_thumbindex_left <- (jsd$people[[1]]$hand_left_keypoints_2d[17]-y_index_left)^2
+    thumbindex_left <- sqrt((x_thumbindex_left)+(y_thumbindex_left)) #euclidean distance
+      #thumb index distance right
+    x_thumbindex_right <- (jsd$people[[1]]$hand_right_keypoints_2d[16]-x_index_right)^2
+    y_thumbindex_right <- (jsd$people[[1]]$hand_right_keypoints_2d[17]-y_index_right)^2
+    thumbindex_right <- sqrt(x_thumbindex_right+(y_thumbindex_right)) #euclidean distance
+      #angle between hands
+    anglehands <- atan2(y_wrist_left - y_wrist_right,  x_wrist_left - x_wrist_right ) * 180 / pi
+    
+    #append frame info to dataframe
+    frameMT <- cbind.data.frame(x_nose, y_nose, 
+                     x_wrist_left, y_wrist_left,  
+                     x_wrist_right, y_wrist_right, 
+                     x_index_left, y_index_left,
+                     x_index_right, y_index_right,
+                     x_wrist_left, y_wrist_left, 
+                     x_wrist_right, y_Wrist_right,
+                     x_elbow_left, y_elbow_left,
+                     x_elbow_right, y_elbow_right,
+                     thumbindex_left,
+                     thumbindex_right,
+                     anglehands)
+    MT <- rbind.data.frame(MT, frameMT)
+  }
+  #post apply
+  MT$y_wrist_left  <- MT$y_wrist_left*-1                  #mirror y as y-axis is flipped (higher position = lower y)
+  MT$y_index_left  <- MT$y_index_left*-1                  #mirror y as y-axis is flipped (higher position = lower y)
+  MT$y_wrist_right  <- MT$y_wrist_right*-1                #mirror y as y-axis is flipped (higher position = lower y)
+  MT$y_index_right  <- MT$y_index_right*-1                #mirror y as y-axis is flipped (higher position = lower y)
+  
+  #smooth, center, and scale all kinematics
+  MT <- apply(MT, 2, smooth) #smooth each time series column with kolmogorov filter
+  #MT <- apply(MT, 2, scale) #normalize and center
+
+  #save in time series output folder
+  tsfilename <- str_extract(vidfold, "[^_]+")
+  write.csv(MT, paste0(timeserfolder, tsfilename, ".csv"))
+}
+```
+
+Now the folder 'Time_series' is filled with time series for each video. It has nose, hand, index (x , y) info for both hands. Figure 1 shows an example of the kinematic time series.
+
+Figure 1. Example time series of SWIMMING for the right (red) and left hand (in blue)
+```{r}
+MT <- read.csv(paste0(timeserfolder, "TO-SWIM.csv"))
+MT$frames <- 1:nrow(MT)
+
+a <- ggplot(MT, aes(x = frames)) + 
+                  geom_path(aes(y = x_index_right), color = "red") + 
+                  geom_path(aes(y = x_index_left), color = "blue") + theme_bw()+ylab("horizontal\nposition normalized")
+ggplotly(a)
+```
+*Note*. The swimming gesture has a characteristic rhythmic movement, as shown here. The time series here is smoothed, scaled and centered. 
+
+The next step is to compute a average dynamic time warping distance between joint position traces. This means we are performing a dependent DTW, where x,y time series are submitted for a gesture 1 and gesture event 2; we take the mean for each joint comparison (nose, wrist etc.). We are doing an unconstrained dtw where begin and ending portions of the time series do not have to be aligned, this is to prevent dramatic error accumulation at portions that are not really defining the movement variability. This means we also have to compute the DTW distance forwards and backwards, as results can have slight differences for when you put a time series 1/2 as referent/test item. Finally, we calculate the normalized DTW score, which takes into account the possible amount of error given the combined length of the time series (this way we need to care less about differences in time series length; though in our case they dont differ that much). 
+
+Script procedure 2. This loop makes a distance matrix
+```{r DTW}
+timeseriess <- list.files(timeserfolder)
+
+#########################FUNCTIONS
+
+#dtw forward backward with free begin-and-end constraints
+forwardbackward.dtw <- function(x,y) 
+  { output <- mean(dtw(x, y, open.end = TRUE, open.begin = TRUE, step.pattern=asymmetric)$normalizedDistance +
+    dtw(y, x, open.end = TRUE, open.begin = TRUE, step.pattern=asymmetric)$normalizedDistance)}
+
+#Summed DTW
+DTW.compare <- function(TS1, TS2)
+{
+  #perform the dynamic time warping backwards and forwards, extract the distance, and then average
+  distancedtw <-  mean(forwardbackward.dtw(TS1[1:2], TS2[1:2]),
+                       forwardbackward.dtw(TS1[3:4], TS2[3:4]),
+                       forwardbackward.dtw(TS1[5:6], TS2[5:6]),
+                       forwardbackward.dtw(TS1[7:8], TS2[7:8]),
+                       forwardbackward.dtw(TS1[9:10], TS2[9:10]),
+                        forwardbackward.dtw(TS1[11:12], TS2[11:12]),
+                        forwardbackward.dtw(TS1[13:14], TS2[13:14]),
+                        forwardbackward.dtw(TS1[13:14], TS2[13:14]),
+                        forwardbackward.dtw(TS1[15:16], TS2[15:16]),
+                       forwardbackward.dtw(TS1[17], TS2[17]),
+                       forwardbackward.dtw(TS1[18], TS2[18]),
+                       forwardbackward.dtw(TS1[19], TS2[19]))
+  return(distancedtw)
+}
+
+#########################MAIN ROUTINE
+  #initialize some variables
+numges <- length(timeseriess) #how many gestures (should be 110)
+distmat <- matrix(nrow=numges, ncol=numges)  #110x110 matrix
+catchnames <- vector() #get the names so that we know what columns/rows belong to which ID
+n <- 0
+
+#loop through all combinations and save DTW score
+for(ts1 in timeseriess)
+{
+  TS1 <- read.csv(paste0(timeserfolder, ts1)) #read first time series
+  TS1index <- which(timeseriess == ts1) #index of this gesture
+  catchnames <- c(catchnames, substr(ts1,1,nchar(ts1)-4)) #save the gesture ID
+      for(ts2 in timeseriess)
+      {
+      TS2index <- which(timeseriess == ts2) #index of this gesture
+        if(is.na(distmat[TS2index,TS1index])) #pass only if calculation has not been done
+        {
+        TS2 <- read.csv(paste0(timeserfolder, ts2)) #read second time series
+        #compute DTW and save into matrix
+        dtwoutput <- DTW.compare(TS1, TS2)
+        distmat[TS1index,TS2index] <- dtwoutput
+        distmat[TS2index,TS1index] <- dtwoutput #its a symmetrical result so fill two cells
+      }
+  }
+}
+colnames(distmat) <- catchnames #attach the names to the distance matrix
+
+#the distmat has a long tailed distribution with extreme variation, therefore do a log transform
+hist(distmat)
+distmatlog <- log(distmat+1) 
+colnames(distmatlog) <- catchnames #attach the names to the distance matrix 2
+hist(distmatlog)
+
+#save distance matrix
+write.csv(distmat,paste0(distancematfolder, "distance_matrix_v1.csv"), row.names = FALSE)
+write.csv(distmatlog,paste0(distancematfolder, "distance_matrix_v2.csv"), row.names = FALSE)
+```
+
+```{r, message = FALSE, warning = FALSE, fig.width=10, fig.height=10}
+#plot distances
+plot.space <- function(top, title,cluster1, sizepoint)
+{
+  top <- cbind.data.frame(top, cluster1)
+  colnames(top) <- c("Xpos", "Ypos", "grouping")
+  pl <- ggplot(top, aes(x= Xpos, y = Ypos, color =grouping)) + geom_point(size= sizepoint, alpha= 0.5)+theme(legend.position = "none")
+  pl <- pl+  theme_bw() + ggtitle(title) + xlab("D1") + ylab("D2")
+  return(pl)
+}
+
+#plot the distance matrix
+set.seed(1)
+topology <- tsne(as.matrix(distmatlog, perplexity = 15))
+#plot the tsne 
+ggplotly(plot.space(topology, "distances represented through t-sne", colnames(distmatlog),10))
+```
+

@@ -1,0 +1,110 @@
+English,Dutch,No. participants,Mode of rep,Semantical category,pp01,pp02,pp03,pp04,pp05,pp06,pp07,pp08,pp09,pp10,pp11,pp12,pp13,pp14,pp15,pp16,pp17,pp18,MEAN
+TO-FLY,VLIEGEN,20,personification,Action without object,2,1,4,6,6,4,7,7,5,6,7,5,5,6,2,5,5,6,4.94
+TO-SWIM,ZWEMMEN,19,acting,Action without object,7,6,7,7,7,7,7,7,7,7,7,7,7,7,7,6,7,7,6.89
+HOUSE,HUIS,17,drawing,Non-manipulable object,5,2,3,6,5,6,6,5,6,7,6,4,6,5,3,3,3,3,4.67
+TO-WRING,WRINGEN,20,acting,Action with object,6,5,3,7,4,5,7,6,7,7,7,7,6,5,5,4,6,5,5.67
+TO-SHOUT,SCHREEUWEN,11,acting,Action without object,7,6,4,6,7,6,6,7,7,7,7,6,7,7,5,7,6,5,6.28
+PENGUIN,PINGU?N,16,personification,Animate ,5,1,5,6,7,3,5,4,7,5,5,5,6,2,1,5,4,3,4.39
+APPLE,APPEL,18,acting,Manipulable object,5,4,4,4,7,5,5,2,5,5,6,3,6,4,2,6,1,1,4.17
+TO-HAMMER,HAMEREN,20,acting,Action with object,6,4,2,5,5,4,4,4,6,2,7,2,3,3,4,2,3,2,3.78
+ZIMMER FRAME,ROLLATOR,20,acting,Manipulable object,1,2,1,2,3,1,1,1,4,2,4,3,3,2,1,2,1,1,1.94
+SCREWDRIVER,SCHROEVENDRAAIER,20,acting,Manipulable object,5,2,1,3,5,2,2,1,4,4,5,4,3,4,2,1,1,2,2.83
+ICE-CREAM,IJSJE,17,acting,Manipulable object,6,7,6,7,6,6,6,7,6,4,6,6,7,5,6,6,7,4,6.00
+WINDSCREEN WIPER,RUITENWISSER,17,representing,Manipulable object,4,6,3,5,7,4,5,5,4,5,6,4,6,4,5,5,5,3,4.78
+TO-SMOKE,ROKEN,20,acting,Action with object,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7.00
+TO-JOG,JOGGEN,20,acting,Action without object,6,7,6,6,7,5,6,6,4,4,7,5,7,5,4,6,5,4,5.56
+UMBRELLA,PARAPLU,20,acting,Manipulable object,5,3,3,3,5,3,2,2,2,5,4,6,3,5,1,3,2,2,3.28
+STAIRS,TRAP,10,representing,Non-manipulable object,6,4,4,5,7,4,3,3,3,6,5,6,6,1,6,7,6,5,4.83
+SUITCASE,KOFFER,18,acting,Manipulable object,5,5,4,2,3,4,1,1,2,1,5,4,2,3,3,3,1,1,2.78
+BALL,BAL,16,drawing,Manipulable object,5,3,2,3,3,2,1,3,3,2,4,5,7,4,4,5,2,4,3.44
+TO-DRINK,DRINKEN,19,acting,Action with object,7,7,5,7,7,7,7,7,7,7,5,7,7,7,7,7,7,7,6.78
+SPOON,LEPEL,18,acting,Manipulable object,6,4,4,5,3,6,4,4,5,6,4,3,5,5,2,3,7,2,4.33
+LOBSTER,KREEFT,10,personification,Animate ,5,2,2,2,4,6,2,2,3,5,4,3,5,6,1,2,1,2,3.17
+TO-TAKE-PHOTO,FOTOGRAFEREN,19,acting,Action with object,7,7,7,7,7,7,7,7,7,7,7,7,7,6,7,7,7,7,6.94
+BED,BED,15,acting,Non-manipulable object,6,5,3,4,2,3,1,3,2,4,5,2,6,4,4,3,2,1,3.33
+PISTOL,PISTOOL,17,representing,Manipulable object,6,6,6,6,7,6,6,6,7,7,5,6,7,6,5,7,6,6,6.17
+TO-LISTEN,LUISTEREN,15,acting,Action without object,7,6,4,6,7,6,7,7,7,7,5,5,7,7,7,7,6,6,6.33
+TO-ERASE,UITGUMMEN,18,acting,Action with object,2,4,3,2,7,3,1,2,4,2,6,4,5,2,2,4,2,1,3.11
+BRIDGE,BRUG,13,drawing,Non-manipulable object,3,1,1,1,1,2,1,4,3,2,4,3,4,4,1,2,2,3,2.33
+TO-COMB,KAMMEN,17,acting,Action with object,6,2,4,4,7,5,4,7,4,5,6,7,6,5,6,6,6,5,5.28
+TO-INJECT,INJECTEREN,16,acting,Action with object,7,5,5,5,7,5,4,7,5,7,6,5,7,4,7,6,5,6,5.72
+TO-JUGGLE,JONGLEREN,20,acting,Action with object,6,4,6,6,7,7,6,7,6,5,7,7,7,5,6,5,7,7,6.17
+CAR,AUTO,17,acting,Non-manipulable object,7,4,4,6,4,6,3,5,5,5,5,5,6,6,3,7,7,3,5.06
+TO-IRON,STRIJKEN,19,acting,Action with object,6,3,4,1,4,1,5,2,2,2,6,3,3,3,2,2,4,4,3.17
+CALCULATOR,REKENMACHINE,14,acting,Manipulable object,4,3,3,1,4,4,2,2,3,4,6,4,5,2,1,3,5,2,3.22
+PRAM,BUGGY,12,acting,Manipulable object,2,1,2,1,2,1,1,1,3,2,5,1,2,1,1,3,1,2,1.78
+TO-GO-UP,OMHOOG LOPEN,10,representing,Action without object,4,2,4,6,5,4,5,3,6,6,5,3,5,1,7,7,6,6,4.72
+GUITAR,GITAAR,20,acting,Manipulable object,7,7,7,7,7,6,7,7,6,6,6,7,7,6,7,7,7,7,6.72
+TELEPHONE,TELEFOON,16,representing,Manipulable object,7,7,6,6,7,6,6,6,7,7,5,7,7,7,7,7,6,7,6.56
+ACCORDION,ACCORDEON,20,acting,Manipulable object,5,5,5,2,7,1,4,5,6,5,5,6,6,5,3,6,3,5,4.67
+RACKET,TENNISRACKET,12,acting,Manipulable object,4,3,1,3,3,2,2,5,3,2,6,5,4,4,6,5,5,4,3.72
+SALT,ZOUT,10,acting,Non-manipulable object,5,2,2,2,1,5,3,6,3,2,4,4,5,3,2,3,2,1,3.06
+TO-CLAP,KLAPPEN,20,acting,Action without object,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7.00
+BUTTERFLY,VLINDER,11,representing,Animate ,1,3,3,3,1,3,3,2,2,2,4,6,5,5,5,2,3,2,3.06
+TO-PRAY,BIDDEN,20,acting,Action without object,3,7,6,6,5,7,2,6,5,4,6,7,7,4,7,4,6,6,5.44
+TO-CUT (scissors),KNIPPEN,18,representing,Action with object,7,6,5,7,7,7,7,7,7,7,6,7,7,7,7,7,7,7,6.78
+WATCH,HORLOGE,17,acting,Manipulable object,6,6,7,6,6,6,6,6,4,5,5,7,6,6,5,7,7,5,5.89
+HELICOPTER,HELIKOPTER,16,representing,Non-manipulable object,3,3,4,1,2,2,5,5,3,4,5,3,5,5,4,3,5,3,3.61
+TO-SAW,ZAGEN,16,acting,Action with object,6,5,5,5,6,5,6,6,4,6,6,6,6,6,2,5,2,5,5.11
+CURTAINS,GORDIJNEN,10,acting,Manipulable object,4,4,3,3,2,1,1,5,3,3,3,5,4,2,1,3,2,2,2.83
+TO-CRASH,BOTSEN,16,representing,Action with object,6,4,3,1,4,4,5,4,5,3,4,5,6,4,2,1,4,4,3.83
+TO-CUT (knife),SNIJDEN,15,acting,Action with object,4,3,4,4,6,3,3,5,4,4,4,5,3,4,1,3,3,5,3.78
+BIKE,FIETS,11,acting,Non-manipulable object,1,4,5,3,6,4,5,2,5,5,5,6,5,3,1,5,5,3,4.06
+TO-TEAR,SCHEUREN,19,acting,Action with object,2,6,5,3,7,3,5,6,3,5,4,6,5,4,2,3,4,5,4.33
+MUG,MOK,15,acting,Manipulable object,6,5,4,1,2,3,2,6,5,5,3,4,5,4,1,2,1,3,3.44
+TOWEL,HANDDOEK,11,acting,Manipulable object,7,6,6,6,4,4,6,4,3,4,4,6,7,5,3,5,2,6,4.89
+TO-SMS,SMS'EN,13,acting,Action with object,7,4,5,3,7,6,3,5,4,6,6,6,7,5,5,6,4,6,5.28
+TO-SLAP,SLAAN,15,acting,Action without object,3,7,3,6,7,3,4,7,6,5,6,7,7,5,4,6,6,4,5.33
+TO-GO-DOWN,OMLAAG LOPEN,13,representing,Action without object,5,2,5,6,7,4,5,3,6,7,6,6,5,1,7,6,1,7,4.94
+BANANA,BANAAN,14,acting,Manipulable object,7,2,5,6,4,3,5,7,4,7,6,7,6,4,2,7,3,6,5.06
+KEY,SLEUTEL,18,acting,Manipulable object,5,4,4,5,5,3,4,6,3,5,5,7,7,5,1,6,3,5,4.61
+TO-STINK,STINKEN,17,acting,Action without object,7,7,6,5,7,7,7,7,7,7,6,6,7,7,7,7,7,5,6.61
+TO-WHISK,OPKLOPPEN,18,acting,Action with object,6,6,4,7,6,6,6,5,5,4,5,7,7,6,4,4,3,3,5.22
+MONKEY,AAP,16,personification,Animate ,7,4,6,6,7,6,7,6,6,6,6,5,7,6,6,7,3,3,5.78
+BOOK,BOEK,16,representing,Manipulable object,3,3,6,6,7,6,5,6,5,7,5,7,6,6,4,7,6,5,5.56
+TO-ROW,ROEIEN,18,acting,Action with object,3,1,5,4,5,3,6,6,4,2,4,7,6,5,3,5,2,3,4.11
+TO-RUN,RENNEN,19,acting,Action without object,7,7,6,7,7,5,7,6,4,6,6,6,7,6,6,5,6,5,6.06
+TO-BREAK,BREKEN,14,acting,Action with object,5,4,4,7,7,4,7,5,5,6,5,7,7,5,6,6,5,5,5.56
+LIGHTER,AANSTEKER,15,acting,Manipulable object,3,7,5,5,5,5,6,5,3,5,5,6,6,6,1,5,5,3,4.78
+RATTLE,RAMMELAAR,19,acting,Manipulable object,1,2,4,4,7,4,1,5,3,3,4,6,7,4,2,3,1,2,3.50
+TO-ITCH,KRABBEN,20,acting,Action without object,5,3,6,7,7,6,7,7,6,6,6,7,7,7,2,6,6,7,6.00
+SNAKE,SLANG,13,representing,Animate ,3,6,3,5,7,3,3,2,3,4,6,6,3,6,1,3,5,5,4.11
+DOOR,DEUR,20,acting,Manipulable object,4,4,5,3,6,5,2,3,5,6,6,6,4,5,1,6,6,2,4.39
+TREE,BOOM,14,drawing,Non-manipulable object,6,2,4,4,6,2,2,1,3,6,5,7,5,6,2,3,2,4,3.89
+TO-PUT-LIPSTICK-ON,LIPPENSTIFTEN,19,acting,Action with object,6,7,6,6,7,6,6,6,6,6,5,7,7,7,7,7,6,7,6.39
+TO-SPEAK,PRATEN,14,representing,Action without object,7,7,7,5,7,6,6,4,7,7,7,7,7,6,7,7,7,6,6.50
+TO-SLEEP,SLAPEN,19,acting,Action without object,7,5,7,7,6,7,7,7,7,7,7,7,7,7,7,7,7,7,6.83
+TO-TOAST,PROOSTEN,15,acting,Action with object,7,2,5,2,7,3,3,1,5,3,5,5,6,2,2,4,6,4,4.00
+TO-PHONE,BELLEN,17,representing,Action with object,7,7,7,5,6,5,7,7,7,7,7,7,6,7,7,7,6,6,6.56
+PIANO,PIANO,20,acting,Non-manipulable object,7,4,5,4,6,2,6,7,5,5,7,7,6,6,5,5,3,5,5.28
+TO-KNOCK,KLOPPEN,19,acting,Action without object,6,7,7,7,6,7,7,7,6,7,7,7,7,7,7,7,7,7,6.83
+TO-WRITE,SCHRIJVEN,20,acting,Action with object,6,6,6,6,7,7,7,5,6,7,7,7,7,5,7,7,7,7,6.50
+TO-WAVE,UITZWAAIEN,20,acting,Action without object,6,7,4,5,6,7,7,7,7,7,5,6,7,5,7,7,4,7,6.17
+TO-WALK,LOPEN,12,representing,Action without object,5,4,5,6,7,5,5,3,5,7,5,7,6,1,6,7,5,5,5.22
+DRILL,BOOR,10,acting,Manipulable object,4,2,2,6,6,5,5,2,5,5,5,4,6,4,1,5,4,4,4.17
+BOX,DOOS,15,drawing,Manipulable object,4,2,1,4,4,4,6,2,6,2,5,5,6,5,3,4,3,4,3.89
+TO-KNEAD,KNEDEN,14,acting,Action with object,6,4,5,7,7,5,7,6,5,6,5,6,7,6,4,4,5,4,5.50
+BUILDING,GEBOUW,18,drawing,Non-manipulable object,5,4,3,4,2,6,2,1,5,4,5,6,6,5,1,3,1,1,3.56
+TO-SHAVE,SCHEREN,15,acting,Action with object,3,6,6,5,7,6,7,3,6,4,6,7,7,5,5,6,6,5,5.56
+CELL,GEVANGENIS,17,acting,Non-manipulable object,4,3,4,6,4,4,4,2,4,5,4,4,5,4,1,5,3,1,3.72
+PYRAMID,PIRAMIDE,19,drawing,Non-manipulable object,6,5,3,3,5,4,5,5,4,5,4,3,5,3,1,6,2,6,4.17
+PLANE,VLIEGTUIG,13,personification,Non-manipulable object,7,1,4,7,6,5,6,6,6,4,5,3,6,6,3,5,4,5,4.94
+TO-POWDER,POEDEREN,17,acting,Action with object,3,5,5,2,7,4,1,3,5,4,5,6,6,3,3,6,2,5,4.17
+TO-PULL,TREKKEN,19,acting,Action with object,3,6,6,4,6,5,6,6,7,6,4,7,7,5,2,6,4,5,5.28
+DEER,HERT,11,personification,Animate ,3,6,5,2,5,7,6,5,4,7,4,2,7,4,1,3,1,2,4.11
+CAMEL,KAMEEL,10,drawing,Animate ,1,5,2,2,5,3,2,1,3,1,4,4,5,2,1,3,1,5,2.78
+TO-PUMP,OPPOMPEN,19,acting,Action with object,6,6,6,3,6,6,5,4,4,6,6,7,6,4,5,6,5,5,5.33
+TO-CRY,HUILEN,13,acting,Action without object,7,7,6,6,7,6,7,5,7,7,7,7,7,6,7,7,7,5,6.56
+BIRD,VOGEL,16,personification,Animate ,6,5,4,6,7,6,7,7,6,5,5,7,7,6,6,5,4,6,5.83
+BOTTLE,FLES,10,drawing,Manipulable object,2,2,1,2,1,1,6,1,3,2,4,4,2,1,1,3,1,2,2.17
+SPIDER,SPIN,14,representing,Animate ,1,2,2,2,2,1,4,1,2,2,4,4,2,2,1,2,3,2,2.17
+LAPTOP,LAPTOP,19,acting,Manipulable object,3,6,4,3,3,4,2,4,3,3,4,4,3,5,3,6,5,4,3.83
+BEER,BIER,20,acting,Non-manipulable object,2,6,4,2,4,3,1,2,3,1,2,4,3,3,2,3,1,3,2.72
+TO-KNOW,WETEN,14,acting,Action without object,7,7,5,5,5,6,5,6,5,7,5,5,7,4,6,6,5,5,5.61
+TO-SKI,SKI?N,18,acting,Action without object,4,4,4,3,4,2,3,5,2,4,3,5,4,2,1,2,2,3,3.17
+MOTORBIKE,BROMMER,17,acting,Non-manipulable object,3,4,2,3,6,5,5,6,3,3,4,2,7,5,2,4,3,3,3.89
+TEA,THEE,12,acting,Non-manipulable object,2,3,3,3,3,4,2,5,3,4,6,4,7,4,2,4,2,4,3.61
+VIOLIN,VIOOL,20,acting,Manipulable object,4,3,6,6,7,6,6,7,7,6,7,6,7,7,6,6,5,6,6.00
+TOOTHBRUSH,TANDENBORSTEL,20,acting,Manipulable object,7,5,6,6,6,6,6,7,6,6,5,5,7,6,6,7,5,5,5.94
+WHEELCHAIR,ROLSTOEL,17,acting,Manipulable object,4,1,7,4,6,4,6,6,5,5,5,7,5,3,1,6,3,4,4.56
+BABY,BABY,14,acting,Animate ,5,6,7,5,6,6,6,7,6,4,6,6,7,6,5,6,5,5,5.78
