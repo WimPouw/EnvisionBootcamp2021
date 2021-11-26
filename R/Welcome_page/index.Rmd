@@ -36,7 +36,7 @@ output:
 
 * [Selecting, smoothing, and deriving measures from motion tracking, and merging with acoustics and annotations (R)](https://wimpouw.github.io/EnvisionBootcamp2021/MergingAcousticsMT.html)
 
-* [Linking multi-hand mediapipe top-view tracking (R)](https://wimpouw.github.io/EnvisionBootcamp2021/MediaPipe_linking_module.html)
+* [Linking multi-hand mediapipe top-view tracking (Python)](https://wimpouw.github.io/EnvisionBootcamp2021/MediaPipe_linking_module.html)
 
 # Analyses
 * [OpenFace Analysis (python)](https://wimpouw.github.io/EnvisionBootcamp2021/OpenFace_analysis.html)
