@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<timeseries date="2019-08-31T10:40:21+01:00" version="1.0">
+    <tracksource sample-type="Discontinuous Rate"
+        source-url="file:///D:/Research_Projects/TutorialGESPIN/DATA_TO_PROCESS/merged_GS.csv" time-column="1">
+        <property key="provider" value="mpi.eudico.client.annotator.timeseries.csv.CSVServiceProvider"/>
+        <track derivative="0" name="speed unsmoothed">
+            <property key="detect-range" value="true"/>
+            <sample-position>
+                <pos col="5" row="0"/>
+            </sample-position>
+            <description/>
+            <units/>
+            <range max="0.01064532" min="0.0"/>
+            <color>255,0,51</color>
+        </track>
+        <track derivative="0" name="speed smoothed">
+            <property key="detect-range" value="false"/>
+            <sample-position>
+                <pos col="8" row="0"/>
+            </sample-position>
+            <description/>
+            <units/>
+            <range max="500.0" min="0.0"/>
+            <color>0,102,0</color>
+        </track>
+        <track derivative="0" name="vertical unsmoothed">
+            <property key="detect-range" value="true"/>
+            <sample-position>
+                <pos col="4" row="0"/>
+            </sample-position>
+            <description/>
+            <units/>
+            <range max="0.0" min="-323.04413"/>
+            <color>255,0,0</color>
+        </track>
+        <track derivative="0" name="vertical smoothed">
+            <property key="detect-range" value="false"/>
+            <sample-position>
+                <pos col="7" row="0"/>
+            </sample-position>
+            <description/>
+            <units/>
+            <range max="-50.0" min="-250.214"/>
+            <color>0,0,153</color>
+        </track>
+        <track derivative="0" name="Amplitude Envelope (smoothed">
+            <property key="detect-range" value="true"/>
+            <sample-position>
+                <pos col="2" row="0"/>
+            </sample-position>
+            <description/>
+            <units/>
+            <range max="0.27186862" min="0.0"/>
+            <color>0,0,0</color>
+        </track>
+    </tracksource>
+</timeseries>

@@ -28,6 +28,9 @@ output:
 
 * [Face tracking with OpenFace (python)](https://wimpouw.github.io/EnvisionBootcamp2021/OpenFace_module.html)
 
+# Video Processing
+
+* [Annotation-based Automatic Clipping of Video into Multiple Videos (Python)](https://wimpouw.github.io/EnvisionBootcamp2021/AnnotationBasedVideoClippings.html)
 
 # Data wrangling
 
