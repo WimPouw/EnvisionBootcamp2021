@@ -7,7 +7,7 @@ output:
     theme:  tactile
 ---
 
-![](../../images/envision_banner.png)  
+![](./images/envision_banner.png)  
 
 
 ## Info documents
@@ -22,13 +22,12 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 
 #packages
-library(kza)        #for kolmogorov zurbernko filter
 library(dtw)         #for dynamic time warping
 library(rjson)       #for extracting json info
 library(stringr)     #for manipulations of strings
 library(ggplot2)     #plotting
 library(plotly)     #plotting
-library(tsne)       #for dimensionality reduction
+library(htmltools)       #for dimensionality reduction
 
 #set current as working drive via session -> set working drive -> source file location
 workingdrive <- getwd() 
@@ -45,13 +44,6 @@ Human (communicative) body movements are often recurrent, such that they use sim
 Note that this particular procedure outlined here, is introduced in [1] Pouw & Dixon (2020) and we advise you to read this first before starting (or [3]). The main procedure: we compute some distance measure between two N-dimenionsal time series i and j, and do this for all events n. Similar to previous work [1] we will use dynamic time warping (see [2] Giorgino, 2009) as the distance calculation. We then compute what is called a distance matrix (M) which has *n* rows and *n* columns containing for each cell M[*i*,*j*] the distance score between movement *i* and *j*. Then we can use dimensionality reduction techniques (e.g., classic multidimenionsal scaling, t-sne, UMAP) to visualize in 2-dimensional space the interrelationships between all movement events (we will use classic multidimensional scaling).
 
 For the current movement events we use a set of silent gestures produced by an actor conveying certain concepts (open dataset by: [4][Ortega & Ozyurek, 2020). We extracted the movement information using mediapipe body tracking for each silent gesture, and this is the input of our procedure. Note that the current procedure can be applied on any signal (e.g., acoustic trajectories) and also on multiple persons that are producing movement events.
-
-## References
-
-1. [Pouw, W. , & Dixon, J. A. (2020). Gesture networks: Introducing dynamic time warping and network analysis for the kinematic study of gesture ensembles. Discourse Processes, 57(4), 301-319. doi: 10.1080/0163853X.2019.1678967](https://wimpouw.com/pouwdixon2019_DiscP.pdf)
-2. [Giorgino, T. (2009). Computing and visualizing dynamic time warping alignments in R: the dtw package. Journal of statistical Software, 31, 1-24.](https://www.jstatsoft.org/index.php/jss/article/view/v031i07/332)
-3. [Pouw, W. , Dingemanse, M., Motamedi, Y., Özyürek, A. (2021). A systematic investigation of gesture kinematics in evolving manual languages in the lab. Cognitive Science. doi (open access): 10.1111/cogs.13014](https://onlinelibrary.wiley.com/doi/epdf/10.1111/cogs.13014)
-4. [Ortega, G., & Özyürek, A. (2020). Systematic mappings between semantic categories and types of iconic representations in the manual modality: A normed database of silent gesture. Behavior Research Methods, 52(1), 51-67.](https://link.springer.com/content/pdf/10.3758/s13428-019-01204-6.pdf)
 
 ## Overview processing steps
 
@@ -83,7 +75,7 @@ ggplotly(a)
 The next step is to compute a average dynamic time warping distance between joint position traces. This means we are performing a dependent DTW, where x,y,z time series are submitted for a gesture i and gesture event j; we take the mean distances over each joint comparison (nose, wrist etc.).
 
 Script procedure 2. This loop makes a distance matrix
-```{r, DTW}
+```{r, DTW, eval = FALSE}
 timeseriess <- list.files(timeserfolder)
 
 #########################FUNCTIONS
@@ -168,6 +160,40 @@ ggplotly(plot.space(topology, "distances represented through classic mds", colna
 <img src="Images/ACCORDIAN.gif" alt="ACCORDIAN GESTURE"  width="250" />
 <img src="Images/BUTTERFLY.gif" alt="BUTTERFLY GESTURE"  width="250" />
 
+## Animated Visualisations
+
+But we can do even better! We can position all gesture .gif files that we have in our Images folder, and position them according to the scaled coordinates of the multidimensional scaling of the distance matrix. In this way we can directly inspect whether the kinematic distances make sense when looking at the gesture.
+
+```{r}
+library(stringr) #for string manipulation
+library(scales)  #for rescaling 
+
+distmat <- read.csv(paste0(distancematfolder, "distance_matrix.csv")) #read in the distance matrix
+topology <- as.data.frame(cmdscale(as.matrix(log(distmat+1)))) #multidimenionsal scaling of the logarithmically transformed distance matrix
+topology[,1:2] <- apply(topology[,1:2], 2, FUN=function(x)scales::rescale(x, from=range(x), c(0, 1300))) #lets rescale the toplogy from 0 to 600 pixels
+nams <- colnames(distmat)
+topology$nams <- stringr::str_replace_all(nams, "[.]", "-") #make sure names are the same as the video (so no "." but "-")
+
+todraw <- ""
+layer = 1
+adjustright = 300
+adjustvertical = -100
+#we are only showing 25% of the videos, otherwise it is very crowded
+for(nam in topology$nams[1:(length(topology$nams)/3)])
+{
+todraw <- paste0(todraw, paste0('<img src="Images/', nam, '.gif" style="position: absolute; top: ', round(topology[topology$nams==nam,1]+adjustvertical),'px; right:',  round(topology[topology$nams==nam,2]+adjustright), 'px; width: 6%; height: auto; zindex:',layer,'; border: solid 1px #CCC"/>'))
+layer <- layer+1
+}
+fileConn<-file("./animated_kinematicspace.html") #save to a seperate html file
+writeLines(todraw, fileConn)
+close(fileConn)
+```
+
+For the result of this see here: https://wimpouw.github.io/EnvisionBootcamp2021/animated_kinematicspace.html
+
+## Things to consider
+There are many different things that you can tweak with this general gesture network procedure. For example, you can expand the gesture set to comprise gestures of multiple individuals. Other things to consider are when you care about the general shape of a gesture but not its scaled size. Then you might want to normalize (e.g., z-scale) the time series first. Also consider, we now only take a few keypoints that do not capture much of the handshape, so you can consider adding relevant timeseries for the hand shape. Further, what if you have a gesture consisting of multiple elements, and you want to judge another gesture as similar when it has elementsr regardless of the order of the items? Then you might not want to use dynamic time warping as it will judge a time series with elements a-b-c to be completely different from a time series with elements c-b-a (a possible time series distance measure that does judge such time series to be similar is matrix profile distance or MPdist). Further there are a range of settings that optimize dynamic time warping performance such as not allowing the distance error calculation to be based on the begin and trailing portions of the time series (for further references see e.g., Pouw & Dixon, 2020; Pouw et al., 2021).
+
 ## Applications
 This open dataset by Ortega and Oyzyrek (2020) also has information about how each gesture was rated for its iconicity (how well the gesture represents its referent). Since we now have information about how each gesture relates to other gestures, we can for example ask whether gestures that are more differientable from other gestures will also likely be seen as more iconic;  after all, the gesture is less to be confused with others. We can do all kinds of more fancy operations to characterize how a particular gesture relates to other gestures (see for example Pouw et al., 2021), but for now we will keep it simple. Namely, what is the average kinematic distance of a gesture (higher average distance = more differentiable?) and what was the mean iconic rating for that gesture. Below we show this in a plot. It seems that gestures that have generally higher kinematic distances between other gestures, are also are more likely to be found more iconic (i.e., more transparent in meaning).
 
@@ -189,3 +215,10 @@ mergedc$avdist <- as.numeric(mergedc$avdist) #make sure that avdist is a numeric
 ggplot(mergedc, aes(x= MEAN, y = avdist))+geom_point(size=3)+geom_smooth(method="lm", size = 3)+theme_bw()+
   xlab("iconicity")+ylab("average distance")
 ```
+
+
+## References
+1. [Pouw, W. , & Dixon, J. A. (2020). Gesture networks: Introducing dynamic time warping and network analysis for the kinematic study of gesture ensembles. Discourse Processes, 57(4), 301-319. doi: 10.1080/0163853X.2019.1678967](https://wimpouw.com/pouwdixon2019_DiscP.pdf)
+2. [Giorgino, T. (2009). Computing and visualizing dynamic time warping alignments in R: the dtw package. Journal of statistical Software, 31, 1-24.](https://www.jstatsoft.org/index.php/jss/article/view/v031i07/332)
+3. [Pouw, W. , Dingemanse, M., Motamedi, Y., Özyürek, A. (2021). A systematic investigation of gesture kinematics in evolving manual languages in the lab. Cognitive Science. doi (open access): 10.1111/cogs.13014](https://onlinelibrary.wiley.com/doi/epdf/10.1111/cogs.13014)
+4. [Ortega, G., & Özyürek, A. (2020). Systematic mappings between semantic categories and types of iconic representations in the manual modality: A normed database of silent gesture. Behavior Research Methods, 52(1), 51-67.](https://link.springer.com/content/pdf/10.3758/s13428-019-01204-6.pdf)
