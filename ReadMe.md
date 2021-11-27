@@ -28,9 +28,9 @@ Each coding module has its own website citation so that the coders can be acknow
 
 General citation: 
 
-Cwieck, O., De Melo, G., Edelman, J., Owoyele, B., Pouw, W., Santuber, J. Trujillo, J.. Envision Toolbox: Multimodal (Signal) Processing and Analysis in Communication. https://github.com/WimPouw/EnvisionBootcamp2021</td>
- 
-(**Alphabetical order)   
+Cwieck, O., De Melo, G., Edelman, J., Owoyele, B., Pouw, W., Santuber, J. Trujillo, J.. Envision Toolbox: Multimodal (Signal) Processing and Analysis in Communication. https://github.com/WimPouw/EnvisionBootcamp2021 
+ (**Alphabetical order)   </td>
+  
 </tr>
 </table>
 
