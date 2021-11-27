@@ -184,13 +184,11 @@ for(nam in topology$nams[1:(length(topology$nams)/3)])
 todraw <- paste0(todraw, paste0('<img src="Images/', nam, '.gif" style="position: absolute; top: ', round(topology[topology$nams==nam,1]+adjustvertical),'px; right:',  round(topology[topology$nams==nam,2]+adjustright), 'px; width: 6%; height: auto; zindex:',layer,'; border: solid 1px #CCC"/>'))
 layer <- layer+1
 }
-fileConn<-file("./animated_kinematicspace.html") #save to a seperate html file
+fileConn<-file("animated_kinematicspace.html") #save to a seperate html file
 writeLines(todraw, fileConn)
 close(fileConn)
 
 ```
-
-`r knitr::include_graphics(path="animated_kinematicspace.html")`
 
 To inspect the result separately see here: https://wimpouw.github.io/EnvisionBootcamp2021/animated_kinematicspace.html
 
