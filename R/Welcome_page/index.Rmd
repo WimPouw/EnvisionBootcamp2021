@@ -15,11 +15,14 @@ output:
 }
 </style>
 
-# Acoustics
+
+# Modules
+
+## Acoustics
 
 * [Amplitude Envelope Extraction (R)](https://wimpouw.github.io/EnvisionBootcamp2021/extract_AmplitudeEnvelope_Rmarkdown.html)
 
-# Motion tracking
+## Motion tracking
 * [Single body tracking with mediapipe (python)](https://wimpouw.github.io/EnvisionBootcamp2021/MediaPipe_body_module.html)
 
 * [Top-view (multi-)hand tracking with mediapipe (python)](https://wimpouw.github.io/EnvisionBootcamp2021/MediaPipe_tophand_module)
@@ -28,17 +31,17 @@ output:
 
 * [Face tracking with OpenFace (python)](https://wimpouw.github.io/EnvisionBootcamp2021/OpenFace_module.html)
 
-# Video Processing
+## Video Processing
 
 * [Annotation-based Automatic Clipping of Video into Multiple Videos (Python)](https://wimpouw.github.io/EnvisionBootcamp2021/AnnotationBasedVideoClippings.html)
 
-# Data wrangling
+## Data wrangling
 
 * [Selecting, smoothing, and deriving measures from motion tracking, and merging with acoustics and annotations (R)](https://wimpouw.github.io/EnvisionBootcamp2021/MergingAcousticsMT.html)
 
 * [Linking multi-hand mediapipe top-view tracking (Python)](https://wimpouw.github.io/EnvisionBootcamp2021/MediaPipe_linking_module.html)
 
-# Analyses
+## Analyses
 * [OpenFace Analysis (python)](https://wimpouw.github.io/EnvisionBootcamp2021/OpenFace_analysis.html)
 
 * [Analysis Kinematic Features (python)](https://wimpouw.github.io/EnvisionBootcamp2021/Analysis_kinematic_features_module.html)

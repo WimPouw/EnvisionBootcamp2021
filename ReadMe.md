@@ -5,7 +5,7 @@
         <td>
 
 
-# The envision toolbox
+# The Envision Toolbox
 The envision toolbox contains coding modules and lectures that are tailored for the study of multimodal human behavior. The modules are intended as pedagogical examples to get researchers started on a particular mode of inquiry. The envision toolbox is for everyone, by everyone, in the hope that it will become a community of multimodal researchers and developers.  
 
 # How to
@@ -29,7 +29,8 @@ Each coding module has its own website citation so that the coders can be acknow
 General citation: 
 
 Cwieck, O., De Melo, G., Edelman, J., Owoyele, B., Pouw, W., Santuber, J. Trujillo, J.. Envision Toolbox: Multimodal (Signal) Processing and Analysis in Communication. https://github.com/WimPouw/EnvisionBootcamp2021</td>
-    </tr>
+ (**Alphabetical order)   
+</tr>
 </table>
 
 
