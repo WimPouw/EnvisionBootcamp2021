@@ -190,7 +190,11 @@ close(fileConn)
 
 ```
 
-To inspect the result separately see here: https://wimpouw.github.io/EnvisionBootcamp2021/animated_kinematicspace.html
+<video width="960" height="720" controls>
+  <source src="Images/AnimatedSpace.mp4" type="video/mp4">
+</video>
+
+To inspect the result separately as html see here: https://wimpouw.github.io/EnvisionBootcamp2021/animated_kinematicspace.html
 
 ## Things to consider
 There are many different things that you can tweak with this general gesture procedure. For example, you can expand the gesture set to comprise gestures of multiple individuals. Other things to consider: when you care about the general shape of a gesture but not its scaled size, then you might want to normalize (e.g., z-scale) the time series first. Also consider, we now only take a few keypoints that do not capture much of the handshape, so you can consider adding relevant timeseries for the hand shape (e.g., when you perform hand tracking with mediapie). Further, what if you have a gesture consisting of multiple elements, and you want to judge another gesture as similar when it has elementsr regardless of the order of the items? Then you might not want to use dynamic time warping as it will judge a time series with elements a-b-c to be completely different from a time series with elements c-b-a (a possible time series distance measure that does judge such time series to be similar is matrix profile distance or MPdist). Further there are a range of settings that optimize dynamic time warping performance such as not allowing the distance error calculation to be based on the begin and trailing portions of the time series (for further references see e.g., Pouw & Dixon, 2020; Pouw et al., 2021).
