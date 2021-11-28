@@ -190,7 +190,7 @@ close(fileConn)
 
 ```
 
-<video width="960" height="720" controls>
+<video width="960" height="720" controls muted>
   <source src="Images/AnimatedSpace.mp4" type="video/mp4">
 </video>
 
