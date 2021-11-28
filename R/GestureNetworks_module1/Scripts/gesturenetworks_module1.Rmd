@@ -72,7 +72,7 @@ ggplotly(a)
 
 ## Main routine: constructing a distance matrix
 
-The next step is to compute a average dynamic time warping distance between joint position traces. This means we are performing a dependent DTW, where x,y,z time series are submitted for a gesture i and gesture event j; we take the mean distances over each joint comparison (nose, wrist etc.).
+The next step is to compute a average dynamic time warping distance between joint position traces. This means we are performing a dependent DTW, where x,y,z time series are submitted for a gesture i and gesture event j, and we perform this procedure for each joint separately (this is called an independent DTW; so we are combining an indepenedent and dependent version).
 
 Script procedure 2. This loop makes a distance matrix
 ```{r, DTW}
