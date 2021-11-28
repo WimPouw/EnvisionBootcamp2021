@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html>
-<head><meta charset="utf-8" />
+<!-- saved from url=(0122)file:///D:/Research_Projects/workshops_envision_bootcamp/Python/MultiHandTracking_MP_linking/MediaPipe_linking_module.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <title>MediaPipe_linking_module</title>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="./MediaPipe_linking_module_files/require.min.js.download"></script>
+<script src="./MediaPipe_linking_module_files/jquery.min.js.download"></script>
 
 
 
@@ -13046,13 +13046,13 @@ div#notebook {
 </style>
 
 <!-- Custom stylesheet, it must be in the same directory as the html file -->
-<link rel="stylesheet" href="custom.css">
+<link rel="stylesheet" href="file:///D:/Research_Projects/workshops_envision_bootcamp/Python/MultiHandTracking_MP_linking/custom.css">
 
 <!-- Loading mathjax macro -->
 <!-- Load mathjax -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
+    <script src="./MediaPipe_linking_module_files/latest.js.download"></script>
     <!-- MathJax configuration -->
-    <script type="text/x-mathjax-config">
+    <script type="text/x-mathjax-config;executed=true">
     MathJax.Hub.Config({
         tex2jax: {
             inlineMath: [ ['$','$'], ["\\(","\\)"] ],
@@ -13069,8 +13069,103 @@ div#notebook {
         }
     });
     </script>
-    <!-- End of mathjax configuration --></head>
-<body>
+    <!-- End of mathjax configuration --><script type="text/javascript" async="" src="./MediaPipe_linking_module_files/MathJax.js.download"></script><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover, .MJXp-munder {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > *, .MJXp-munder > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+<body style=""><div id="MathJax_Message" style="display: none;"></div>
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
 
@@ -13084,9 +13179,9 @@ div#notebook {
     Wim Pouw ( wim.pouw@donders.ru.nl )<br>
     18-11-2021 </h3>
 
-<img src="./images/envision_banner.png"> </center><p><h3> Info documents </h3>
+<img src="./MediaPipe_linking_module_files/envision_banner.png"> </center><p></p><h3> Info documents </h3>
 This Python coding module demonstrates how to ensure that the output is actual motion-tracking across frames (rather than having a bunch of loose keypoint-marked images), as well as a method that tries to pair together Left and Right hands, which can be useful when you are looking at multi-party data.
-<br><br></p>
+<br><br><p></p>
 <ul>
 <li><p>location code: 
 <a href="https://github.com/WimPouw/EnvisionBootcamp2021/tree/main/Python/MediaBodyTracking">https://github.com/WimPouw/EnvisionBootcamp2021/tree/main/Python/MediaBodyTracking</a></p>
@@ -13095,9 +13190,9 @@ This Python coding module demonstrates how to ensure that the output is actual m
 Trujillo, J.P. &amp; Pouw, W.(2021-11-18). <i> MultiParty Tracking: Linking Frames and Pairing Hands </i> [day you visited the site]. Retrieved from: <a href="https://github.com/WimPouw/EnvisionBootcamp2021/tree/main/Python/MediaBodyTracking">https://github.com/WimPouw/EnvisionBootcamp2021/tree/main/Python/MediaBodyTracking</a></p>
 </li>
 </ul>
-<p><h3> Introduction </h3>
-The tricky thing about acquiring motion tracking data for only hands when there are multiple individuals being recorded, is that we may not know who the hands belong to, or even whether a hand tracked in one frame is the same as a hand tracked in the previous. This is especially difficult when we have missing data, where some frames will have more tracked hands than others. We demonstrate one way to resolve this issue, using a simple distance based approach. <br></p>
-<p><h4>resources</h4></p>
+<p></p><h3> Introduction </h3>
+The tricky thing about acquiring motion tracking data for only hands when there are multiple individuals being recorded, is that we may not know who the hands belong to, or even whether a hand tracked in one frame is the same as a hand tracked in the previous. This is especially difficult when we have missing data, where some frames will have more tracked hands than others. We demonstrate one way to resolve this issue, using a simple distance based approach. <br><p></p>
+<p></p><h4>resources</h4><p></p>
 <ul>
 <li><a href="https://github.com/google/mediapipe">https://github.com/google/mediapipe</a>
 <br><br></li>
@@ -13112,8 +13207,8 @@ The tricky thing about acquiring motion tracking data for only hands when there 
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>After we have the initial data, we want to add some additional metadata that we get by going over all of these loose frames again. <br></p>
-<p><h3> Linking Hands Across Frames and Calculating Orientation </h3>
-The block below goes through the entire dataframe, frame by frame, and assigns an ID to each uniquely tracked hand, then tries to find pairs of hands</p>
+<p></p><h3> Linking Hands Across Frames and Calculating Orientation </h3>
+The block below goes through the entire dataframe, frame by frame, and assigns an ID to each uniquely tracked hand, then tries to find pairs of hands<p></p>
 <p>In this first block of the script, we go through each file, and try to track hands from frame to frame. 
 While we're going through the files, a block within this set of loops will determine the orientation of each hand with respect to the sides of the screen. In other words, we want to try to find the origin of each hand. Does it seem to be 'projecting' from the left side, right side, top, or bottom of the image? This is used in the block directly below to try to find pairs of hands.</p>
 
@@ -13134,17 +13229,17 @@ While we're going through the files, a block within this set of loops will deter
 
 
 <span class="c1">#list all videos in mediafolder</span>
-<span class="n">mypath</span> <span class="o">=</span> <span class="s2">&quot;./MediaToAnalyze/&quot;</span>
+<span class="n">mypath</span> <span class="o">=</span> <span class="s2">"./MediaToAnalyze/"</span>
 <span class="n">onlyfiles</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">listdir</span><span class="p">(</span><span class="n">mypath</span><span class="p">)</span> <span class="k">if</span> <span class="n">isfile</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">mypath</span><span class="p">,</span> <span class="n">f</span><span class="p">))]</span> <span class="c1"># get all files that are in mediatoanalyze</span>
 <span class="c1">#time series output folder</span>
-<span class="n">foldtime</span> <span class="o">=</span> <span class="s2">&quot;./Timeseries_Output/&quot;</span>
+<span class="n">foldtime</span> <span class="o">=</span> <span class="s2">"./Timeseries_Output/"</span>
 
 
 <span class="k">def</span> <span class="nf">get_closest_hand</span><span class="p">(</span><span class="n">hand</span><span class="p">,</span><span class="n">prev_frame</span><span class="p">,</span> <span class="n">detected_this_frame</span><span class="p">):</span>
     <span class="c1"># this function looks at the hand coordinates given for the current frame, and tries to find the closest match in the previous frame</span>
     <span class="c1"># The idea being that, from one frame to the next, the same hand should appear in only a slightly different position</span>
     <span class="c1"># Note that this may not be the case when tracking is lost, but the hand moves some distance away.</span>
-    <span class="n">tolerance</span> <span class="o">=</span> <span class="mi">3</span> <span class="c1"># somewhat arbitrary number, but ensures that we don&#39;t take hands that are extremely far away</span>
+    <span class="n">tolerance</span> <span class="o">=</span> <span class="mi">3</span> <span class="c1"># somewhat arbitrary number, but ensures that we don't take hands that are extremely far away</span>
     <span class="n">distance_list</span> <span class="o">=</span> <span class="p">[]</span>
     
     <span class="c1"># first we drop any hands that have already been connected to one this frame</span>
@@ -13157,13 +13252,13 @@ While we're going through the files, a block within this set of loops will deter
         <span class="c1">#.. we compare coordinates between current hand and previous hands</span>
         <span class="n">distance</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">vals</span> <span class="ow">in</span> <span class="n">prev_hand</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
-            <span class="k">if</span> <span class="n">name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;X&#39;</span> <span class="ow">or</span> <span class="n">name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Y&#39;</span> <span class="ow">or</span> <span class="n">name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Z&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'X'</span> <span class="ow">or</span> <span class="n">name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'Y'</span> <span class="ow">or</span> <span class="n">name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'Z'</span><span class="p">:</span>
                 <span class="n">distance</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">prev_hand</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">-</span> <span class="n">hand</span><span class="p">[</span><span class="n">name</span><span class="p">])</span>
         <span class="c1"># take the sum of all coordinate differences</span>
         <span class="n">distance_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">distance</span><span class="p">))</span>
     <span class="c1"># find the closest match</span>
     <span class="n">closest</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">distance_list</span><span class="p">)</span>
-    <span class="n">closest_ID</span> <span class="o">=</span> <span class="n">prev_frame</span><span class="p">[</span><span class="s2">&quot;hand_ID&quot;</span><span class="p">][</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">distance_list</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">distance_list</span><span class="p">))[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="n">closest_ID</span> <span class="o">=</span> <span class="n">prev_frame</span><span class="p">[</span><span class="s2">"hand_ID"</span><span class="p">][</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">distance_list</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">distance_list</span><span class="p">))[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span>
     <span class="c1"># make sure it is within some threshold</span>
     <span class="k">if</span> <span class="n">closest</span> <span class="o">&lt;</span> <span class="n">tolerance</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">closest_ID</span>
@@ -13195,10 +13290,10 @@ While we're going through the files, a block within this set of loops will deter
     <span class="k">return</span> <span class="n">x_intercept</span>
 
 <span class="k">def</span> <span class="nf">output_progress</span><span class="p">(</span><span class="n">df_idx</span><span class="p">,</span> <span class="n">len_df</span><span class="p">,</span> <span class="n">checkpoints</span><span class="p">):</span>
-    <span class="c1"># This funcion is just to give us some progress update, since the script can take a minute to run. This way we know it hasn&#39;t crashed.   </span>
+    <span class="c1"># This funcion is just to give us some progress update, since the script can take a minute to run. This way we know it hasn't crashed.   </span>
     <span class="k">if</span> <span class="n">checkpoints</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">df_idx</span> <span class="o">&gt;=</span> <span class="n">len_df</span><span class="o">*</span><span class="n">checkpoints</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">checkpoints</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="si">% c</span><span class="s2">omplete&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">checkpoints</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="p">))</span> <span class="o">+</span> <span class="s2">"</span><span class="si">% c</span><span class="s2">omplete"</span><span class="p">)</span>
             <span class="n">checkpoints</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">checkpoints</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
         
 <span class="k">def</span> <span class="nf">flip</span><span class="p">(</span><span class="n">original_val</span><span class="p">):</span>
@@ -13227,11 +13322,11 @@ While we're going through the files, a block within this set of loops will deter
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">datafile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">foldtime</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;working on &quot;</span> <span class="o">+</span> <span class="n">datafile</span> <span class="o">+</span> <span class="s2">&quot;...&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"working on "</span> <span class="o">+</span> <span class="n">datafile</span> <span class="o">+</span> <span class="s2">"..."</span><span class="p">)</span>
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">foldtime</span> <span class="o">+</span> <span class="n">datafile</span><span class="p">)</span>
 <span class="c1"># create empty column for the hand IDs</span>
-<span class="n">df</span><span class="p">[</span><span class="s2">&quot;hand_ID&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">"hand_ID"</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
 <span class="n">df_idx</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">arbID</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># this will be a first pass ID </span>
 
@@ -13242,14 +13337,14 @@ While we're going through the files, a block within this set of loops will deter
 
 <span class="k">while</span> <span class="n">df_idx</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
 
-    <span class="n">current_time</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">][</span><span class="n">df_idx</span><span class="p">]</span>
-    <span class="n">frame</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">current_time</span><span class="p">]</span>
+    <span class="n">current_time</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"time"</span><span class="p">][</span><span class="n">df_idx</span><span class="p">]</span>
+    <span class="n">frame</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">"time"</span><span class="p">]</span> <span class="o">==</span> <span class="n">current_time</span><span class="p">]</span>
 
     <span class="n">detected_this_frame</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># we set this up to not let two hands be assigned to the same previous hand</span>
     <span class="k">for</span> <span class="n">frame_idx</span><span class="p">,</span><span class="n">hand</span> <span class="ow">in</span> <span class="n">frame</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
         <span class="c1"># if this is the first frame, each Hand is new, and receives a new ID</span>
         <span class="k">if</span> <span class="n">df_idx</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">frame_idx</span><span class="p">,</span><span class="s2">&quot;hand_ID&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">arbID</span>
+            <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">frame_idx</span><span class="p">,</span><span class="s2">"hand_ID"</span><span class="p">]</span> <span class="o">=</span> <span class="n">arbID</span>
             <span class="n">arbID</span> <span class="o">+=</span><span class="mi">1</span>
         <span class="k">else</span><span class="p">:</span>
 
@@ -13258,30 +13353,30 @@ While we're going through the files, a block within this set of loops will deter
 
             <span class="n">detected_this_frame</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">closest_ID</span><span class="p">)</span>
 
-            <span class="c1"># if there are no good matches, we assume it&#39;s a new (previously untracked) hand</span>
+            <span class="c1"># if there are no good matches, we assume it's a new (previously untracked) hand</span>
             <span class="c1"># and we assign it a new ID</span>
             <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">closest_ID</span><span class="p">):</span>
                 <span class="n">closest_ID</span> <span class="o">=</span> <span class="n">arbID</span>
                 <span class="n">arbID</span> <span class="o">+=</span><span class="mi">1</span>
 
-            <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">frame_idx</span><span class="p">,</span><span class="s2">&quot;hand_ID&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">closest_ID</span>
+            <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">frame_idx</span><span class="p">,</span><span class="s2">"hand_ID"</span><span class="p">]</span> <span class="o">=</span> <span class="n">closest_ID</span>
 
             <span class="c1">##################################</span>
             <span class="c1">#### This block calculates hand orientation ####</span>
             <span class="c1"># so first get middle point of base</span>
-            <span class="n">midbase</span> <span class="o">=</span> <span class="p">[</span><span class="n">hand</span><span class="p">[</span><span class="s2">&quot;X_PINKY_MCP&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="p">((</span><span class="n">hand</span><span class="p">[</span><span class="s2">&quot;X_INDEX_MCP&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">hand</span><span class="p">[</span><span class="s2">&quot;X_PINKY_MCP&quot;</span><span class="p">])</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span>
-                       <span class="n">flip</span><span class="p">(</span><span class="n">hand</span><span class="p">[</span><span class="s2">&quot;Y_PINKY_MCP&quot;</span><span class="p">])</span> <span class="o">+</span> <span class="p">((</span><span class="n">flip</span><span class="p">(</span><span class="n">hand</span><span class="p">[</span><span class="s2">&quot;Y_INDEX_MCP&quot;</span><span class="p">])</span> <span class="o">-</span> <span class="n">flip</span><span class="p">(</span><span class="n">hand</span><span class="p">[</span><span class="s2">&quot;Y_PINKY_MCP&quot;</span><span class="p">]))</span><span class="o">/</span><span class="mi">2</span><span class="p">)]</span>
-            <span class="n">wrist_coords</span> <span class="o">=</span> <span class="p">[</span><span class="n">hand</span><span class="p">[</span><span class="s2">&quot;X_WRIST&quot;</span><span class="p">],</span><span class="n">flip</span><span class="p">(</span><span class="n">hand</span><span class="p">[</span><span class="s2">&quot;Y_WRIST&quot;</span><span class="p">])]</span>
-            <span class="k">if</span> <span class="n">midbase</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">hand</span><span class="p">[</span><span class="s2">&quot;X_WRIST&quot;</span><span class="p">]:</span>
-                <span class="n">hand_direction</span> <span class="o">=</span> <span class="s2">&quot;R&quot;</span>
+            <span class="n">midbase</span> <span class="o">=</span> <span class="p">[</span><span class="n">hand</span><span class="p">[</span><span class="s2">"X_PINKY_MCP"</span><span class="p">]</span> <span class="o">+</span> <span class="p">((</span><span class="n">hand</span><span class="p">[</span><span class="s2">"X_INDEX_MCP"</span><span class="p">]</span> <span class="o">-</span> <span class="n">hand</span><span class="p">[</span><span class="s2">"X_PINKY_MCP"</span><span class="p">])</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span>
+                       <span class="n">flip</span><span class="p">(</span><span class="n">hand</span><span class="p">[</span><span class="s2">"Y_PINKY_MCP"</span><span class="p">])</span> <span class="o">+</span> <span class="p">((</span><span class="n">flip</span><span class="p">(</span><span class="n">hand</span><span class="p">[</span><span class="s2">"Y_INDEX_MCP"</span><span class="p">])</span> <span class="o">-</span> <span class="n">flip</span><span class="p">(</span><span class="n">hand</span><span class="p">[</span><span class="s2">"Y_PINKY_MCP"</span><span class="p">]))</span><span class="o">/</span><span class="mi">2</span><span class="p">)]</span>
+            <span class="n">wrist_coords</span> <span class="o">=</span> <span class="p">[</span><span class="n">hand</span><span class="p">[</span><span class="s2">"X_WRIST"</span><span class="p">],</span><span class="n">flip</span><span class="p">(</span><span class="n">hand</span><span class="p">[</span><span class="s2">"Y_WRIST"</span><span class="p">])]</span>
+            <span class="k">if</span> <span class="n">midbase</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">hand</span><span class="p">[</span><span class="s2">"X_WRIST"</span><span class="p">]:</span>
+                <span class="n">hand_direction</span> <span class="o">=</span> <span class="s2">"R"</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">hand_direction</span> <span class="o">=</span> <span class="s2">&quot;L&quot;</span>
+                <span class="n">hand_direction</span> <span class="o">=</span> <span class="s2">"L"</span>
                 <span class="c1"># if left facing, we need to shift the coordinates to the other side of the y-axis</span>
-                <span class="n">wrist_coords</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">hand</span><span class="p">[</span><span class="s2">&quot;X_WRIST&quot;</span><span class="p">]</span><span class="o">*-</span><span class="mi">1</span>
+                <span class="n">wrist_coords</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">hand</span><span class="p">[</span><span class="s2">"X_WRIST"</span><span class="p">]</span><span class="o">*-</span><span class="mi">1</span>
                 <span class="n">midbase</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">midbase</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*-</span><span class="mi">1</span>
 
             <span class="c1"># then the slope from mid base to tip</span>
-            <span class="n">slope</span> <span class="o">=</span> <span class="n">getslope</span><span class="p">([</span><span class="n">hand</span><span class="p">[</span><span class="s2">&quot;X_WRIST&quot;</span><span class="p">],</span><span class="n">flip</span><span class="p">(</span><span class="n">hand</span><span class="p">[</span><span class="s2">&quot;Y_WRIST&quot;</span><span class="p">])],</span><span class="n">midbase</span><span class="p">)</span>
+            <span class="n">slope</span> <span class="o">=</span> <span class="n">getslope</span><span class="p">([</span><span class="n">hand</span><span class="p">[</span><span class="s2">"X_WRIST"</span><span class="p">],</span><span class="n">flip</span><span class="p">(</span><span class="n">hand</span><span class="p">[</span><span class="s2">"Y_WRIST"</span><span class="p">])],</span><span class="n">midbase</span><span class="p">)</span>
 
             <span class="c1"># now get the initial X and Y intercept</span>
             <span class="c1"># this is used to figured out where in our image the hand seems </span>
@@ -13291,34 +13386,34 @@ While we're going through the files, a block within this set of loops will deter
                                            <span class="n">midbase</span><span class="p">)</span> 
             <span class="n">intercept_Y</span> <span class="o">=</span> <span class="n">get_intercept</span><span class="p">(</span><span class="n">slope</span><span class="p">,</span><span class="n">wrist_coords</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">wrist_coords</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> 
 
-            <span class="k">if</span> <span class="n">hand_direction</span> <span class="o">==</span> <span class="s2">&quot;R&quot;</span> <span class="ow">and</span> <span class="n">intercept_Y</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">intercept_X</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
-                <span class="n">origin</span> <span class="o">=</span> <span class="s2">&quot;Bot&quot;</span>
-            <span class="k">elif</span> <span class="n">hand_direction</span> <span class="o">==</span> <span class="s2">&quot;R&quot;</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">intercept_Y</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
-                <span class="n">origin</span> <span class="o">=</span> <span class="s2">&quot;Left&quot;</span>
-            <span class="k">elif</span> <span class="n">hand_direction</span> <span class="o">==</span> <span class="s2">&quot;R&quot;</span> <span class="ow">and</span> <span class="n">intercept_Y</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">intercept_X</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">origin</span> <span class="o">=</span> <span class="s2">&quot;Top&quot;</span>
+            <span class="k">if</span> <span class="n">hand_direction</span> <span class="o">==</span> <span class="s2">"R"</span> <span class="ow">and</span> <span class="n">intercept_Y</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">intercept_X</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">origin</span> <span class="o">=</span> <span class="s2">"Bot"</span>
+            <span class="k">elif</span> <span class="n">hand_direction</span> <span class="o">==</span> <span class="s2">"R"</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">intercept_Y</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">origin</span> <span class="o">=</span> <span class="s2">"Left"</span>
+            <span class="k">elif</span> <span class="n">hand_direction</span> <span class="o">==</span> <span class="s2">"R"</span> <span class="ow">and</span> <span class="n">intercept_Y</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">intercept_X</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">origin</span> <span class="o">=</span> <span class="s2">"Top"</span>
                 <span class="n">intercept_X</span> <span class="o">=</span> <span class="n">get_interceptX</span><span class="p">(</span><span class="n">slope</span><span class="p">,</span>
                                            <span class="p">[</span><span class="n">wrist_coords</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">wrist_coords</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*-</span><span class="mi">1</span><span class="p">],</span>
                                            <span class="n">midbase</span><span class="p">)</span> 
-            <span class="k">elif</span> <span class="n">hand_direction</span> <span class="o">==</span><span class="s2">&quot;L&quot;</span> <span class="ow">and</span> <span class="n">intercept_Y</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">intercept_X</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-                <span class="n">origin</span> <span class="o">=</span> <span class="s2">&quot;Bot&quot;</span>
+            <span class="k">elif</span> <span class="n">hand_direction</span> <span class="o">==</span><span class="s2">"L"</span> <span class="ow">and</span> <span class="n">intercept_Y</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">intercept_X</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                <span class="n">origin</span> <span class="o">=</span> <span class="s2">"Bot"</span>
                 <span class="n">intercept_X</span> <span class="o">=</span> <span class="n">intercept_X</span><span class="o">*-</span><span class="mi">1</span>
-            <span class="k">elif</span> <span class="n">hand_direction</span> <span class="o">==</span><span class="s2">&quot;L&quot;</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">intercept_Y</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
-                <span class="n">origin</span> <span class="o">=</span> <span class="s2">&quot;Right&quot;</span>
-            <span class="k">elif</span> <span class="n">hand_direction</span> <span class="o">==</span><span class="s2">&quot;L&quot;</span> <span class="ow">and</span> <span class="n">intercept_Y</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">intercept_X</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">origin</span> <span class="o">=</span> <span class="s2">&quot;Top&quot;</span>
+            <span class="k">elif</span> <span class="n">hand_direction</span> <span class="o">==</span><span class="s2">"L"</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">intercept_Y</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">origin</span> <span class="o">=</span> <span class="s2">"Right"</span>
+            <span class="k">elif</span> <span class="n">hand_direction</span> <span class="o">==</span><span class="s2">"L"</span> <span class="ow">and</span> <span class="n">intercept_Y</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">intercept_X</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">origin</span> <span class="o">=</span> <span class="s2">"Top"</span>
                 <span class="n">intercept_X</span> <span class="o">=</span> <span class="n">get_interceptX</span><span class="p">(</span><span class="n">slope</span><span class="p">,</span>
                                            <span class="p">[</span><span class="n">wrist_coords</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">wrist_coords</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*-</span><span class="mi">1</span><span class="p">],</span>
                                            <span class="n">midbase</span><span class="p">)</span> 
 
             <span class="c1"># update this info</span>
-            <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">frame_idx</span><span class="p">,</span><span class="s2">&quot;origin&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">origin</span>
-            <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">frame_idx</span><span class="p">,</span><span class="s2">&quot;x_intercept&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">intercept_X</span>
-            <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">frame_idx</span><span class="p">,</span><span class="s2">&quot;y_intercept&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">intercept_Y</span>
+            <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">frame_idx</span><span class="p">,</span><span class="s2">"origin"</span><span class="p">]</span> <span class="o">=</span> <span class="n">origin</span>
+            <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">frame_idx</span><span class="p">,</span><span class="s2">"x_intercept"</span><span class="p">]</span> <span class="o">=</span> <span class="n">intercept_X</span>
+            <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">frame_idx</span><span class="p">,</span><span class="s2">"y_intercept"</span><span class="p">]</span> <span class="o">=</span> <span class="n">intercept_Y</span>
             <span class="c1">##################################</span>
 
     <span class="c1"># this needs to be updated to reflect the new hand_IDs</span>
-    <span class="n">frame</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">current_time</span><span class="p">]</span>
+    <span class="n">frame</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">"time"</span><span class="p">]</span> <span class="o">==</span> <span class="n">current_time</span><span class="p">]</span>
     <span class="c1"># if this is the first frame, we store these values for later</span>
     <span class="k">if</span> <span class="n">df_idx</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>        
         <span class="n">prev_hands</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -13326,9 +13421,9 @@ While we're going through the files, a block within this set of loops will deter
     <span class="k">else</span><span class="p">:</span>
         <span class="c1"># for each hand in the current frame, check..</span>
         <span class="k">for</span> <span class="n">_</span><span class="p">,</span><span class="n">hand</span> <span class="ow">in</span> <span class="n">frame</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
-            <span class="c1"># .. if it&#39;s been logged in prev_hands already, update it</span>
-            <span class="k">if</span> <span class="n">hand</span><span class="p">[</span><span class="s2">&quot;hand_ID&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="n">prev_hands</span><span class="p">[</span><span class="s2">&quot;hand_ID&quot;</span><span class="p">]:</span>
-                <span class="n">prev_hands</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">hand</span><span class="p">[</span><span class="s2">&quot;hand_ID&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">hand</span>
+            <span class="c1"># .. if it's been logged in prev_hands already, update it</span>
+            <span class="k">if</span> <span class="n">hand</span><span class="p">[</span><span class="s2">"hand_ID"</span><span class="p">]</span> <span class="ow">in</span> <span class="n">prev_hands</span><span class="p">[</span><span class="s2">"hand_ID"</span><span class="p">]:</span>
+                <span class="n">prev_hands</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">hand</span><span class="p">[</span><span class="s2">"hand_ID"</span><span class="p">]]</span> <span class="o">=</span> <span class="n">hand</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">prev_hands</span> <span class="o">=</span> <span class="n">prev_hands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hand</span><span class="p">)</span>
 
@@ -13338,7 +13433,7 @@ While we're going through the files, a block within this set of loops will deter
     <span class="c1"># check progress</span>
     <span class="n">output_progress</span><span class="p">(</span><span class="n">df_idx</span><span class="p">,</span><span class="n">df_len</span><span class="p">,</span> <span class="n">checkpoints</span><span class="p">)</span>
 
-<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">foldtime</span> <span class="o">+</span> <span class="n">datafile</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;_linked.csv&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">foldtime</span> <span class="o">+</span> <span class="n">datafile</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"."</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">"_linked.csv"</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13377,8 +13472,8 @@ While we're going through the files, a block within this set of loops will deter
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><h3> Pairing Hands </h3>
-Now that we've provided some continuity between frames, and have an idea about the orientation of each hand, we can try to pair up left and right.</p>
+<p></p><h3> Pairing Hands </h3>
+Now that we've provided some continuity between frames, and have an idea about the orientation of each hand, we can try to pair up left and right.<p></p>
 
 </div>
 </div>
@@ -13388,23 +13483,23 @@ Now that we've provided some continuity between frames, and have an idea about t
 <div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">foldtime</span> <span class="o">+</span> <span class="n">datafile</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;_linked.csv&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">foldtime</span> <span class="o">+</span> <span class="n">datafile</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"."</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">"_linked.csv"</span><span class="p">)</span>
 
 <span class="n">checkpoints</span> <span class="o">=</span> <span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="mf">0.1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">)]</span>
 
 <span class="c1"># first, we need to switch the hand labels</span>
 <span class="c1"># this is because mediapipe assumes the image is mirrored</span>
 <span class="k">for</span> <span class="n">idx</span><span class="p">,</span><span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
-    <span class="k">if</span> <span class="s2">&quot;Right&quot;</span> <span class="ow">in</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;hand&quot;</span><span class="p">]:</span>
-        <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span><span class="s2">&quot;hand&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;label: &quot;Left&quot;&#39;</span>
+    <span class="k">if</span> <span class="s2">"Right"</span> <span class="ow">in</span> <span class="n">row</span><span class="p">[</span><span class="s2">"hand"</span><span class="p">]:</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span><span class="s2">"hand"</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'label: "Left"'</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span><span class="s2">&quot;hand&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;label: &quot;Right&quot;&#39;</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span><span class="s2">"hand"</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'label: "Right"'</span>
 
 <span class="n">df_idx</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="k">while</span> <span class="n">df_idx</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
 
-    <span class="n">current_time</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">][</span><span class="n">df_idx</span><span class="p">]</span>
-    <span class="n">frame</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">current_time</span><span class="p">]</span>
+    <span class="n">current_time</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"time"</span><span class="p">][</span><span class="n">df_idx</span><span class="p">]</span>
+    <span class="n">frame</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">"time"</span><span class="p">]</span> <span class="o">==</span> <span class="n">current_time</span><span class="p">]</span>
     <span class="c1"># create a new dataframe where collect all of the right-hand distances from this left</span>
     <span class="n">pairing_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
     <span class="n">pairing_idx</span> <span class="o">=</span> <span class="mi">0</span>
@@ -13417,123 +13512,123 @@ Now that we've provided some continuity between frames, and have an idea about t
         <span class="c1"># For top or bot oriented, we assume L should pair with R with a lower (top) or higher (bot)</span>
         <span class="c1">#   x-value, with the same orientation</span>
         <span class="c1">## based on intercepts</span>
-        <span class="k">if</span> <span class="s2">&quot;Left&quot;</span> <span class="ow">in</span> <span class="n">hand_origin</span><span class="p">[</span><span class="s2">&quot;hand&quot;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="s2">"Left"</span> <span class="ow">in</span> <span class="n">hand_origin</span><span class="p">[</span><span class="s2">"hand"</span><span class="p">]:</span>
 
             <span class="c1"># once we find a left hand, we need to find any potential match</span>
             <span class="k">for</span> <span class="n">match_idx</span><span class="p">,</span><span class="n">hand</span> <span class="ow">in</span> <span class="n">frame</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
                 <span class="c1"># for each potential match in the frame, we need to record the ID of the left hand (origin hand),</span>
                 <span class="c1"># as well as the distance and ID of the potential pair</span>
                 <span class="c1"># That way, at the end we can sort out which ones fit best together</span>
-                <span class="k">if</span> <span class="s2">&quot;Right&quot;</span> <span class="ow">in</span> <span class="n">hand</span><span class="p">[</span><span class="s2">&quot;hand&quot;</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="s2">"Right"</span> <span class="ow">in</span> <span class="n">hand</span><span class="p">[</span><span class="s2">"hand"</span><span class="p">]:</span>
 
                     <span class="c1"># if oriented bottom and we slide from left to right</span>
-                    <span class="k">if</span> <span class="n">hand_origin</span><span class="p">[</span><span class="s2">&quot;origin&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Bot&quot;</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">hand_origin</span><span class="p">[</span><span class="s2">"origin"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Bot"</span><span class="p">:</span>
                         <span class="c1"># first we check if there is a right hand, also with an origin on the bottom</span>
                         <span class="c1"># and that is to the right of the left hand we are looking at</span>
-                        <span class="k">if</span> <span class="p">(</span><span class="n">hand</span><span class="p">[</span><span class="s2">&quot;x_intercept&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">hand_origin</span><span class="p">[</span><span class="s2">&quot;x_intercept&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="n">hand</span><span class="p">[</span><span class="s2">&quot;origin&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Bot&quot;</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="n">hand</span><span class="p">[</span><span class="s2">"x_intercept"</span><span class="p">]</span> <span class="o">-</span> <span class="n">hand_origin</span><span class="p">[</span><span class="s2">"x_intercept"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="n">hand</span><span class="p">[</span><span class="s2">"origin"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Bot"</span><span class="p">:</span>
                             <span class="c1"># we want this to be &gt;0, because that indicates</span>
                             <span class="c1"># that the right hand is indeed to the right of the left</span>
-                            <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">&quot;origin_ID&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hand_origin</span><span class="p">[</span><span class="s2">&quot;hand_ID&quot;</span><span class="p">]</span>
-                            <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">&quot;hand_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hand</span><span class="p">[</span><span class="s2">&quot;hand_ID&quot;</span><span class="p">]</span>
-                            <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">&quot;pairing_dist&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hand</span><span class="p">[</span><span class="s2">&quot;x_intercept&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">hand_origin</span><span class="p">[</span><span class="s2">&quot;x_intercept&quot;</span><span class="p">]</span>
-                            <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">&quot;idx&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">frame_idx</span> 
-                            <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">&quot;match_idx&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">match_idx</span> 
+                            <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">"origin_ID"</span><span class="p">]</span> <span class="o">=</span> <span class="n">hand_origin</span><span class="p">[</span><span class="s2">"hand_ID"</span><span class="p">]</span>
+                            <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">"hand_id"</span><span class="p">]</span> <span class="o">=</span> <span class="n">hand</span><span class="p">[</span><span class="s2">"hand_ID"</span><span class="p">]</span>
+                            <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">"pairing_dist"</span><span class="p">]</span> <span class="o">=</span> <span class="n">hand</span><span class="p">[</span><span class="s2">"x_intercept"</span><span class="p">]</span> <span class="o">-</span> <span class="n">hand_origin</span><span class="p">[</span><span class="s2">"x_intercept"</span><span class="p">]</span>
+                            <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">"idx"</span><span class="p">]</span> <span class="o">=</span> <span class="n">frame_idx</span> 
+                            <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">"match_idx"</span><span class="p">]</span> <span class="o">=</span> <span class="n">match_idx</span> 
                             <span class="n">pairing_idx</span><span class="o">+=</span><span class="mi">1</span>
                         <span class="c1">#if not, we check if this right hand is on the Right side</span>
-                        <span class="k">elif</span>  <span class="n">hand</span><span class="p">[</span><span class="s2">&quot;origin&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Right&quot;</span><span class="p">:</span>
-                            <span class="n">distance</span> <span class="o">=</span> <span class="n">hand</span><span class="p">[</span><span class="s2">&quot;y_intercept&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">hand_origin</span><span class="p">[</span><span class="s2">&quot;x_intercept&quot;</span><span class="p">])</span>
-                            <span class="c1"># distance &lt; 1 is an arbitrary cutoff just to ensure it&#39;s not picking up</span>
+                        <span class="k">elif</span>  <span class="n">hand</span><span class="p">[</span><span class="s2">"origin"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Right"</span><span class="p">:</span>
+                            <span class="n">distance</span> <span class="o">=</span> <span class="n">hand</span><span class="p">[</span><span class="s2">"y_intercept"</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">hand_origin</span><span class="p">[</span><span class="s2">"x_intercept"</span><span class="p">])</span>
+                            <span class="c1"># distance &lt; 1 is an arbitrary cutoff just to ensure it's not picking up</span>
                             <span class="c1"># a hand on the other side of the screen</span>
                             <span class="k">if</span> <span class="n">distance</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">distance</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
-                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">&quot;origin_ID&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hand_origin</span><span class="p">[</span><span class="s2">&quot;hand_ID&quot;</span><span class="p">]</span>
-                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">&quot;hand_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hand</span><span class="p">[</span><span class="s2">&quot;hand_ID&quot;</span><span class="p">]</span>
-                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">&quot;pairing_dist&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hand</span><span class="p">[</span><span class="s2">&quot;y_intercept&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">hand</span><span class="p">[</span><span class="s2">&quot;x_intercept&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">hand_origin</span><span class="p">[</span><span class="s2">&quot;x_intercept&quot;</span><span class="p">])</span>
-                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">&quot;idx&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">frame_idx</span>
-                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">&quot;match_idx&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">match_idx</span> 
+                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">"origin_ID"</span><span class="p">]</span> <span class="o">=</span> <span class="n">hand_origin</span><span class="p">[</span><span class="s2">"hand_ID"</span><span class="p">]</span>
+                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">"hand_id"</span><span class="p">]</span> <span class="o">=</span> <span class="n">hand</span><span class="p">[</span><span class="s2">"hand_ID"</span><span class="p">]</span>
+                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">"pairing_dist"</span><span class="p">]</span> <span class="o">=</span> <span class="n">hand</span><span class="p">[</span><span class="s2">"y_intercept"</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">hand</span><span class="p">[</span><span class="s2">"x_intercept"</span><span class="p">]</span> <span class="o">-</span> <span class="n">hand_origin</span><span class="p">[</span><span class="s2">"x_intercept"</span><span class="p">])</span>
+                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">"idx"</span><span class="p">]</span> <span class="o">=</span> <span class="n">frame_idx</span>
+                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">"match_idx"</span><span class="p">]</span> <span class="o">=</span> <span class="n">match_idx</span> 
                                 <span class="n">pairing_idx</span><span class="o">+=</span><span class="mi">1</span>
                     <span class="c1"># if oriented top, we go right to left</span>
-                    <span class="k">elif</span>  <span class="n">hand_origin</span><span class="p">[</span><span class="s2">&quot;origin&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Top&quot;</span><span class="p">:</span>
+                    <span class="k">elif</span>  <span class="n">hand_origin</span><span class="p">[</span><span class="s2">"origin"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Top"</span><span class="p">:</span>
                             <span class="c1">#is this right hand also on the top?</span>
-                        <span class="k">if</span> <span class="n">hand</span><span class="p">[</span><span class="s2">&quot;origin&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Top&quot;</span> <span class="ow">and</span> <span class="p">(</span><span class="n">hand_origin</span><span class="p">[</span><span class="s2">&quot;x_intercept&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">hand</span><span class="p">[</span><span class="s2">&quot;x_intercept&quot;</span><span class="p">]</span> <span class="o">&gt;</span><span class="mi">0</span><span class="p">):</span>
-                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">&quot;origin_ID&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hand_origin</span><span class="p">[</span><span class="s2">&quot;hand_ID&quot;</span><span class="p">]</span>
-                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">&quot;hand_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hand</span><span class="p">[</span><span class="s2">&quot;hand_ID&quot;</span><span class="p">]</span>
-                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">&quot;pairing_dist&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hand_origin</span><span class="p">[</span><span class="s2">&quot;x_intercept&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">hand</span><span class="p">[</span><span class="s2">&quot;x_intercept&quot;</span><span class="p">]</span>
-                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">&quot;idx&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">frame_idx</span>
-                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">&quot;match_idx&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">match_idx</span> 
+                        <span class="k">if</span> <span class="n">hand</span><span class="p">[</span><span class="s2">"origin"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Top"</span> <span class="ow">and</span> <span class="p">(</span><span class="n">hand_origin</span><span class="p">[</span><span class="s2">"x_intercept"</span><span class="p">]</span> <span class="o">-</span> <span class="n">hand</span><span class="p">[</span><span class="s2">"x_intercept"</span><span class="p">]</span> <span class="o">&gt;</span><span class="mi">0</span><span class="p">):</span>
+                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">"origin_ID"</span><span class="p">]</span> <span class="o">=</span> <span class="n">hand_origin</span><span class="p">[</span><span class="s2">"hand_ID"</span><span class="p">]</span>
+                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">"hand_id"</span><span class="p">]</span> <span class="o">=</span> <span class="n">hand</span><span class="p">[</span><span class="s2">"hand_ID"</span><span class="p">]</span>
+                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">"pairing_dist"</span><span class="p">]</span> <span class="o">=</span> <span class="n">hand_origin</span><span class="p">[</span><span class="s2">"x_intercept"</span><span class="p">]</span> <span class="o">-</span> <span class="n">hand</span><span class="p">[</span><span class="s2">"x_intercept"</span><span class="p">]</span>
+                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">"idx"</span><span class="p">]</span> <span class="o">=</span> <span class="n">frame_idx</span>
+                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">"match_idx"</span><span class="p">]</span> <span class="o">=</span> <span class="n">match_idx</span> 
                                 <span class="n">pairing_idx</span><span class="o">+=</span><span class="mi">1</span>
                        <span class="c1"># slide up the next side, if there is anything there</span>
-                        <span class="k">elif</span> <span class="n">hand</span><span class="p">[</span><span class="s2">&quot;origin&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Left&quot;</span><span class="p">:</span>
-                            <span class="n">distance</span> <span class="o">=</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span><span class="n">hand</span><span class="p">[</span><span class="s2">&quot;y_intercept&quot;</span><span class="p">])</span> <span class="o">+</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">hand_origin</span><span class="p">[</span><span class="s2">&quot;x_intercept&quot;</span><span class="p">])</span>
-                            <span class="c1"># distance &lt; 1 is an arbitrary cutoff just to ensure it&#39;s not picking up</span>
+                        <span class="k">elif</span> <span class="n">hand</span><span class="p">[</span><span class="s2">"origin"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Left"</span><span class="p">:</span>
+                            <span class="n">distance</span> <span class="o">=</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span><span class="n">hand</span><span class="p">[</span><span class="s2">"y_intercept"</span><span class="p">])</span> <span class="o">+</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">hand_origin</span><span class="p">[</span><span class="s2">"x_intercept"</span><span class="p">])</span>
+                            <span class="c1"># distance &lt; 1 is an arbitrary cutoff just to ensure it's not picking up</span>
                             <span class="c1"># a hand on the other side of the screen</span>
                             <span class="k">if</span> <span class="n">distance</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">distance</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
-                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">&quot;origin_ID&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hand_origin</span><span class="p">[</span><span class="s2">&quot;hand_ID&quot;</span><span class="p">]</span>
-                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">&quot;hand_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hand</span><span class="p">[</span><span class="s2">&quot;hand_ID&quot;</span><span class="p">]</span>
-                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">&quot;pairing_dist&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hand</span><span class="p">[</span><span class="s2">&quot;y_intercept&quot;</span><span class="p">]</span> <span class="o">+</span><span class="p">(</span><span class="n">hand_origin</span><span class="p">[</span><span class="s2">&quot;x_intercept&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">hand</span><span class="p">[</span><span class="s2">&quot;x_intercept&quot;</span><span class="p">])</span>
-                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">&quot;idx&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">frame_idx</span>
-                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">&quot;match_idx&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">match_idx</span> 
+                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">"origin_ID"</span><span class="p">]</span> <span class="o">=</span> <span class="n">hand_origin</span><span class="p">[</span><span class="s2">"hand_ID"</span><span class="p">]</span>
+                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">"hand_id"</span><span class="p">]</span> <span class="o">=</span> <span class="n">hand</span><span class="p">[</span><span class="s2">"hand_ID"</span><span class="p">]</span>
+                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">"pairing_dist"</span><span class="p">]</span> <span class="o">=</span> <span class="n">hand</span><span class="p">[</span><span class="s2">"y_intercept"</span><span class="p">]</span> <span class="o">+</span><span class="p">(</span><span class="n">hand_origin</span><span class="p">[</span><span class="s2">"x_intercept"</span><span class="p">]</span> <span class="o">-</span> <span class="n">hand</span><span class="p">[</span><span class="s2">"x_intercept"</span><span class="p">])</span>
+                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">"idx"</span><span class="p">]</span> <span class="o">=</span> <span class="n">frame_idx</span>
+                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">"match_idx"</span><span class="p">]</span> <span class="o">=</span> <span class="n">match_idx</span> 
                                 <span class="n">pairing_idx</span><span class="o">+=</span><span class="mi">1</span>
                     <span class="c1"># if origin is on the right, we move bot to top then right to left</span>
-                    <span class="k">elif</span> <span class="n">hand_origin</span><span class="p">[</span><span class="s2">&quot;origin&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Right&quot;</span><span class="p">:</span>
-                        <span class="k">if</span> <span class="p">(</span><span class="n">hand</span><span class="p">[</span><span class="s2">&quot;y_intercept&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">hand_origin</span><span class="p">[</span><span class="s2">&quot;y_intercept&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="n">hand</span><span class="p">[</span><span class="s2">&quot;origin&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Right&quot;</span><span class="p">:</span>
+                    <span class="k">elif</span> <span class="n">hand_origin</span><span class="p">[</span><span class="s2">"origin"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Right"</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="n">hand</span><span class="p">[</span><span class="s2">"y_intercept"</span><span class="p">]</span> <span class="o">-</span> <span class="n">hand_origin</span><span class="p">[</span><span class="s2">"y_intercept"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="n">hand</span><span class="p">[</span><span class="s2">"origin"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Right"</span><span class="p">:</span>
                             <span class="c1"># we want this to be &gt;0, because that indicates</span>
                             <span class="c1"># that the right hand is indeed above of the left</span>
-                            <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">&quot;origin_ID&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hand_origin</span><span class="p">[</span><span class="s2">&quot;hand_ID&quot;</span><span class="p">]</span>
-                            <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">&quot;hand_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hand</span><span class="p">[</span><span class="s2">&quot;hand_ID&quot;</span><span class="p">]</span>
-                            <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">&quot;pairing_dist&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hand</span><span class="p">[</span><span class="s2">&quot;y_intercept&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">hand_origin</span><span class="p">[</span><span class="s2">&quot;y_intercept&quot;</span><span class="p">]</span>
-                            <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">&quot;idx&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">frame_idx</span> 
-                            <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">&quot;match_idx&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">match_idx</span> 
+                            <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">"origin_ID"</span><span class="p">]</span> <span class="o">=</span> <span class="n">hand_origin</span><span class="p">[</span><span class="s2">"hand_ID"</span><span class="p">]</span>
+                            <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">"hand_id"</span><span class="p">]</span> <span class="o">=</span> <span class="n">hand</span><span class="p">[</span><span class="s2">"hand_ID"</span><span class="p">]</span>
+                            <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">"pairing_dist"</span><span class="p">]</span> <span class="o">=</span> <span class="n">hand</span><span class="p">[</span><span class="s2">"y_intercept"</span><span class="p">]</span> <span class="o">-</span> <span class="n">hand_origin</span><span class="p">[</span><span class="s2">"y_intercept"</span><span class="p">]</span>
+                            <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">"idx"</span><span class="p">]</span> <span class="o">=</span> <span class="n">frame_idx</span> 
+                            <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">"match_idx"</span><span class="p">]</span> <span class="o">=</span> <span class="n">match_idx</span> 
                             <span class="n">pairing_idx</span><span class="o">+=</span><span class="mi">1</span>
                         <span class="c1">#if not, we check if this right hand is on the Top</span>
-                        <span class="k">elif</span>  <span class="n">hand</span><span class="p">[</span><span class="s2">&quot;origin&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Top&quot;</span><span class="p">:</span>
-                            <span class="n">distance</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">hand</span><span class="p">[</span><span class="s2">&quot;x_intercept&quot;</span><span class="p">])</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">hand_origin</span><span class="p">[</span><span class="s2">&quot;y_intercept&quot;</span><span class="p">])</span>
-                            <span class="c1"># distance &lt; 1 is an arbitrary cutoff just to ensure it&#39;s not picking up</span>
+                        <span class="k">elif</span>  <span class="n">hand</span><span class="p">[</span><span class="s2">"origin"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Top"</span><span class="p">:</span>
+                            <span class="n">distance</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">hand</span><span class="p">[</span><span class="s2">"x_intercept"</span><span class="p">])</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">hand_origin</span><span class="p">[</span><span class="s2">"y_intercept"</span><span class="p">])</span>
+                            <span class="c1"># distance &lt; 1 is an arbitrary cutoff just to ensure it's not picking up</span>
                             <span class="c1"># a hand on the other side of the screen</span>
                             <span class="k">if</span> <span class="n">distance</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">distance</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
-                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">&quot;origin_ID&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hand_origin</span><span class="p">[</span><span class="s2">&quot;hand_ID&quot;</span><span class="p">]</span>
-                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">&quot;hand_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hand</span><span class="p">[</span><span class="s2">&quot;hand_ID&quot;</span><span class="p">]</span>
-                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">&quot;pairing_dist&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">distance</span>
-                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">&quot;idx&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">frame_idx</span>
-                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">&quot;match_idx&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">match_idx</span> 
+                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">"origin_ID"</span><span class="p">]</span> <span class="o">=</span> <span class="n">hand_origin</span><span class="p">[</span><span class="s2">"hand_ID"</span><span class="p">]</span>
+                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">"hand_id"</span><span class="p">]</span> <span class="o">=</span> <span class="n">hand</span><span class="p">[</span><span class="s2">"hand_ID"</span><span class="p">]</span>
+                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">"pairing_dist"</span><span class="p">]</span> <span class="o">=</span> <span class="n">distance</span>
+                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">"idx"</span><span class="p">]</span> <span class="o">=</span> <span class="n">frame_idx</span>
+                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">"match_idx"</span><span class="p">]</span> <span class="o">=</span> <span class="n">match_idx</span> 
                                 <span class="n">pairing_idx</span><span class="o">+=</span><span class="mi">1</span>
                                 
                     <span class="c1"># if origin is on the left, we move bot to top then left to right            </span>
-                    <span class="k">elif</span> <span class="n">hand_origin</span><span class="p">[</span><span class="s2">&quot;origin&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Left&quot;</span><span class="p">:</span>
-                        <span class="k">if</span> <span class="p">(</span><span class="n">hand</span><span class="p">[</span><span class="s2">&quot;y_intercept&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">hand_origin</span><span class="p">[</span><span class="s2">&quot;y_intercept&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="n">hand</span><span class="p">[</span><span class="s2">&quot;origin&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Left&quot;</span><span class="p">:</span>
+                    <span class="k">elif</span> <span class="n">hand_origin</span><span class="p">[</span><span class="s2">"origin"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Left"</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="n">hand</span><span class="p">[</span><span class="s2">"y_intercept"</span><span class="p">]</span> <span class="o">-</span> <span class="n">hand_origin</span><span class="p">[</span><span class="s2">"y_intercept"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="n">hand</span><span class="p">[</span><span class="s2">"origin"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Left"</span><span class="p">:</span>
                             <span class="c1"># we want this to be &gt;0, because that indicates</span>
                             <span class="c1"># that the right hand is indeed above of the left</span>
-                            <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">&quot;origin_ID&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hand_origin</span><span class="p">[</span><span class="s2">&quot;hand_ID&quot;</span><span class="p">]</span>
-                            <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">&quot;hand_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hand</span><span class="p">[</span><span class="s2">&quot;hand_ID&quot;</span><span class="p">]</span>
-                            <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">&quot;pairing_dist&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hand</span><span class="p">[</span><span class="s2">&quot;y_intercept&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">hand_origin</span><span class="p">[</span><span class="s2">&quot;y_intercept&quot;</span><span class="p">]</span>
-                            <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">&quot;idx&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">frame_idx</span> 
-                            <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">&quot;match_idx&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">match_idx</span> 
+                            <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">"origin_ID"</span><span class="p">]</span> <span class="o">=</span> <span class="n">hand_origin</span><span class="p">[</span><span class="s2">"hand_ID"</span><span class="p">]</span>
+                            <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">"hand_id"</span><span class="p">]</span> <span class="o">=</span> <span class="n">hand</span><span class="p">[</span><span class="s2">"hand_ID"</span><span class="p">]</span>
+                            <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">"pairing_dist"</span><span class="p">]</span> <span class="o">=</span> <span class="n">hand</span><span class="p">[</span><span class="s2">"y_intercept"</span><span class="p">]</span> <span class="o">-</span> <span class="n">hand_origin</span><span class="p">[</span><span class="s2">"y_intercept"</span><span class="p">]</span>
+                            <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">"idx"</span><span class="p">]</span> <span class="o">=</span> <span class="n">frame_idx</span> 
+                            <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">"match_idx"</span><span class="p">]</span> <span class="o">=</span> <span class="n">match_idx</span> 
                             <span class="n">pairing_idx</span><span class="o">+=</span><span class="mi">1</span>
                         <span class="c1">#if not, we check if this right hand is on the Top</span>
-                        <span class="k">elif</span>  <span class="n">hand</span><span class="p">[</span><span class="s2">&quot;origin&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Top&quot;</span><span class="p">:</span>
-                            <span class="n">distance</span> <span class="o">=</span> <span class="n">hand</span><span class="p">[</span><span class="s2">&quot;x_intercept&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">hand_origin</span><span class="p">[</span><span class="s2">&quot;y_intercept&quot;</span><span class="p">])</span>
-                            <span class="c1"># distance &lt; 1 is an arbitrary cutoff just to ensure it&#39;s not picking up</span>
+                        <span class="k">elif</span>  <span class="n">hand</span><span class="p">[</span><span class="s2">"origin"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Top"</span><span class="p">:</span>
+                            <span class="n">distance</span> <span class="o">=</span> <span class="n">hand</span><span class="p">[</span><span class="s2">"x_intercept"</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">hand_origin</span><span class="p">[</span><span class="s2">"y_intercept"</span><span class="p">])</span>
+                            <span class="c1"># distance &lt; 1 is an arbitrary cutoff just to ensure it's not picking up</span>
                             <span class="c1"># a hand on the other side of the screen</span>
                             <span class="k">if</span> <span class="n">distance</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">distance</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
-                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">&quot;origin_ID&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hand_origin</span><span class="p">[</span><span class="s2">&quot;hand_ID&quot;</span><span class="p">]</span>
-                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">&quot;hand_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hand</span><span class="p">[</span><span class="s2">&quot;hand_ID&quot;</span><span class="p">]</span>
-                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">&quot;pairing_dist&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">distance</span>
-                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">&quot;idx&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">frame_idx</span>
-                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">&quot;match_idx&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">match_idx</span> 
+                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">"origin_ID"</span><span class="p">]</span> <span class="o">=</span> <span class="n">hand_origin</span><span class="p">[</span><span class="s2">"hand_ID"</span><span class="p">]</span>
+                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">"hand_id"</span><span class="p">]</span> <span class="o">=</span> <span class="n">hand</span><span class="p">[</span><span class="s2">"hand_ID"</span><span class="p">]</span>
+                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">"pairing_dist"</span><span class="p">]</span> <span class="o">=</span> <span class="n">distance</span>
+                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">"idx"</span><span class="p">]</span> <span class="o">=</span> <span class="n">frame_idx</span>
+                                <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pairing_idx</span><span class="p">,</span><span class="s2">"match_idx"</span><span class="p">]</span> <span class="o">=</span> <span class="n">match_idx</span> 
                                 <span class="n">pairing_idx</span><span class="o">+=</span><span class="mi">1</span>
 
     <span class="c1"># at the end of each frame, we need to pick the pairs</span>
     <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">pairing_df</span><span class="p">)</span> <span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
-        <span class="n">best_match</span> <span class="o">=</span> <span class="n">pairing_df</span><span class="p">[[</span><span class="s2">&quot;pairing_dist&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">idxmin</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">match_origin</span><span class="o">=</span> <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">best_match</span><span class="p">,</span><span class="s2">&quot;origin_ID&quot;</span><span class="p">]</span>
-        <span class="n">match_pair</span> <span class="o">=</span> <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">best_match</span><span class="p">,</span><span class="s2">&quot;hand_id&quot;</span><span class="p">]</span>
-        <span class="n">origin_idx</span> <span class="o">=</span> <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">best_match</span><span class="p">,</span><span class="s2">&quot;idx&quot;</span><span class="p">]</span>
-        <span class="n">match_idx</span> <span class="o">=</span> <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">best_match</span><span class="p">,</span><span class="s2">&quot;match_idx&quot;</span><span class="p">]</span>
+        <span class="n">best_match</span> <span class="o">=</span> <span class="n">pairing_df</span><span class="p">[[</span><span class="s2">"pairing_dist"</span><span class="p">]]</span><span class="o">.</span><span class="n">idxmin</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">match_origin</span><span class="o">=</span> <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">best_match</span><span class="p">,</span><span class="s2">"origin_ID"</span><span class="p">]</span>
+        <span class="n">match_pair</span> <span class="o">=</span> <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">best_match</span><span class="p">,</span><span class="s2">"hand_id"</span><span class="p">]</span>
+        <span class="n">origin_idx</span> <span class="o">=</span> <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">best_match</span><span class="p">,</span><span class="s2">"idx"</span><span class="p">]</span>
+        <span class="n">match_idx</span> <span class="o">=</span> <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">best_match</span><span class="p">,</span><span class="s2">"match_idx"</span><span class="p">]</span>
         <span class="c1"># need to get row number (above)</span>
 
-        <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">origin_idx</span><span class="p">,</span><span class="s2">&quot;paired_hand&quot;</span><span class="p">]</span> <span class="o">=</span>  <span class="n">match_pair</span>
-        <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">origin_idx</span><span class="p">,</span><span class="s2">&quot;pairing_distance&quot;</span><span class="p">]</span> <span class="o">=</span>  <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">best_match</span><span class="p">,</span><span class="s2">&quot;pairing_dist&quot;</span><span class="p">]</span>
-        <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">match_idx</span><span class="p">,</span><span class="s2">&quot;paired_hand&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">match_origin</span>
-        <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">match_idx</span><span class="p">,</span><span class="s2">&quot;pairing_distance&quot;</span><span class="p">]</span> <span class="o">=</span>  <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">best_match</span><span class="p">,</span><span class="s2">&quot;pairing_dist&quot;</span><span class="p">]</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">origin_idx</span><span class="p">,</span><span class="s2">"paired_hand"</span><span class="p">]</span> <span class="o">=</span>  <span class="n">match_pair</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">origin_idx</span><span class="p">,</span><span class="s2">"pairing_distance"</span><span class="p">]</span> <span class="o">=</span>  <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">best_match</span><span class="p">,</span><span class="s2">"pairing_dist"</span><span class="p">]</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">match_idx</span><span class="p">,</span><span class="s2">"paired_hand"</span><span class="p">]</span> <span class="o">=</span> <span class="n">match_origin</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">match_idx</span><span class="p">,</span><span class="s2">"pairing_distance"</span><span class="p">]</span> <span class="o">=</span>  <span class="n">pairing_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">best_match</span><span class="p">,</span><span class="s2">"pairing_dist"</span><span class="p">]</span>
 
         <span class="c1"># then remove these hands from the pairing_df</span>
         <span class="n">pairing_df</span> <span class="o">=</span> <span class="n">pairing_df</span><span class="p">[</span><span class="n">pairing_df</span><span class="o">.</span><span class="n">origin_ID</span> <span class="o">!=</span> <span class="n">match_origin</span><span class="p">]</span>
@@ -13543,7 +13638,7 @@ Now that we've provided some continuity between frames, and have an idea about t
     <span class="c1"># check progress</span>
     <span class="n">output_progress</span><span class="p">(</span><span class="n">df_idx</span><span class="p">,</span><span class="n">df_len</span><span class="p">,</span> <span class="n">checkpoints</span><span class="p">)</span>
 
-<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;./Timeseries_Output/&quot;</span> <span class="o">+</span> <span class="n">datafile</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;_paired.csv&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">"./Timeseries_Output/"</span> <span class="o">+</span> <span class="n">datafile</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"."</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">"_paired.csv"</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13610,7 +13705,7 @@ Now that we've provided some continuity between frames, and have an idea about t
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
-<style scoped>
+<style scoped="">
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
@@ -13812,8 +13907,8 @@ Now that we've provided some continuity between frames, and have an idea about t
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>See that we now have an estimation for which hand is paired with which other (eg 2nd row shows hand 1.0 paired with 2.0). We also have the pairing distance, which gives us some idea how far away the origin points of the two hands are. <br>
 It's nice to have these data, but we should of course check the quality of these estimations to see how accurate they are.<br></p>
-<p><h3> Visualizing Tracking Data </h3>
-In the code below, we'll use the dataframe provided above and draw these keypoints back onto the video. We'll also add some of the additional information that we calculated, such as the hand "label" (estimated by MediaPipe), the hand ID (which we can follow across the video to see if it's consistent) as well as the pairing information. This will help us to see what information MediaPipe is giving us to work with, and how well our functions are performing.<br></p>
+<p></p><h3> Visualizing Tracking Data </h3>
+In the code below, we'll use the dataframe provided above and draw these keypoints back onto the video. We'll also add some of the additional information that we calculated, such as the hand "label" (estimated by MediaPipe), the hand ID (which we can follow across the video to see if it's consistent) as well as the pairing information. This will help us to see what information MediaPipe is giving us to work with, and how well our functions are performing.<br><p></p>
 <ul>
 <li><p>This code can be found at: <a href="https://github.com/WimPouw/EnvisionBootcamp2021/tree/main/Python/MediaBodyTracking/visualize_tracking_IDs.py">https://github.com/WimPouw/EnvisionBootcamp2021/tree/main/Python/MediaBodyTracking/visualize_tracking_IDs.py</a></p>
 </li>
@@ -13830,26 +13925,26 @@ In the code below, we'll use the dataframe provided above and draw these keypoin
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
-<span class="n">videofile</span> <span class="o">=</span> <span class="s2">&quot;sampletopview.mp4&quot;</span>
+<span class="n">videofile</span> <span class="o">=</span> <span class="s2">"sampletopview.mp4"</span>
 <span class="n">checkpoints</span> <span class="o">=</span> <span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="mf">0.1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">)]</span>
 
 <span class="c1">#Hand landmarks</span>
-<span class="n">markers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;WRIST&#39;</span><span class="p">,</span> <span class="s1">&#39;THUMB_CMC&#39;</span><span class="p">,</span> <span class="s1">&#39;THUMB_MCP&#39;</span><span class="p">,</span> <span class="s1">&#39;THUMB_IP&#39;</span><span class="p">,</span> <span class="s1">&#39;THUMB_TIP&#39;</span><span class="p">,</span> 
- <span class="s1">&#39;INDEX_MCP&#39;</span><span class="p">,</span> <span class="s1">&#39;INDEX_PIP&#39;</span><span class="p">,</span> <span class="s1">&#39;INDEX_DIP&#39;</span><span class="p">,</span> <span class="s1">&#39;INDEX_TIP&#39;</span><span class="p">,</span> 
- <span class="s1">&#39;MIDDLE_MCP&#39;</span><span class="p">,</span> <span class="s1">&#39;MIDDLE_PIP&#39;</span><span class="p">,</span> <span class="s1">&#39;MIDDLE_DIP&#39;</span><span class="p">,</span><span class="s1">&#39;MIDDLE_TIP&#39;</span><span class="p">,</span> 
- <span class="s1">&#39;RING_MCP&#39;</span><span class="p">,</span> <span class="s1">&#39;RING_TIP&#39;</span><span class="p">,</span> <span class="s1">&#39;RING_DIP&#39;</span><span class="p">,</span> <span class="s1">&#39;RING_TIP&#39;</span><span class="p">,</span> 
- <span class="s1">&#39;PINKY_MCP&#39;</span><span class="p">,</span> <span class="s1">&#39;PINKY_PIP&#39;</span><span class="p">,</span> <span class="s1">&#39;PINKY_DIP&#39;</span><span class="p">,</span> <span class="s1">&#39;PINKY_TIP&#39;</span><span class="p">]</span>
+<span class="n">markers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'WRIST'</span><span class="p">,</span> <span class="s1">'THUMB_CMC'</span><span class="p">,</span> <span class="s1">'THUMB_MCP'</span><span class="p">,</span> <span class="s1">'THUMB_IP'</span><span class="p">,</span> <span class="s1">'THUMB_TIP'</span><span class="p">,</span> 
+ <span class="s1">'INDEX_MCP'</span><span class="p">,</span> <span class="s1">'INDEX_PIP'</span><span class="p">,</span> <span class="s1">'INDEX_DIP'</span><span class="p">,</span> <span class="s1">'INDEX_TIP'</span><span class="p">,</span> 
+ <span class="s1">'MIDDLE_MCP'</span><span class="p">,</span> <span class="s1">'MIDDLE_PIP'</span><span class="p">,</span> <span class="s1">'MIDDLE_DIP'</span><span class="p">,</span><span class="s1">'MIDDLE_TIP'</span><span class="p">,</span> 
+ <span class="s1">'RING_MCP'</span><span class="p">,</span> <span class="s1">'RING_TIP'</span><span class="p">,</span> <span class="s1">'RING_DIP'</span><span class="p">,</span> <span class="s1">'RING_TIP'</span><span class="p">,</span> 
+ <span class="s1">'PINKY_MCP'</span><span class="p">,</span> <span class="s1">'PINKY_PIP'</span><span class="p">,</span> <span class="s1">'PINKY_DIP'</span><span class="p">,</span> <span class="s1">'PINKY_TIP'</span><span class="p">]</span>
 
-<span class="n">tracking_name</span> <span class="o">=</span> <span class="n">foldtime</span> <span class="o">+</span> <span class="n">videofile</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;_paired.csv&quot;</span>
+<span class="n">tracking_name</span> <span class="o">=</span> <span class="n">foldtime</span> <span class="o">+</span> <span class="n">videofile</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"."</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">"_paired.csv"</span>
 <span class="n">tracking_file</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">tracking_name</span><span class="p">)</span>
 <span class="c1">#load in the video file</span>
 <span class="n">cap</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoCapture</span><span class="p">(</span><span class="n">mypath</span> <span class="o">+</span> <span class="n">videofile</span><span class="p">)</span>
 <span class="n">hasFrame</span><span class="p">,</span> <span class="n">frame</span> <span class="o">=</span> <span class="n">cap</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 <span class="c1"># create an output file to see our visualized tracking</span>
-<span class="n">output_filename</span> <span class="o">=</span> <span class="s2">&quot;./Videotracking_output_withIDs/&quot;</span> <span class="o">+</span> <span class="n">videofile</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;_paired.mp4&quot;</span>
-<span class="n">vid_writer</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoWriter</span><span class="p">(</span><span class="n">output_filename</span><span class="p">,</span><span class="n">cv2</span><span class="o">.</span><span class="n">VideoWriter_fourcc</span><span class="p">(</span><span class="s1">&#39;m&#39;</span><span class="p">,</span><span class="s1">&#39;p&#39;</span><span class="p">,</span><span class="s1">&#39;4&#39;</span><span class="p">,</span><span class="s1">&#39;v&#39;</span><span class="p">),</span> <span class="mi">30</span><span class="p">,</span> <span class="p">(</span><span class="n">frame</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">frame</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="n">output_filename</span> <span class="o">=</span> <span class="s2">"./Videotracking_output_withIDs/"</span> <span class="o">+</span> <span class="n">videofile</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"."</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">"_paired.mp4"</span>
+<span class="n">vid_writer</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoWriter</span><span class="p">(</span><span class="n">output_filename</span><span class="p">,</span><span class="n">cv2</span><span class="o">.</span><span class="n">VideoWriter_fourcc</span><span class="p">(</span><span class="s1">'m'</span><span class="p">,</span><span class="s1">'p'</span><span class="p">,</span><span class="s1">'4'</span><span class="p">,</span><span class="s1">'v'</span><span class="p">),</span> <span class="mi">30</span><span class="p">,</span> <span class="p">(</span><span class="n">frame</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">frame</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
 
-<span class="n">no_frames</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">tracking_file</span><span class="p">[</span><span class="s2">&quot;index&quot;</span><span class="p">])</span>
+<span class="n">no_frames</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">tracking_file</span><span class="p">[</span><span class="s2">"index"</span><span class="p">])</span>
 
 <span class="n">frame_no</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="k">while</span> <span class="n">hasFrame</span><span class="p">:</span>
@@ -13864,28 +13959,28 @@ In the code below, we'll use the dataframe provided above and draw these keypoin
     <span class="n">frameHeight</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> 
 
     <span class="c1"># get just the tracking data for this frame</span>
-    <span class="n">tracking_frame</span> <span class="o">=</span> <span class="n">tracking_file</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">tracking_file</span><span class="p">[</span><span class="s2">&quot;index&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">frame_no</span><span class="p">]</span>
+    <span class="n">tracking_frame</span> <span class="o">=</span> <span class="n">tracking_file</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">tracking_file</span><span class="p">[</span><span class="s2">"index"</span><span class="p">]</span> <span class="o">==</span> <span class="n">frame_no</span><span class="p">]</span>
     <span class="k">for</span> <span class="n">_</span><span class="p">,</span><span class="n">hand</span> <span class="ow">in</span> <span class="n">tracking_frame</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
         <span class="c1"># then we go through each joint/marker and add a circle, and an ID</span>
         <span class="k">for</span> <span class="n">marker</span> <span class="ow">in</span> <span class="n">markers</span><span class="p">:</span>
-            <span class="n">x</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">hand</span><span class="p">[</span><span class="s2">&quot;X_&quot;</span> <span class="o">+</span> <span class="n">marker</span><span class="p">]</span><span class="o">*</span><span class="n">frameWidth</span><span class="p">)</span>
-            <span class="n">y</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">hand</span><span class="p">[</span><span class="s2">&quot;Y_&quot;</span> <span class="o">+</span> <span class="n">marker</span><span class="p">]</span><span class="o">*</span><span class="n">frameHeight</span><span class="p">)</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">hand</span><span class="p">[</span><span class="s2">"X_"</span> <span class="o">+</span> <span class="n">marker</span><span class="p">]</span><span class="o">*</span><span class="n">frameWidth</span><span class="p">)</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">hand</span><span class="p">[</span><span class="s2">"Y_"</span> <span class="o">+</span> <span class="n">marker</span><span class="p">]</span><span class="o">*</span><span class="n">frameHeight</span><span class="p">)</span>
             <span class="c1"># we want to loop through each column and get the x,y coordinates of</span>
             <span class="c1"># any tracked hand </span>
             <span class="n">cv2</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">frameCopy</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">y</span><span class="p">)),</span> <span class="mi">5</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="n">thickness</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">lineType</span><span class="o">=</span><span class="n">cv2</span><span class="o">.</span><span class="n">FILLED</span><span class="p">)</span>
         <span class="c1"># we want our IDs to be about the center horizontally,</span>
-        <span class="n">hand_cent_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">([(</span><span class="n">hand</span><span class="p">[</span><span class="s2">&quot;X_&quot;</span> <span class="o">+</span> <span class="n">marker</span><span class="p">]</span><span class="o">*</span><span class="n">frameWidth</span><span class="p">)</span> <span class="k">for</span> <span class="n">marker</span> <span class="ow">in</span> <span class="n">markers</span><span class="p">])</span>
+        <span class="n">hand_cent_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">([(</span><span class="n">hand</span><span class="p">[</span><span class="s2">"X_"</span> <span class="o">+</span> <span class="n">marker</span><span class="p">]</span><span class="o">*</span><span class="n">frameWidth</span><span class="p">)</span> <span class="k">for</span> <span class="n">marker</span> <span class="ow">in</span> <span class="n">markers</span><span class="p">])</span>
         <span class="c1"># and just above all the points</span>
-        <span class="n">hand_cent_y</span> <span class="o">=</span> <span class="nb">max</span><span class="p">([(</span><span class="n">hand</span><span class="p">[</span><span class="s2">&quot;Y_&quot;</span> <span class="o">+</span> <span class="n">marker</span><span class="p">]</span><span class="o">*</span><span class="n">frameHeight</span><span class="p">)</span> <span class="k">for</span> <span class="n">marker</span> <span class="ow">in</span> <span class="n">markers</span><span class="p">])</span> <span class="o">+</span> <span class="mi">10</span>
-        <span class="k">if</span> <span class="s2">&quot;Right&quot;</span> <span class="ow">in</span> <span class="n">hand</span><span class="p">[</span><span class="s2">&quot;hand&quot;</span><span class="p">]:</span>
-            <span class="n">hand_label</span> <span class="o">=</span> <span class="s2">&quot;R&quot;</span>
+        <span class="n">hand_cent_y</span> <span class="o">=</span> <span class="nb">max</span><span class="p">([(</span><span class="n">hand</span><span class="p">[</span><span class="s2">"Y_"</span> <span class="o">+</span> <span class="n">marker</span><span class="p">]</span><span class="o">*</span><span class="n">frameHeight</span><span class="p">)</span> <span class="k">for</span> <span class="n">marker</span> <span class="ow">in</span> <span class="n">markers</span><span class="p">])</span> <span class="o">+</span> <span class="mi">10</span>
+        <span class="k">if</span> <span class="s2">"Right"</span> <span class="ow">in</span> <span class="n">hand</span><span class="p">[</span><span class="s2">"hand"</span><span class="p">]:</span>
+            <span class="n">hand_label</span> <span class="o">=</span> <span class="s2">"R"</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">hand_label</span> <span class="o">=</span> <span class="s2">&quot;L&quot;</span>
-        <span class="n">hand_text</span> <span class="o">=</span> <span class="n">hand_label</span> <span class="o">+</span> <span class="s2">&quot;  ID:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">hand</span><span class="p">[</span><span class="s2">&quot;hand_ID&quot;</span><span class="p">])</span><span class="o">+</span> <span class="s2">&quot;   pair: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">hand</span><span class="p">[</span><span class="s2">&quot;paired_hand&quot;</span><span class="p">])</span>
+            <span class="n">hand_label</span> <span class="o">=</span> <span class="s2">"L"</span>
+        <span class="n">hand_text</span> <span class="o">=</span> <span class="n">hand_label</span> <span class="o">+</span> <span class="s2">"  ID:"</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">hand</span><span class="p">[</span><span class="s2">"hand_ID"</span><span class="p">])</span><span class="o">+</span> <span class="s2">"   pair: "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">hand</span><span class="p">[</span><span class="s2">"paired_hand"</span><span class="p">])</span>
         <span class="n">cv2</span><span class="o">.</span><span class="n">putText</span><span class="p">(</span><span class="n">frameCopy</span><span class="p">,</span> <span class="n">hand_text</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">hand_cent_x</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">hand_cent_y</span><span class="p">)),</span> <span class="n">cv2</span><span class="o">.</span><span class="n">FONT_HERSHEY_SIMPLEX</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">lineType</span><span class="o">=</span><span class="n">cv2</span><span class="o">.</span><span class="n">LINE_AA</span><span class="p">)</span>
 
 
-    <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s1">&#39;Frame&#39;</span><span class="p">,</span><span class="n">frameCopy</span><span class="p">)</span>    
+    <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s1">'Frame'</span><span class="p">,</span><span class="n">frameCopy</span><span class="p">)</span>    
     <span class="n">frame_no</span> <span class="o">+=</span><span class="mi">1</span>
     <span class="n">vid_writer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">frameCopy</span><span class="p">)</span>
     <span class="n">output_progress</span><span class="p">(</span><span class="n">frame_no</span><span class="p">,</span><span class="n">no_frames</span><span class="p">,</span> <span class="n">checkpoints</span><span class="p">)</span>
@@ -13941,9 +14036,10 @@ What works, and what doesn't? What does this mean for the possibilities using th
 </div>
     </div>
   </div>
-</body>
+
 
  
 
 
-</html>
+
+</body></html>
