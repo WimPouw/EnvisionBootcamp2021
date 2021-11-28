@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html>
-<head><meta charset="utf-8" />
+<!-- saved from url=(0106)file:///D:/Research_Projects/workshops_envision_bootcamp/Python/FaceTracking_OpenFace/OpenFace_module.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <title>OpenFace_module</title>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="./OpenFace_module_files/require.min.js.download"></script>
+<script src="./OpenFace_module_files/jquery.min.js.download"></script>
 
 
 
@@ -13046,13 +13046,13 @@ div#notebook {
 </style>
 
 <!-- Custom stylesheet, it must be in the same directory as the html file -->
-<link rel="stylesheet" href="custom.css">
+<link rel="stylesheet" href="file:///D:/Research_Projects/workshops_envision_bootcamp/Python/FaceTracking_OpenFace/custom.css">
 
 <!-- Loading mathjax macro -->
 <!-- Load mathjax -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
+    <script src="./OpenFace_module_files/latest.js.download"></script>
     <!-- MathJax configuration -->
-    <script type="text/x-mathjax-config">
+    <script type="text/x-mathjax-config;executed=true">
     MathJax.Hub.Config({
         tex2jax: {
             inlineMath: [ ['$','$'], ["\\(","\\)"] ],
@@ -13069,8 +13069,103 @@ div#notebook {
         }
     });
     </script>
-    <!-- End of mathjax configuration --></head>
-<body>
+    <!-- End of mathjax configuration --><script type="text/javascript" async="" src="./OpenFace_module_files/MathJax.js.download"></script><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover, .MJXp-munder {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > *, .MJXp-munder > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+<body style=""><div id="MathJax_Message" style="display: none;"></div>
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
 
@@ -13084,9 +13179,9 @@ div#notebook {
     Wim Pouw ( wim.pouw@donders.ru.nl )<br>
     18-11-2021 </h3>
 
-<img src="./images/envision_banner.png"> </center><p><h3> Info documents </h3>
+<img src="./OpenFace_module_files/envision_banner.png"> </center><p></p><h3> Info documents </h3>
 This Python coding module demonstrates how to use OpenFace, an open-source program that provides face and head tracking of images or videos. We'll go over basic installation, simple commands to run the tracking, and get a first look at the output data.
-<br><br></p>
+<br><br><p></p>
 <ul>
 <li>OpenFace: <a href="https://github.com/TadasBaltrusaitis/OpenFace">https://github.com/TadasBaltrusaitis/OpenFace</a></li>
 <li><p>citation: OpenFace 2.0: Facial Behavior Analysis Toolkit Tadas Baltrušaitis, Amir Zadeh, Yao Chong Lim, and Louis-Philippe Morency, IEEE International Conference on Automatic Face and Gesture Recognition, 2018</p>
@@ -13123,7 +13218,7 @@ This can be done using powershell (search in your taskbar for powershell, right-
 Navigate to the OpenFace directory
 Run:  <i> powershell -ExecutionPolicy Bypass -File .\download_models.psy</i>
 You won't see anything directly under your command after running it, but the top of the window should show that your system is downloading it
-<img src="./images/powershell.png"> &lt;/center&gt;</p>
+<img src="./OpenFace_module_files/powershell.png"> &lt;/center&gt;</p>
 </li>
 </ul>
 
@@ -13146,7 +13241,7 @@ For example, I have cmd line running in <i>D:\data\MoCap\OpenFace_2.2.0_win_x64\
 <i>D:\
 FeatureExtraction.exe -f "./samples/2015-10-15-15-14.avi"</i>
 OpenFace will update you on the progress
-<img src="./images/OF_running.png">&lt;/center&gt;</p>
+<img src="./OpenFace_module_files/OF_running.png">&lt;/center&gt;</p>
 <p><br> By default, you get a folder in the OpenFace directory called <i>processed</i> where all the output is stored. However, this means all output .csv files, video files, etc are all thrown in one folder. If you don't want this, you can specify an output directory by adding the following to the FeatureExtraction command:
 <i>-out_dir "output_path"</i> 
 <br>
@@ -13159,8 +13254,8 @@ Depending on your machine, OF takes approximately the duration of your video +20
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><h3> OpenFace Output </h3>
-OpenFace provides several types of output, including a video visualizing the tracking, as well as a .csv containing coordinate data, rotation data, and action units.</p>
+<p></p><h3> OpenFace Output </h3>
+OpenFace provides several types of output, including a video visualizing the tracking, as well as a .csv containing coordinate data, rotation data, and action units.<p></p>
 <p>First, let's take a look at the output video. How does it perform? You should be thinking about the types of questions you want to ask using your data, and take a critical look at whether the tracking is sensitive and accurate enough to serve your purpose. Remember that (some) jitter can be removed with smoothing!</p>
 <p>Now, let's take a look at the numerical data, and what was actually tracked. <br>
 <b> Action Units</b><br>
@@ -13184,7 +13279,7 @@ OpenFace recognizes a subset of all possible action units. These include:</p>
 <li>26: jaw drop</li>
 <li>28: lip suck – only presence, not intensity</li>
 <li><p>45: blink
-<img src="./images/AUs.jpg">&lt;/center&gt;
+<img src="./OpenFace_module_files/AUs.jpg">&lt;/center&gt;
 <br> 
 OpenFace provides two sets of columns for these AUs.</p>
 </li>
@@ -13195,7 +13290,7 @@ NOTE: these two values are estimated by two different models, which means someti
 <br>
 <b> Facial Landmark Coordinates </b><br>
 We also have facial landmark locations. For each of these 68 landmarks gets at least 4 values: tracking confidence (0-1), tracking success (binary - was anything tracked?), as well as an x and y location, given in pixels
-<img src="./images/landmark_scheme_68.png">&lt;/center&gt;
+<img src="./OpenFace_module_files/landmark_scheme_68.png">&lt;/center&gt;
 <br>
 <b>Head Pose </b><br>
 We also get the relative pose of the head. This is provided in <i>Translation</i>, which gives the location of the head with respect to the camera centre, given in millimiters. We also get <i>Rotation</i> which proves the rotation of the head in radians around the 3 axes<br></li>
@@ -13233,7 +13328,7 @@ Good to know: <br></li>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">exploface</span>
 
-<span class="n">openface_file</span> <span class="o">=</span> <span class="s2">&quot;./Timeseries_output/sample_vid/2015-10-15-15-14.csv&quot;</span>
+<span class="n">openface_file</span> <span class="o">=</span> <span class="s2">"./Timeseries_output/sample_vid/2015-10-15-15-14.csv"</span>
 
 <span class="n">openface_features</span> <span class="o">=</span> <span class="n">exploface</span><span class="o">.</span><span class="n">get_feature_time_series</span><span class="p">(</span><span class="n">openface_file</span><span class="p">)</span>
 </pre></div>
@@ -13275,7 +13370,7 @@ Good to know: <br></li>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
-<style scoped>
+<style scoped="">
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
@@ -13481,7 +13576,7 @@ Good to know: <br></li>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
-<style scoped>
+<style scoped="">
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
@@ -13610,7 +13705,7 @@ One of the nicer features here is that we can also convert these .csv data into 
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">dataframe_timestamp</span> <span class="o">=</span> <span class="n">exploface</span><span class="o">.</span><span class="n">write_elan_file</span><span class="p">(</span><span class="n">feature_detections</span><span class="p">,</span>
                                                   <span class="n">video_path</span><span class="o">=</span><span class="n">video_file</span><span class="p">,</span>
-                                                  <span class="n">output_path</span><span class="o">=</span><span class="s2">&quot;sample_vid.eaf&quot;</span><span class="p">,</span>
+                                                  <span class="n">output_path</span><span class="o">=</span><span class="s2">"sample_vid.eaf"</span><span class="p">,</span>
                         <span class="p">)</span>
 </pre></div>
 
@@ -13649,9 +13744,10 @@ In particular, many studies use the AU output without any (or very little) quali
 </div>
     </div>
   </div>
-</body>
+
 
  
 
 
-</html>
+
+</body></html>
