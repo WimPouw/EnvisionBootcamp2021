@@ -1,5 +1,5 @@
 ---
-title: "Gesture Networks Module 1: Computing kinematic distances using dynamic time warping"
+title: "Gesture Networks Module 1: Computing Kinematic Distances Using Dynamic Time Warping"
 author: Wim Pouw (wim.pouw@donders.ru.nl) & James Trujillo (james.trujillo@donders.ru.nl)
 date: "`r Sys.Date()`"
 output:
@@ -72,7 +72,7 @@ ggplotly(a)
 
 ## Main routine: constructing a distance matrix
 
-The next step is to compute a average dynamic time warping distance between joint position traces. This means we are performing a dependent DTW, where x,y,z time series are submitted for a gesture i and gesture event j, and we perform this procedure for each joint separately (this is called an independent DTW; so we are combining an indepenedent and dependent version).
+The next step is to compute a average dynamic time warping distance between joint position traces. This means we are performing a dependent DTW, where x,y,z time series are submitted for DTW comparison for a gesture i and gesture event j, and we perform this procedure for each joint separately (this averaging of by-keypoint DTW comparisons is called an independent DTW; so we are combining an independent and dependent DTW version).
 
 Script procedure 2. This loop makes a distance matrix
 ```{r, DTW}
@@ -136,7 +136,7 @@ DTW.compare <- function(TS1, TS2)
 
 ## Visualizing interrelationships between movement/gesture events
 
-Now that we have produced a distance matrix containing all the dynamic time warping distances between the silent gestures, we can visualize how these gestures relate to one another. We do this by applying a dimensionality reduction technique to visualize the high-dimensional distance matrix into a 2D space using t-sne. We can now inspect some of the nodes. For example if we look up the gesture Accordian and Butterfly we see that both are judged by the current procedure to be very similar in nature as they are close in the kinematic space. Indeed, as seen in the gestures shown below these gestures are highly similar in nature.
+Now that we have produced a distance matrix containing all the dynamic time warping distances between the silent gestures, we can visualize how these gestures relate to one another. We do this by applying a dimensionality reduction technique to visualize the high-dimensional distance matrix into a 2D space using classic multidimensional scaling. We can now inspect some of the nodes. For example if we look up the gesture Accordian and Butterfly we see that both are judged by the current procedure to be very similar in nature as they are close in the kinematic space. Indeed, as seen in the gestures shown below these gestures are highly similar in nature.
 
 ```{r, message = FALSE, warning = FALSE, fig.width=10, fig.height=10}
 distmat <- read.csv(paste0(distancematfolder, "distance_matrix.csv"))
@@ -197,12 +197,12 @@ close(fileConn)
 To inspect the result separately as html see here: https://wimpouw.github.io/EnvisionBootcamp2021/animated_kinematicspace.html
 
 ## Things to consider
-There are many different things that you can tweak with this general gesture procedure. For example, you can expand the gesture set to comprise gestures of multiple individuals. Other things to consider: when you care about the general shape of a gesture but not its scaled size, then you might want to normalize (e.g., z-scale) the time series first. Also consider, we now only take a few keypoints that do not capture much of the handshape, so you can consider adding relevant timeseries for the hand shape (e.g., when you perform hand tracking with mediapie). Further, what if you have a gesture consisting of multiple elements, and you want to judge another gesture as similar when it has elementsr regardless of the order of the items? Then you might not want to use dynamic time warping as it will judge a time series with elements a-b-c to be completely different from a time series with elements c-b-a (a possible time series distance measure that does judge such time series to be similar is matrix profile distance or MPdist). Further there are a range of settings that optimize dynamic time warping performance such as not allowing the distance error calculation to be based on the begin and trailing portions of the time series (for further references see e.g., Pouw & Dixon, 2020; Pouw et al., 2021).
+There are many different things that you can tweak with this general gesture procedure. For example, you can expand the gesture set to comprise gestures of multiple individuals. Other things to consider: when you care about the general shape of a gesture but not its size, then you might want to normalize (e.g., z-scale) the time series first. Also consider, we now only take a few keypoints that do not capture much of the hand shape, so you can consider adding more keypoints. Further, what if you have a gesture consisting of multiple elements, and you want to judge another gesture as similar when it has the same elements regardless of the order of the items? Then you might not want to use dynamic time warping as it will judge a time series with elements a-b-c to be completely different from a time series with elements c-b-a (a possible time series distance measure that does judge such time series to be similar is matrix profile distance or MPdist). Further there are a range of settings that optimize dynamic time warping performance such as not allowing the distance error calculation to be based on the begin and trailing portions of the time series (for further references see e.g., Pouw & Dixon, 2020; Pouw et al., 2021).
 
 ## Applications
-This open dataset by Ortega and Oyzyrek (2020) also has information about how each gesture was rated for its iconicity (how well the gesture represents its referent). Since we now have information about how each gesture relates to other gestures, we can for example ask whether gestures that are more differientable from other gestures will also likely be seen as more iconic;  after all, the gesture is less to be confused with others. We can do all kinds of more fancy operations to characterize how a particular gesture relates to other gestures (see for example Pouw et al., 2021), but for now we will keep it simple. Namely, what is the average kinematic distance of a gesture (higher average distance = more differentiable?) and what was the mean iconic rating for that gesture. Below we show this in a plot. It seems that gestures that have generally higher kinematic distances between other gestures, are also are more likely to be found more iconic (i.e., more transparent in meaning).
+This open dataset by Ortega and Oyzyrek (2020) also has information about how each gesture was rated for its iconicity (how well the gesture represents its target referent). Since we now have information about how each gesture relates to other gestures, we can for example ask whether gestures that are more differentiable from other gestures will also likely be seen as more iconic;  after all, the gesture is less to be confused with others. We can do all kinds of more complex operations to characterize how a particular gesture relates to other gestures (see for example Pouw et al., 2021), but for now we will keep it simple. Namely, what is the average kinematic distance of a gesture (higher average distance = more differentiable?) and what was the mean iconic rating for that gesture. Below we show this in a plot. It seems that gestures that have generally higher kinematic distances between other gestures, are also are more likely to be found more iconic (i.e., more transparent in meaning).
 
-```{r, message = FALSE, warning = FALSE, fig.width=10, fig.height=10}
+```{r, message = FALSE, warning = FALSE}
 diag(distmat) <- NA #lets ignore the diagonals
 #the distances are long-tailed distributed so we will logtransform it by log(x+1)
 distmatl <- log(distmat+1) 
