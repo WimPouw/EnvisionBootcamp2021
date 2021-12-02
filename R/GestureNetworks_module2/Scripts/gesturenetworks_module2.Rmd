@@ -29,7 +29,7 @@ The dataset used here is a the original "Envision" dataset where a group of 3 te
 ## Setting up
 As always lets start with initializing our folders and some basic packages.
 
-```{r setup}
+```{r setup, message = FALSE, warning=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
 #packages
