@@ -14,7 +14,7 @@ output:
 
 * location Repository:  https://github.com/WimPouw/EnvisionBootcamp2021
 
-* location Rmarkdown: https://github.com/WimPouw/EnvisionBootcamp2021/blob/main/R/GestureNetworks_module1/Scripts/gesturenetworks_module2.Rmd
+* location Rmarkdown: https://github.com/WimPouw/EnvisionBootcamp2021/blob/main/R/GestureNetworks_module2/Scripts/gesturenetworks_module2.Rmd
 
 * citation: Pouw, W. & Trujillo, J. P. (`r Sys.Date()`). *Gesture Networks Module 2: Applications for team dynamics*. [the day you viewed the site]. Retrieved from: https://wimpouw.github.io/EnvisionBootcamp2021/gesturenetworks_module2.html
 
@@ -68,7 +68,7 @@ There are several issues that we need to consider for this data:
 
 Lets proceed and implement these major steps. In the next procedure we will go through all events, and select only those that are relevant for manual kinematics, and we perform the preprocessing steps. We are then left with timeseries that are "amenable to analysis", and we will store these in the subfolder "/DataEnvision/AmenableTimeseries/".
 
-```{r, messages = FALSE, warning=FALSE}
+```{r message=TRUE, warning=FALSE, message = FALSE}
 library(zoo)   #linear approximation
 library(readr) #string manipulation
 library(kza)   #smoothing of timeseries
@@ -276,7 +276,7 @@ if(!file.exists(paste0(distancematfolder, "distance_matrix.csv")))
 We have a distance matrix filled with the distances of the amenable time series. We can proceed with visualizations. Note, that now we have information about three (!) persons contained in our matrix. Lets first set up a general plotting procedure. Note this time we use a different dimensionality reduction technique (t-sne) as the one used in module 1 (mds).
 
 
-```{r, message = FALSE, warning = FALSE}
+```{r, message = FALSE}
 library(tsne)
 distmat <- read.csv(paste0(distancematfolder, "distance_matrix.csv")) #load in our produced matrix
 
@@ -321,7 +321,7 @@ ggplotly(plot.space(topology,
 
 Now, of course we are interested in team dynamics. So we should also visualize how persons were interrelating in the team. Lets only look at enactments and gestures, then color the nodes based on the person (1, 2, or 3). We also want some information about time. So we can connect the nodes so that each node is connected to the node belonging to the event that followed in time. One thing we noticed, is that especially in later moments there the gestures tended to occupy a clustered region; it seemed as if the diversity of the kinematic trajectories was decreasing and settling on something, as if common ground was achieved. This is all speculation of course; but something we can asses further in an explorative way. Further, note that one person is especially vigorously using their upper limbs (bit this might be biased by tracking issues we talked about earlier). In any case, you can imagine that each team will have different kinematic space topologies, and different division of labour and creativity, and these can in principle be operationalized by performing computations on the distance matrix (e.g., clustering). Another option is to transform the distance matrix in a real network representation and then computing classic network topology measures.   
 
-```{r,fig.width=10, fig.height=10}
+```{r, fig.width=10, fig.height=10}
 enactments <- which(grepl("G-", features$coding, fixed = TRUE)|grepl("Enactment", features$coding, fixed = TRUE)) #lets only look at enactments
 featuresenact <- features[enactments,]
 topologyenact <- topology[enactments,]
@@ -335,7 +335,7 @@ ggplotly(plot.space(topologyenact,
 
 # plotting animations
 So again we can do some animated networks, similar to module1. Lets plot 25% of the enactments .gifs in a kinematic space that we generated; more would clutter the animation too much.
-```{r, warning = FALSE, message = FALSE}
+```{r}
 library(scales)  #for rescaling 
 
 topologyHTML <- apply(topologyenact[,1:2], 2, FUN=function(x)scales::rescale(x, from=range(x), c(0,1000))) #lets rescale the toplogy from 0 to 600 pixels
@@ -369,7 +369,7 @@ To inspect the result separately as html see here: https://wimpouw.github.io/Env
 
 Do people start to converge over time on a particular mode of gesturing? It seemed to be the case in one of the previous plots of the kinematic distances. Maybe, if we compute the euclidean distance from each event in the kinematic space (i.e., coordinates of the distance matrix) to the next, we will see that over time the traveled distances becomes less. If so, it seems that that the manual behaviors are are more convergent over time. Lets compute this from the distance matrix.
 
-```{r, message = FALSE, warning = FALSE}
+```{r}
 submat <- distmat[enactments, enactments] #only keep gesture/enactments events
 
 time <- euclid <- vector() #get the original time that the event occured, and compute euclidean distance of an event (relative to previoyus)
