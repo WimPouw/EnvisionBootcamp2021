@@ -23,13 +23,13 @@ output:
 Here we will generalize the gesture network approach for motion data with multiple persons who are interacting. So please inspect module 1 first (1. Pouw & Trujillo, 2021) before proceding with this module. We will also work with data that requires much more pre-processing as to show the complexities involved of more real-world data that was not originally collected for current purposes.
 
 ## The dataset
-The dataset used here is a the original "Envision" dataset where a group of 3 team-members is designing a hypothetical product. Based on the range of annotations that were available for this ~30 min design session, we have cut those events from the videos that were re-edited as first-person perspective videos for each of the teammembers. So have various sorts of coded events, some of which are relevant for kinematics, such as information about gestures and actions such as writing and touching objects, and some that were generated but are not so relevant for us (e.g., talking about the usability of the object). Each of these subvideos were tracked using mediapipe hand tracking where asked to track 2 hands max. The videos are stored in the subfolder "./DataEnvision/MTvideos/" and the concomittant time series are in the subfolder "./DataEnvision/MTvideos/Timeseries/".
+The dataset used here is a the original "Envision" dataset where a group of 3 team-members is designing a hypothetical product. Based on the range of annotations that were available for this ~30 min design session, we have cut those events from the videos that were re-edited as first-person perspective videos for each of the teammembers. So have various sorts of coded events, some of which are relevant for kinematics, such as information about gestures and actions such as writing and touching objects, and some that were generated but are not so relevant for us (e.g., talking about the usability of the object). Each of these subvideos were tracked using mediapipe hand tracking where asked to track 2 hands max. The videos are stored in the subfolder "./DataEnvision/MTvideos/" and the concomitant time series are in the subfolder "./DataEnvision/MTvideos/Timeseries/".
 
 
 ## Setting up
 As always lets start with initializing our folders and some basic packages.
 
-```{r setup, include=FALSE}
+```{r setup}
 knitr::opts_chunk$set(echo = TRUE)
 
 #packages
@@ -209,7 +209,7 @@ The above generates the preprocessed data. Lets compare the original video with 
 
 # Constructing a distance matrix 
 
-So we are ready to go for computing some gesture networks. If you are already familliar with gesture networks module 1 (https://wimpouw.github.io/EnvisionBootcamp2021/gesturenetworks_module1.html) you will see clear commonolaties. There are some slight changes however. Firstly, we no do a completely dependent dynamic time warping versions, where we treat all hand coordinates as a single system. Further, we perform a DTW version which does not allow for a lot of errors to be accumulated at the beginning and end of the timeseries; this avoids problems of overestimating of kinematic distances because the events begin and end points are not well defined (see 5). We will perform this DTW forwards and backwards because it will have slightly different results depending on which time series you submit as referent and which as query. Finally, we submit to DTW all the time *differientated* motion traces of hand keypoints. So we submit the velocities of each keypoint of the hand to be compared to the velocities of the another hand.   
+So we are ready to go for computing some gesture networks. If you are already familliar with gesture networks module 1 (https://wimpouw.github.io/EnvisionBootcamp2021/gesturenetworks_module1.html) you will see clear commonolaties. There are some slight changes however. Firstly, we now do a completely dependent dynamic time warping versions, where we treat all hand coordinates as a single system. Further, we perform a DTW version which does not allow for a lot of errors to be accumulated at the beginning and end of the timeseries; this avoids problems of overestimating of kinematic distances because the events begin and end points are not well defined (see 5). We will perform this DTW forwards and backwards because it will have slightly different results depending on which time series you submit as referent and which as query. Finally, we submit to DTW all the time *differientated* motion traces of hand keypoints. So we submit the velocities of each keypoint of the hand to be compared to the velocities of the another hand.   
 
 This operation takes quite a bit to run (about 15/20 minutes for us) as we have a lot of datapoints for the hands (You could speed this operation up by using parallel computing; reducing the number of markers; or performing faster dtw calculation than the current). One day we will do a module on fast gesture network computation using parralel computing. For now we will run this (if the file is not generated yet).
 
@@ -367,7 +367,7 @@ To inspect the result separately as html see here: https://wimpouw.github.io/Env
   
 ## Changes over time (convergence)
 
-Do people start to converge over time on a particular mode of gesturing? It seemed to be the case in one of the previous plots of the kinematic distances. Maybe, if we compute the euclidean distance from each event in the kinematic space (i.e., coordinates of the distance matrix) to the next, we will see that over time the traveled distances becomes less. If so, it seems that that the manual behaviors are are more convergent over time. Lets compute this from the distance matrix.
+Do people start to converge over time on a particular mode of gesturing? It seemed to be the case in one of the previous plots of the kinematic distances. Maybe, if we compute the euclidean distance from each event in the kinematic space (i.e., coordinates of the distance matrix) to the next, we will see that over time the traveled distances becomes less. If so, it seems that that the manual behaviors are are more convergent over time. Lets compute this from the distance matrix. From the figure below, it seems that the later an event in the team design session the less divergent a position in the kinematic space was as compared to the previous one.
 
 ```{r}
 submat <- distmat[enactments, enactments] #only keep gesture/enactments events
