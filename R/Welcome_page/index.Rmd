@@ -50,4 +50,6 @@ output:
 
 * [Gesture networks Module 2 (R): Applications for team dynamics](https://wimpouw.github.io/EnvisionBootcamp2021/gesturenetworks_module2.html)
 
+* [Turntaking (Python)](https://wimpouw.github.io/EnvisionBootcamp2021/TurnTaking_module.html)
+
 
