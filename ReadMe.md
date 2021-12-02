@@ -30,7 +30,10 @@ General citation:
 
 Cwieck, O., De Melo, G., Edelman, J., Owoyele, B., Pouw, W., Santuber, J. Trujillo, J.. Envision Toolbox: Multimodal (Signal) Processing and Analysis in Communication. https://github.com/WimPouw/EnvisionBootcamp2021 
  (**Alphabetical order)   </td>
-  
+ 
+ # Funding
+ This work has been supported by a VENI grant (VI.Veni.201G.047) awarded by the Dutch Research Council (NWO) to Wim Pouw (PI). This work has further been supported by the Hasso-Plattner Foundation.
+        
 </tr>
 </table>
 
