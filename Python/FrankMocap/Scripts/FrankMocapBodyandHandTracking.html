@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html>
-<head><meta charset="utf-8" />
+<!-- saved from url=(0117)file:///D:/Research_Projects/workshops_envision_bootcamp/Python/FrankMocap/Scripts/FrankMocapBodyandHandTracking.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <title>FrankMocapBodyandHandTracking</title>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="./FrankMocapBodyandHandTracking_files/require.min.js.download"></script>
+<script src="./FrankMocapBodyandHandTracking_files/jquery.min.js.download"></script>
 
 
 
@@ -13046,13 +13046,13 @@ div#notebook {
 </style>
 
 <!-- Custom stylesheet, it must be in the same directory as the html file -->
-<link rel="stylesheet" href="custom.css">
+<link rel="stylesheet" href="file:///D:/Research_Projects/workshops_envision_bootcamp/Python/FrankMocap/Scripts/custom.css">
 
 <!-- Loading mathjax macro -->
 <!-- Load mathjax -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
+    <script src="./FrankMocapBodyandHandTracking_files/latest.js.download"></script>
     <!-- MathJax configuration -->
-    <script type="text/x-mathjax-config">
+    <script type="text/x-mathjax-config;executed=true">
     MathJax.Hub.Config({
         tex2jax: {
             inlineMath: [ ['$','$'], ["\\(","\\)"] ],
@@ -13069,8 +13069,103 @@ div#notebook {
         }
     });
     </script>
-    <!-- End of mathjax configuration --></head>
-<body>
+    <!-- End of mathjax configuration --><script type="text/javascript" async="" src="./FrankMocapBodyandHandTracking_files/MathJax.js.download"></script><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover, .MJXp-munder {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > *, .MJXp-munder > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+<body style=""><div id="MathJax_Message" style="display: none;"></div>
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
 
@@ -13083,13 +13178,13 @@ div#notebook {
     Wim Pouw ( wim.pouw@donders.ru.nl )<br>James Trujillo ( james.trujillo@donders.ru.nl )<br>
     18-11-2021 </h3>
 
-<img src="./images/envision_banner.png"> </center><p><h3> Info documents </h3>
-This module provides a demonstration of how to extract a time series from FrankMocap output. FrankMocap is a heavy-duty GPU-based single-person 3D motion tracking procedure that takes as input from 2D video and approximates 3D joint postions. So for it to run it (smoothly) you need a (strong) GPU (i.e., a good video card); see repository for specifications.</p>
+<img src="./FrankMocapBodyandHandTracking_files/envision_banner.png"> </center><p></p><h3> Info documents </h3>
+This module provides a demonstration of how to extract a time series from FrankMocap output. FrankMocap is a heavy-duty GPU-based single-person 3D motion tracking procedure that takes as input from 2D video and approximates 3D joint postions. So for it to run it (smoothly) you need a (strong) GPU (i.e., a good video card); see repository for specifications.<p></p>
 <p>FrankMocap is special in that it is dedicated for 3D motion tracking from 2D video. Where the lightweight Mediapipe body and hand tracking also provides some depth information, FrankMocap is specifically optimized for estimating as best as possible the 3D joint positions (and rotations) from 2D video for the hands and the body. See the main FrankMocap paper in the resources for performance indicators. Note that FrankMocap only allows for tracking one person, and it will actually give an error if there are more than 1 person in the frame.</p>
 <p>The installation of frankmocap can be quite cumbersome, and the procedure depends on your operating system (for a description see the FrankMocap repository linked below). We have installed frankmocap on a windows machine following the exact instructions of this helpful tutorial <a href="https://www.youtube.com/watch?v=MYLMM7jOMS4">https://www.youtube.com/watch?v=MYLMM7jOMS4</a>. If your institute has such resources you can ask your IT department to assist in the installation.</p>
 <p>But even when the installation is completed, the output you can then generate is not yet a time series and a tracking video that we can work with. FrankMocap generates only single video frames with the pose projected onto the frames, and per frame a .pkl file that contains tracking information. This python script therefore assists in this last step to transform the frankmocap output into workable time series data and create a video from the frames. We will extract the joint positions, but not that the script can be adapted if you want the 3D joint rotation angles instead.</p>
-<p><h3> Executed code in conda command prompt </h3>
-We ran the full body tracking (hands and body) on the sample video to produce the motion tracking output by frankmocap.</p>
+<p></p><h3> Executed code in conda command prompt </h3>
+We ran the full body tracking (hands and body) on the sample video to produce the motion tracking output by frankmocap.<p></p>
 <blockquote><p>"python -m demo.demo_frankmocap --input_path ./sampledata/TanDun_youtube_conductorexample.mp4 --out_dir ./mocap_output --save_pred_pkl"</p>
 </blockquote>
 <p><br><br></p>
@@ -13101,7 +13196,7 @@ We ran the full body tracking (hands and body) on the sample video to produce th
 Pouw, W.  &amp;  Trujillo, J.P.(2021-11-18). <i> Processing output for 3D single person full-body tracking with FrankMocap </i> [day you visited the site]. Retrieved from: <a href="https://wimpouw.github.io/EnvisionBootcamp2021/FrankMocapBodyandHandTracking.html">https://wimpouw.github.io/EnvisionBootcamp2021/FrankMocapBodyandHandTracking.html</a></p>
 </li>
 </ul>
-<p><h4>resources</h4></p>
+<p></p><h4>resources</h4><p></p>
 <ul>
 <li>FrankMocap Github Repository: <a href="https://github.com/facebookresearch/frankmocap">https://github.com/facebookresearch/frankmocap</a>
 <br><br></li>
@@ -13125,18 +13220,18 @@ Pouw, W.  &amp;  Trujillo, J.P.(2021-11-18). <i> Processing output for 3D single
 <span class="kn">import</span> <span class="nn">csv</span>
 
 <span class="c1">#files that contains predicted points</span>
-<span class="n">framefol</span> <span class="o">=</span> <span class="s2">&quot;../frankmocap_output/mocap/&quot;</span>
+<span class="n">framefol</span> <span class="o">=</span> <span class="s2">"../frankmocap_output/mocap/"</span>
 <span class="n">framedata</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">framefol</span><span class="p">)</span>
 
 <span class="c1">#files that contain the images</span>
-<span class="n">renderfol</span> <span class="o">=</span> <span class="s2">&quot;../frankmocap_output/rendered/&quot;</span>
+<span class="n">renderfol</span> <span class="o">=</span> <span class="s2">"../frankmocap_output/rendered/"</span>
 <span class="n">renderdata</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">renderfol</span><span class="p">)</span>
 
 <span class="c1">#folder for saving the rendered video to</span>
-<span class="n">videofold</span> <span class="o">=</span> <span class="s1">&#39;../MTVideos/&#39;</span>
+<span class="n">videofold</span> <span class="o">=</span> <span class="s1">'../MTVideos/'</span>
 
 <span class="c1">#folder for saving the timeseries to</span>
-<span class="n">outtsfol</span> <span class="o">=</span> <span class="s1">&#39;../OutputTimeseries/&#39;</span>
+<span class="n">outtsfol</span> <span class="o">=</span> <span class="s1">'../OutputTimeseries/'</span>
 </pre></div>
 
     </div>
@@ -13164,8 +13259,8 @@ Pouw, W.  &amp;  Trujillo, J.P.(2021-11-18). <i> Processing output for 3D single
 <span class="nb">print</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
 
 <span class="c1"># choose codec according to format needed</span>
-<span class="n">fourcc</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoWriter_fourcc</span><span class="p">(</span><span class="o">*</span><span class="s1">&#39;MP4V&#39;</span><span class="p">)</span> 
-<span class="n">video</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoWriter</span><span class="p">(</span><span class="n">videofold</span> <span class="o">+</span><span class="s1">&#39;MTvideo.mp4&#39;</span><span class="p">,</span> <span class="n">fourcc</span><span class="p">,</span> <span class="mf">29.97</span><span class="p">,</span> <span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">))</span>
+<span class="n">fourcc</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoWriter_fourcc</span><span class="p">(</span><span class="o">*</span><span class="s1">'MP4V'</span><span class="p">)</span> 
+<span class="n">video</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoWriter</span><span class="p">(</span><span class="n">videofold</span> <span class="o">+</span><span class="s1">'MTvideo.mp4'</span><span class="p">,</span> <span class="n">fourcc</span><span class="p">,</span> <span class="mf">29.97</span><span class="p">,</span> <span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">))</span>
 
 <span class="c1">#loop through the images save them to a video</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">images</span><span class="p">:</span>
@@ -13173,7 +13268,7 @@ Pouw, W.  &amp;  Trujillo, J.P.(2021-11-18). <i> Processing output for 3D single
     <span class="n">video</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
 
 <span class="c1">#release</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;done&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"done"</span><span class="p">)</span>
 <span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
 <span class="n">video</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
 </pre></div>
@@ -13228,26 +13323,26 @@ Pouw, W.  &amp;  Trujillo, J.P.(2021-11-18). <i> Processing output for 3D single
 
 <span class="c1">#https://github.com/facebookresearch/frankmocap/issues/31</span>
 <span class="c1">#in body+hand mode the body points are the same as openpose</span>
-<span class="n">markerspositionhand</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Wrist&#39;</span><span class="p">,</span> <span class="s1">&#39;Thumb_00&#39;</span><span class="p">,</span> <span class="s1">&#39;Thumb_01&#39;</span><span class="p">,</span> <span class="s1">&#39;Thumb_02&#39;</span><span class="p">,</span> <span class="s1">&#39;Thumb_03&#39;</span><span class="p">,</span> <span class="s1">&#39;Index_00&#39;</span><span class="p">,</span> <span class="s1">&#39;Index_01&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;Index_02&#39;</span><span class="p">,</span> <span class="s1">&#39;Index_03&#39;</span><span class="p">,</span> <span class="s1">&#39;Middle_00&#39;</span><span class="p">,</span> <span class="s1">&#39;Middle_01&#39;</span><span class="p">,</span> <span class="s1">&#39;Middle_02&#39;</span><span class="p">,</span> <span class="s1">&#39;Middle_03&#39;</span><span class="p">,</span> <span class="s1">&#39;Ring_00&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;Ring_01&#39;</span><span class="p">,</span> <span class="s1">&#39;Ring_02&#39;</span><span class="p">,</span> <span class="s1">&#39;Ring_03&#39;</span><span class="p">,</span> <span class="s1">&#39;Little_00&#39;</span><span class="p">,</span> <span class="s1">&#39;Little_01&#39;</span><span class="p">,</span> <span class="s1">&#39;Little_02&#39;</span><span class="p">,</span> <span class="s1">&#39;Little_03&#39;</span><span class="p">]</span>
+<span class="n">markerspositionhand</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Wrist'</span><span class="p">,</span> <span class="s1">'Thumb_00'</span><span class="p">,</span> <span class="s1">'Thumb_01'</span><span class="p">,</span> <span class="s1">'Thumb_02'</span><span class="p">,</span> <span class="s1">'Thumb_03'</span><span class="p">,</span> <span class="s1">'Index_00'</span><span class="p">,</span> <span class="s1">'Index_01'</span><span class="p">,</span>
+                <span class="s1">'Index_02'</span><span class="p">,</span> <span class="s1">'Index_03'</span><span class="p">,</span> <span class="s1">'Middle_00'</span><span class="p">,</span> <span class="s1">'Middle_01'</span><span class="p">,</span> <span class="s1">'Middle_02'</span><span class="p">,</span> <span class="s1">'Middle_03'</span><span class="p">,</span> <span class="s1">'Ring_00'</span><span class="p">,</span>
+                <span class="s1">'Ring_01'</span><span class="p">,</span> <span class="s1">'Ring_02'</span><span class="p">,</span> <span class="s1">'Ring_03'</span><span class="p">,</span> <span class="s1">'Little_00'</span><span class="p">,</span> <span class="s1">'Little_01'</span><span class="p">,</span> <span class="s1">'Little_02'</span><span class="p">,</span> <span class="s1">'Little_03'</span><span class="p">]</span>
 
 <span class="c1">#lets make a list of the variables with x,y,z coordinates</span>
 <span class="n">markerhands</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;L_&#39;</span><span class="p">,</span> <span class="s1">&#39;R_&#39;</span><span class="p">]:</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'L_'</span><span class="p">,</span> <span class="s1">'R_'</span><span class="p">]:</span>
     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">markerspositionhand</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;x_&#39;</span><span class="p">,</span> <span class="s1">&#39;y_&#39;</span><span class="p">,</span> <span class="s1">&#39;z_&#39;</span><span class="p">]:</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'x_'</span><span class="p">,</span> <span class="s1">'y_'</span><span class="p">,</span> <span class="s1">'z_'</span><span class="p">]:</span>
             <span class="n">markerhands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">(</span><span class="n">k</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="p">))</span>
 
 <span class="c1">#for upper body we only want these points and they for position they follow openpose       </span>
-<span class="n">markerspositionbody</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Nose&#39;</span><span class="p">,</span> <span class="s1">&#39;Neck&#39;</span><span class="p">,</span> <span class="s1">&#39;Rshoulder&#39;</span><span class="p">,</span> <span class="s1">&#39;Relbow&#39;</span><span class="p">,</span> <span class="s1">&#39;RWrist&#39;</span><span class="p">,</span> <span class="s1">&#39;LShoulder&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;LElbow&#39;</span><span class="p">,</span> <span class="s1">&#39;LWrist&#39;</span><span class="p">,</span> <span class="s1">&#39;Midhip&#39;</span><span class="p">,</span> <span class="s1">&#39;RHip&#39;</span><span class="p">,</span> <span class="s1">&#39;RKnee&#39;</span><span class="p">,</span> <span class="s1">&#39;RAnkle&#39;</span><span class="p">,</span> <span class="s1">&#39;LHip&#39;</span><span class="p">]</span>
-              <span class="c1">#&#39;LKnee&#39;, &#39;LAnkle&#39;, &#39;REye&#39;, &#39;LEye&#39;, &#39;REar&#39;, &#39;LEar&#39;, &#39;LBigToe&#39;, &#39;LSmallToe&#39;, </span>
-              <span class="c1"># &#39;LHeel&#39;, &#39;RBigToe&#39;, &#39;RSmallToe&#39;, &#39;RHeel&#39;, &#39;Background&#39;]</span>
+<span class="n">markerspositionbody</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Nose'</span><span class="p">,</span> <span class="s1">'Neck'</span><span class="p">,</span> <span class="s1">'Rshoulder'</span><span class="p">,</span> <span class="s1">'Relbow'</span><span class="p">,</span> <span class="s1">'RWrist'</span><span class="p">,</span> <span class="s1">'LShoulder'</span><span class="p">,</span>
+               <span class="s1">'LElbow'</span><span class="p">,</span> <span class="s1">'LWrist'</span><span class="p">,</span> <span class="s1">'Midhip'</span><span class="p">,</span> <span class="s1">'RHip'</span><span class="p">,</span> <span class="s1">'RKnee'</span><span class="p">,</span> <span class="s1">'RAnkle'</span><span class="p">,</span> <span class="s1">'LHip'</span><span class="p">]</span>
+              <span class="c1">#'LKnee', 'LAnkle', 'REye', 'LEye', 'REar', 'LEar', 'LBigToe', 'LSmallToe', </span>
+              <span class="c1"># 'LHeel', 'RBigToe', 'RSmallToe', 'RHeel', 'Background']</span>
 
 <span class="n">markerbody</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">markerspositionbody</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;x_&#39;</span><span class="p">,</span> <span class="s1">&#39;y_&#39;</span><span class="p">,</span> <span class="s1">&#39;z_&#39;</span><span class="p">]:</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'x_'</span><span class="p">,</span> <span class="s1">'y_'</span><span class="p">,</span> <span class="s1">'z_'</span><span class="p">]:</span>
         <span class="n">markerbody</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">(</span><span class="n">k</span> <span class="o">+</span> <span class="n">j</span><span class="p">))</span>
 </pre></div>
 
@@ -13267,14 +13362,14 @@ Pouw, W.  &amp;  Trujillo, J.P.(2021-11-18). <i> Processing output for 3D single
 <span class="n">timeseries</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">timeseries</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span> <span class="c1">#the first is a list with columns</span>
 <span class="k">for</span> <span class="n">frame</span> <span class="ow">in</span> <span class="n">framedata</span><span class="p">:</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">framefol</span><span class="o">+</span><span class="n">frame</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">framefol</span><span class="o">+</span><span class="n">frame</span><span class="p">,</span> <span class="s1">'rb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>    
-    <span class="n">timsdat</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;pred_output_list&#39;</span><span class="p">]</span>
+    <span class="n">timsdat</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'pred_output_list'</span><span class="p">]</span>
     <span class="n">timsdat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">timsdat</span><span class="p">)</span>
     <span class="c1">#extract body joint positions</span>
-    <span class="n">leftjoints</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="o">.</span><span class="n">tolist</span><span class="p">(</span><span class="n">timsdat</span><span class="p">[</span><span class="s1">&#39;pred_lhand_joints_img&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
-    <span class="n">rightjoints</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="o">.</span><span class="n">tolist</span><span class="p">(</span><span class="n">timsdat</span><span class="p">[</span><span class="s1">&#39;pred_rhand_joints_img&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
-    <span class="n">bodyjoints</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="o">.</span><span class="n">tolist</span><span class="p">(</span><span class="n">timsdat</span><span class="p">[</span><span class="s1">&#39;pred_body_joints_img&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">leftjoints</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="o">.</span><span class="n">tolist</span><span class="p">(</span><span class="n">timsdat</span><span class="p">[</span><span class="s1">'pred_lhand_joints_img'</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">rightjoints</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="o">.</span><span class="n">tolist</span><span class="p">(</span><span class="n">timsdat</span><span class="p">[</span><span class="s1">'pred_rhand_joints_img'</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">bodyjoints</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="o">.</span><span class="n">tolist</span><span class="p">(</span><span class="n">timsdat</span><span class="p">[</span><span class="s1">'pred_body_joints_img'</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
     <span class="c1">#get everything in a flat list</span>
     <span class="n">lj</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">rj</span> <span class="o">=</span> <span class="p">[]</span>
@@ -13290,17 +13385,17 @@ Pouw, W.  &amp;  Trujillo, J.P.(2021-11-18). <i> Processing output for 3D single
     <span class="c1">#append to the the list</span>
     <span class="n">timeseries</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lj</span><span class="o">+</span><span class="n">rj</span><span class="o">+</span><span class="n">bj</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;done! Now saving to file&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'done! Now saving to file'</span><span class="p">)</span>
 <span class="c1">####################################################### data to be written row-wise in csv fil</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">timeseries</span>
   
-<span class="c1"># opening the csv file in &#39;w+&#39; mode</span>
-<span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">outtsfol</span> <span class="o">+</span> <span class="s1">&#39;timeseries.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;w+&#39;</span><span class="p">,</span> <span class="n">newline</span> <span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="c1"># opening the csv file in 'w+' mode</span>
+<span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">outtsfol</span> <span class="o">+</span> <span class="s1">'timeseries.csv'</span><span class="p">,</span> <span class="s1">'w+'</span><span class="p">,</span> <span class="n">newline</span> <span class="o">=</span><span class="s1">''</span><span class="p">)</span>
 <span class="c1">#write it</span>
 <span class="k">with</span> <span class="n">file</span><span class="p">:</span>    
     <span class="n">write</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
     <span class="n">write</span><span class="o">.</span><span class="n">writerows</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;done! Timeseries saved&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'done! Timeseries saved'</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13329,9 +13424,10 @@ done! Timeseries saved
 </div>
     </div>
   </div>
-</body>
+
 
  
 
 
-</html>
+
+</body></html>
