@@ -13172,14 +13172,14 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<center><h1> MultiParty Tracking with MediaPipe: Top-View Hand Tracking  </h1>
+<center><h1> MultiParty and Single Person Tracking with MediaPipe: Top- and Front-View Hand Tracking  </h1>
 
 
 <h3> Wim Pouw ( wim.pouw@donders.ru.nl )<br>James Trujillo ( james.trujillo@donders.ru.nl )<br>
     18-11-2021 </h3>
 
 <img src="./MediaPipe_tophand_module_files/envision_banner.png"> </center><p></p><h3> Info documents </h3>
-In this module, we'll demonstrates how to perform motion tracking using the lightweight tool MediaPipe, and considers some of the pros and cons of this method. Specifically, we'll be using MediaPipe for hand-tracking in situations where we have multiple people in frame, and when tracking from a top view.
+In this module, we'll demonstrates how to perform motion tracking using the lightweight tool MediaPipe, and considers some of the pros and cons of this method. Specifically, we'll be using MediaPipe for hand-tracking in situations where a) we have multiple people in frame from a top view, b) a single person from top view, and c) a single person for front-view. Single person tracking is a more easily processable as we will explain, as it much easier to identify which hands belong to which person from frame to frame. In the case of multi-person hand tracking we require a little bit more post-processing to identify persons from frame to frame (the envision toolbox also contains a script for linking person from frame to frame in such cases).
 <br><br><p></p>
 <ul>
 <li><p>location code: 
@@ -13210,7 +13210,7 @@ First, let's load some packages and set our paths</li>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">config</span> Completer.use_jedi = False
@@ -13235,7 +13235,7 @@ First, let's load some packages and set our paths</li>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#list all videos in mediafolder</span>
@@ -13252,7 +13252,7 @@ First, let's load some packages and set our paths</li>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">################################some preperatory functions and lists for saving the data</span>
@@ -13299,7 +13299,7 @@ First, let's load some packages and set our paths</li>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#loop through the frames of the video</span>
@@ -13396,7 +13396,9 @@ First, let's load some packages and set our paths</li>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>1440.0 1080.0 29.97017053449149
+<pre>1280.0 720.0 50.0
+1440.0 1080.0 29.97017053449149
+720.0 480.0 29.97002997002997
 </pre>
 </div>
 </div>
@@ -13415,7 +13417,7 @@ First, let's load some packages and set our paths</li>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">foldtime</span><span class="o">+</span><span class="n">ff</span><span class="p">[:</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span><span class="o">+</span><span class="s1">'.csv'</span><span class="p">)</span>
@@ -13437,14 +13439,14 @@ First, let's load some packages and set our paths</li>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>./Timeseries_Output/sampletopview.csv
+<pre>./Timeseries_Output/singlefirst_person_sample.csv
 </pre>
 </div>
 </div>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[5]:</div>
+    <div class="prompt output_prompt">Out[11]:</div>
 
 
 
@@ -13493,123 +13495,123 @@ First, let's load some packages and set our paths</li>
   <tbody>
     <tr>
       <th>0</th>
-      <td>1</td>
-      <td>score: 0.9747177958488464</td>
-      <td>label: "Right"</td>
-      <td>0</td>
-      <td>0.362330</td>
-      <td>0.577380</td>
-      <td>2.766056e-07</td>
-      <td>0.379316</td>
-      <td>0.590700</td>
-      <td>-0.019496</td>
+      <td>1.0</td>
+      <td>score: 0.6093786954879761</td>
+      <td>label: "Left"</td>
+      <td>0.0</td>
+      <td>0.635196</td>
+      <td>0.388808</td>
+      <td>-0.000030</td>
+      <td>0.602918</td>
+      <td>0.389601</td>
+      <td>-0.018807</td>
       <td>...</td>
-      <td>-0.000562</td>
-      <td>0.423765</td>
-      <td>0.517262</td>
-      <td>-0.006143</td>
-      <td>0.439660</td>
-      <td>0.520554</td>
-      <td>-0.009332</td>
-      <td>0.452664</td>
-      <td>0.525868</td>
-      <td>-0.010830</td>
+      <td>-0.004158</td>
+      <td>0.634445</td>
+      <td>0.229552</td>
+      <td>-0.005760</td>
+      <td>0.623060</td>
+      <td>0.205796</td>
+      <td>-0.000986</td>
+      <td>0.611503</td>
+      <td>0.190996</td>
+      <td>0.006322</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>1</td>
-      <td>score: 0.9968168139457703</td>
-      <td>label: "Right"</td>
-      <td>0</td>
-      <td>0.589795</td>
-      <td>0.797021</td>
-      <td>1.672304e-07</td>
-      <td>0.608119</td>
-      <td>0.779976</td>
-      <td>-0.004363</td>
+      <td>1.0</td>
+      <td>score: 0.9999953508377075</td>
+      <td>label: "Left"</td>
+      <td>0.0</td>
+      <td>0.299859</td>
+      <td>0.397056</td>
+      <td>-0.000041</td>
+      <td>0.331408</td>
+      <td>0.387960</td>
+      <td>-0.023282</td>
       <td>...</td>
-      <td>-0.010393</td>
-      <td>0.563613</td>
-      <td>0.718554</td>
-      <td>-0.013781</td>
-      <td>0.562360</td>
-      <td>0.700599</td>
-      <td>-0.015491</td>
-      <td>0.562121</td>
-      <td>0.686501</td>
-      <td>-0.016087</td>
+      <td>-0.003270</td>
+      <td>0.282278</td>
+      <td>0.243715</td>
+      <td>-0.011688</td>
+      <td>0.283709</td>
+      <td>0.214422</td>
+      <td>-0.018607</td>
+      <td>0.285403</td>
+      <td>0.189971</td>
+      <td>-0.026059</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>2</td>
-      <td>score: 0.927975058555603</td>
-      <td>label: "Right"</td>
-      <td>33</td>
-      <td>0.363977</td>
-      <td>0.577015</td>
-      <td>2.705930e-07</td>
-      <td>0.380880</td>
-      <td>0.589034</td>
-      <td>-0.019743</td>
+      <td>2.0</td>
+      <td>score: 0.9450348019599915</td>
+      <td>label: "Left"</td>
+      <td>33.0</td>
+      <td>0.639061</td>
+      <td>0.392384</td>
+      <td>-0.000022</td>
+      <td>0.606290</td>
+      <td>0.390252</td>
+      <td>-0.023101</td>
       <td>...</td>
-      <td>0.001318</td>
-      <td>0.425784</td>
-      <td>0.514050</td>
-      <td>-0.005703</td>
-      <td>0.440824</td>
-      <td>0.519644</td>
-      <td>-0.009894</td>
-      <td>0.453483</td>
-      <td>0.525963</td>
-      <td>-0.011872</td>
+      <td>-0.004803</td>
+      <td>0.637472</td>
+      <td>0.231520</td>
+      <td>-0.005495</td>
+      <td>0.626105</td>
+      <td>0.206491</td>
+      <td>-0.002203</td>
+      <td>0.614551</td>
+      <td>0.191324</td>
+      <td>0.002124</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>2</td>
-      <td>score: 0.9930723905563354</td>
-      <td>label: "Right"</td>
-      <td>33</td>
-      <td>0.590470</td>
-      <td>0.799091</td>
-      <td>1.585804e-07</td>
-      <td>0.608578</td>
-      <td>0.779634</td>
-      <td>-0.002823</td>
+      <td>2.0</td>
+      <td>score: 0.9999712109565735</td>
+      <td>label: "Left"</td>
+      <td>33.0</td>
+      <td>0.299803</td>
+      <td>0.401946</td>
+      <td>-0.000042</td>
+      <td>0.331562</td>
+      <td>0.390181</td>
+      <td>-0.022328</td>
       <td>...</td>
-      <td>-0.010179</td>
-      <td>0.563655</td>
-      <td>0.718578</td>
-      <td>-0.013116</td>
-      <td>0.562503</td>
-      <td>0.700143</td>
-      <td>-0.014482</td>
-      <td>0.562225</td>
-      <td>0.685411</td>
-      <td>-0.014995</td>
+      <td>0.006947</td>
+      <td>0.285484</td>
+      <td>0.243658</td>
+      <td>0.001423</td>
+      <td>0.288054</td>
+      <td>0.216183</td>
+      <td>-0.001764</td>
+      <td>0.290211</td>
+      <td>0.194107</td>
+      <td>-0.006174</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>3</td>
-      <td>score: 0.9250645041465759</td>
-      <td>label: "Right"</td>
-      <td>66</td>
-      <td>0.364033</td>
-      <td>0.577941</td>
-      <td>2.389433e-07</td>
-      <td>0.380352</td>
-      <td>0.589998</td>
-      <td>-0.019178</td>
+      <td>3.0</td>
+      <td>score: 0.9674971699714661</td>
+      <td>label: "Left"</td>
+      <td>66.0</td>
+      <td>0.641997</td>
+      <td>0.398204</td>
+      <td>-0.000030</td>
+      <td>0.607862</td>
+      <td>0.392848</td>
+      <td>-0.025636</td>
       <td>...</td>
-      <td>0.002812</td>
-      <td>0.425795</td>
-      <td>0.515333</td>
-      <td>-0.003822</td>
-      <td>0.440245</td>
-      <td>0.519717</td>
-      <td>-0.008195</td>
-      <td>0.452456</td>
-      <td>0.524815</td>
-      <td>-0.010517</td>
+      <td>-0.013638</td>
+      <td>0.642445</td>
+      <td>0.233575</td>
+      <td>-0.015278</td>
+      <td>0.631055</td>
+      <td>0.207358</td>
+      <td>-0.012657</td>
+      <td>0.620473</td>
+      <td>0.190910</td>
+      <td>-0.009438</td>
     </tr>
   </tbody>
 </table>
@@ -13629,25 +13631,12 @@ First, let's load some packages and set our paths</li>
 <p>Above we have the first 5 rows of our output data. The first named column, "index", provides you with the frame number. Note that each frame may have multiple rows, if multiple hands are tracked in that frame. We also get a label, right or left, and x,y,z coordinates (scaled to 0,1 --- see below) for each keypoint. <br></p>
 <p></p><h3> Output Details </h3>
 The 3D coordinate output is certainly an advantage for MediaPipe, as it is able to provide some sense of depth, even if you don't have multiple camera angles or an actual depth image (e.g, as recorded by infrared sensors). The authors of MediaPipe achieve this by training their detector model on a synthetic dataset where they could vary the pose and orientation of the hand in many ways, but always have ground-truth 3D coordinates. As they state in the Zhang et al., 2020 paper:  <i>"Synthetic dataset: To even better cover the possible hand poses and provide additional supervision for depth, we render a high-quality synthetic hand model over various backgrounds and map it to the corresponding 3D coordinates. We use a commercial 3D hand model that is rigged with 24 bones and includes 36 blendshapes, which control fingers and palm thickness. The model also provides 5 textures with different skin tones. We created video sequences of transformation between hand poses and sampled 100K images from the videos." Zhang et al., 2020 </i><br>
-It is important to note that the depth provided in this output, however, does not correspond to real-world meters. Instead, a point with x,y coordinates = 0.5, 0.5 would be in the center of the image, while x,y = 0.25, 0.75 would indicate that the point is 1/4 of the way from left to right, and 3/4 of the way from top to bottom (x,y = 0,0 is the top left corner). For depth, it is relative to the wrist. In other words, the wrist is taken as the origin (0 depth), and smaller values are estimated to be closer to the camera, and larger values further away. <br>
+It is important to note that the depth provided in this output, however, Mediapipe does allow for estimating positions in meters (see <a href="https://google.github.io/mediapipe/solutions/hands.html">https://google.github.io/mediapipe/solutions/hands.html</a> to see which function you need to use for this). In the current example case, a point with x,y coordinates = 0.5, 0.5 would be in the center of the image, while x,y = 0.25, 0.75 would indicate that the point is 1/4 of the way from left to right, and 3/4 of the way from top to bottom (x,y = 0,0 is the top left corner). For depth, it is relative to the wrist. In other words, the wrist is taken as the origin (0 depth), and smaller values are estimated to be closer to the camera, and larger values further away. <br>
 This relative scaling makes it difficult to compare across videos with different camera set-ups, but is quite intuitive when looking at the coordinates compared to the actual video.<p></p>
-<p><br>However, at the moment we don't know if the first row in frame 1 is the same hand as the first row in frame 2. This is easier when there is just one person, as mediapipe does differientate between left and right hand. But now we don't know if a left and right hand belong together as there are multiple persons! We'll cover a potential solution to this in the module on linking and pairing hands.</p>
+<p><br>However, especially for multi-party data we don't know if the first row in frame 1 is the same hand as the first row in frame 2. Thus, we don't know if a left and right hand belong together as there are multiple persons! We'll cover a potential solution to this in the module on linking and pairing hands. This is easier when there is just one person, as mediapipe does differientate between left and right hand.</p>
 
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-    </div>
-</div>
-</div>
-
 </div>
     </div>
   </div>
