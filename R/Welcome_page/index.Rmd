@@ -23,9 +23,11 @@ output:
 * [Amplitude Envelope Extraction (R)](https://wimpouw.github.io/EnvisionBootcamp2021/extract_AmplitudeEnvelope_Rmarkdown.html)
 
 ## Motion tracking
-* [Single body tracking with mediapipe (python)](https://wimpouw.github.io/EnvisionBootcamp2021/MediaPipe_body_module.html)
+* [Single body tracking with MediaPipe (python)](https://wimpouw.github.io/EnvisionBootcamp2021/MediaPipe_body_module.html)
 
-* [Top-view (multi-)hand tracking with mediapipe (python)](https://wimpouw.github.io/EnvisionBootcamp2021/MediaPipe_tophand_module)
+* [Processing output for 3D single person full-body tracking with FrankMocap](https://wimpouw.github.io/EnvisionBootcamp2021/FrankMocapBodyandHandTracking.html)
+
+* [Top-view (multi-)hand tracking with MediaPipe (python)](https://wimpouw.github.io/EnvisionBootcamp2021/MediaPipe_tophand_module)
 
 * [Multi body tracking with OpenPose (python)](https://wimpouw.github.io/EnvisionBootcamp2021/OpenPose_module.html)
 
