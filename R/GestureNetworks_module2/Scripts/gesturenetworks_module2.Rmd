@@ -380,8 +380,7 @@ for(i in 2:ncol(submat))
   euclid <- c(euclid, sqrt(sum(submat[,i-1]-submat[i])^2)) #euclidean distance between gesture at index i-1 and gesture at index i
 }
  
-dat <- cbind.data.frame(time, euclid) #save info in dataframe
-#and plot
+dat <- cbind.data.frame(time, euclid) #save info in dataframe and plot
 a <- ggplot(dat, aes(x = time, y = euclid))+geom_point()+geom_smooth(method = "lm")+theme_bw()+ylab("travel in kinematic space") + xlab("time")+
   ggtitle("kinematic space traveled over time")
 ggplotly(a)
