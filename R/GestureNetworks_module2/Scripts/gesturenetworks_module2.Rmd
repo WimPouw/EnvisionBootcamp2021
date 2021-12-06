@@ -276,7 +276,7 @@ if(!file.exists(paste0(distancematfolder, "distance_matrix.csv")))
 We have a distance matrix filled with the distances of the amenable time series. We can proceed with visualizations. Note, that now we have information about three (!) persons contained in our matrix. Lets first set up a general plotting procedure. Note this time we use a different dimensionality reduction technique (t-sne) as the one used in module 1 (mds).
 
 
-```{r, message = FALSE}
+```{r, message = FALSE, warning = FALSE}
 library(tsne)
 distmat <- read.csv(paste0(distancematfolder, "distance_matrix.csv")) #load in our produced matrix
 
@@ -335,7 +335,7 @@ ggplotly(plot.space(topologyenact,
 
 # plotting animations
 So again we can do some animated networks, similar to module1. Lets plot 25% of the enactments .gifs in a kinematic space that we generated; more would clutter the animation too much.
-```{r}
+```{r, message = FALSE, warning = FALSE}
 library(scales)  #for rescaling 
 
 topologyHTML <- apply(topologyenact[,1:2], 2, FUN=function(x)scales::rescale(x, from=range(x), c(0,1000))) #lets rescale the toplogy from 0 to 600 pixels
@@ -369,7 +369,7 @@ To inspect the result separately as html see here: https://wimpouw.github.io/Env
 
 Does gesture start to converge over time in this team? It seemed to be the case in one of the previous plots of the kinematic distances. Maybe, if we compute the euclidean distance from each event in the kinematic space (i.e., coordinates of the distance matrix) to the next, we will see that over time the traveled distances becomes less. If so, it seems that that the manual behaviors are are more convergent over time. Lets compute this from the distance matrix. From the figure below, it seems that the later an event in the team design session the less divergent a position in the kinematic space was as compared to the previous one.
 
-```{r}
+```{r, warning = FALSE, message = FALSE}
 submat <- distmat[enactments, enactments] #only keep gesture/enactments events
 
 time <- euclid <- vector() #get the original time that the event occured, and compute euclidean distance of an event (relative to previoyus)
