@@ -15,7 +15,7 @@ library(papaja) #for using printnum
 ```
 ## Info documents
 
-* This R coding module shows how we could select and derive relevant measures from motion tracking that we would like to merge with signals from other modalities (e.g., annotations, acoustics). We also apply some smoothing to the motion tracking movement traces that you can try out yourself. We also show some simple applications of this merged dataframe, in the form of a peak analysis in the application section.
+* This R coding module shows some basic data wrangling procedures that are often required when analyzing motion, sound, with the help of annotations (e.g., merging data streams, deriving 1-dimensional measures from high dimensional motion tracking data). We also apply some smoothing to the motion tracking movement traces. We also show some simple applications once we have a multimodal dataset prepared, in the form of a peak analysis.
 
 * location Repository:  https://github.com/WimPouw/EnvisionBootcamp2021
 
@@ -64,7 +64,7 @@ head(ANNO)
 Lets not merge all data. For the motion tracking output we generated for the cartoon video we are now only interested in some specific body part; say we are interested in the right hand index finger traces only. Lets select them first.
 
 ```{r}
-selection <- c("time", "X_RIGHT_INDEX", "Y_RIGHT_INDEX" ,"Z_RIGHT_INDEX") #concatenate a some variable names in a vector "selection"
+selection <- c("time", "X_RIGHT_INDEX", "Y_RIGHT_INDEX" ,"Z_RIGHT_INDEX") #concatenate some variable names in a vector "selection"
 MTs <- MT[,selection] #select all column positions of which the names are also in the selection variable and save to a new object called MTs
 ```
 
@@ -110,13 +110,13 @@ subplot(ggplotly(a), ggplotly(b), nrows=2) #we use ggplotly here as it is create
 ```
 
 ### Smoothing
-One thing that you will run into when using motion tracking data, especially when using video based motion tracking data, is that you will have noise-related jitter in your time series. At some times such noise maybe minimal, e.g., when using very accurate device-based motion tracking devices. But in other cases, you will see that there are sudden jumps or kinks from timepoint to timepoint due to tracking inaccuracies (that can be caused by occlusions, or not ideal lighting, etc.).  
+One thing that you will run into when using motion tracking data, especially when using video based motion tracking data, is that you will have noise-related jitter in your time series. At some times such noise maybe minimal, e.g., when using very accurate device-based motion tracking devices. But in other cases, you will see that there are sudden jumps or kinks from timepoint to timepoint due to tracking inaccuracies (that can be caused by occlusions, or not ideal lighting, camara position changes, etc.).  
   
-It is good therefore to apply some smoothing to the position traces of your motion tracking data, as well as any derivatives that are taken afterwards (e.g., 3D speed, vertical velocity). You can for example apply a low-pass filter, whereby you try to only allow fluctuations that have a slow frequency change (gradual changes from point to point) so as to filter out (i.e., reduce the amplitude of) the jitter that occurs at very high frequencies (because they result in sudden changes from point to point). Note that when using low-pass filters there can be some time shift, so in that case it is good to undo that shift by running the smoothing forwards and backwards. This is important if you care about precise temporal precision relative to some other timeseries for example (e.g., acoustics).  
+It is good therefore to apply some smoothing to the position traces of your motion tracking data, as well as any derivatives that are approximated afterwards (e.g., 3D speed, vertical velocity). You can for example apply a low-pass filter, whereby you try to only allow fluctuations that have a slow frequency change (gradual changes from point to point) so as to filter out (i.e., reduce the amplitude of) the jitter that occurs at very high frequencies (because they result in sudden changes from point to point). Note that when using low-pass filters there can be some time shift, so in that case it is good to undo that shift by running the smoothing forwards and backwards (we do this by using signal::filtfilt). This is important if you care about precise temporal precision relative to some other timeseries for example (e.g., acoustics).  
   
-We can also use a different kind of smoothing filter that where the cut-off frequency is less strictly defined such as a running average, such that sudden changes in the time series are smoothed out by relating them to adjacent data points. Below we use the butterworth filter (1st order, zero-lag, 30Hz cutoff). Note that the order becomes effectively 2nd order because we are performing the smooothing forwards and backwards.
+We can also use a different kind of smoothing filter where the cut-off frequency is less strictly defined such as a running weighted average or gaussian filter, such that sudden changes in the time series are smoothed out by relating them in some weigthed way to the neighboring data points. Below we use such a neighbor averaing filter called a Kolmogorov-Zurbenko filter.
   
-So we provide two filters, and we also show some differences in settings. The amount of possible filters is immense. To pick one filter without becoming an expert on filters (but see [2] chapter 4 for a really nice resource to read up on this), you can try a few and then assess it with your own data and see how a filter is capturing the variability you are interested in. For example if you care about small amplitude fluctuations in your time series that might have to do with jerky movement, a heavy filter can potentially destroy this variability. A too weak of a filter might leave the signal riddled with noise, which may look acceptable, but can cascade into dramatic noisy estimates when taking for example derivatives (e.g., speed -> acceleration -> jerk).
+So we provide two filters, and we also show some differences in settings. The amount of possible filters is immense. To pick one filter without becoming an expert on filters (but see [2] chapter 4 for a really nice resource to read up on this), you can try a few and then assess it with your own data and see how a filter is capturing the variability you are interested in.  For example if you care about small amplitude fluctuations in your time series that might have to do with jerky movement, a heavy filter can potentially destroy this variability. A too weak of a filter might leave the signal riddled with noise, which may look acceptable, but can cascade into dramatic noisy estimates when taking for example derivatives (e.g., speed -> acceleration -> jerk). There are also ways to empirically assess what high frequency noise is in the data, given that noise generally has a particular random structure (see [2]).
 
 
 ```{r}
@@ -124,10 +124,10 @@ So we provide two filters, and we also show some differences in settings. The am
   #take some time series, apply the filter, then return it
 library(signal)
 butter.it <- function(x, samplingrate, order, lowpasscutoff)
-{bf <- butter(order, 1/(samplingrate/lowpasscutoff), type="low")
-x <<- as.numeric(signal::filtfilt(bf, x))}
+{bf <- butter(order,lowpasscutoff/samplingrate, type="low") #normalized frequency
+x <<- as.numeric(signal::filtfilt(bf, x))} #apply forwards and backwards using filtfilt
 
-#Kolmogorov-Zurbenki filter
+#Kolmogorov-Zurbenko filter
   #take some time series, apply the filter, then return it
 library(kza)
 kolmogorov.it <- function(timeseries, span, order)
@@ -159,18 +159,17 @@ p2 <- ggplot(tempmerge, aes(x=time))+geom_path(aes(y=Z_RIGHT_INDEX))+
 ggplotly(p2)
 ```
 
-So in the above figures you can zoom in see the differences between different kind of filter settings. Our Mediapipe tracking sample is already quite smooth, but in our experience video based motion tracking can be quite jittery and smoothing is crucial then. For now we will apply for all our motion tracking data the 1st order butterworth filter at a frequency cutoff of 30Hz.
+So in the above figures you can zoom in see the differences between different kind of filter settings. Our Mediapipe tracking sample is already quite smooth, but in our experience video based motion tracking can be quite jittery and smoothing is crucial then. For now we will apply for all our motion tracking data the 2nd order zero-phase butterworth filter at a frequency cutoff of 30Hz.
 
 ```{r}
 to_smooth <- c("X_RIGHT_INDEX", "Y_RIGHT_INDEX" ,"Z_RIGHT_INDEX") 
 merged[,to_smooth] <- 
   apply(merged[,to_smooth], 2, 
-        FUN = function(x) butter.it(x, samplingrate = 100, order = 1, lowpasscutoff = 30))
+        FUN = function(x) butter.it(x, samplingrate = 100, order = 2, lowpasscutoff = 30))
 ```
 
 ### Computing speed and acceleration (and smoothing again)
-We now already have only for one body joint three variables to describe its position. Sometimes we are only interested in a 1-dimensional signal, such as rate of movement in a particular dimension (e.g., vertical velocity), or the rate of movement in any direction (3D speed), or the change in the rate of 3D movement (acceleration). Below some simple examples of how to compute this from your initial position data.
-
+We now already have only for one body joint three variables to describe its position. Sometimes we are only interested in a 1-dimensional signal, such as rate of movement in a particular dimension (e.g., vertical velocity), or the rate of movement in any direction (3D speed), or the change of 3D speed (acceleration). Below some simple examples of how to compute this from your initial position data using forward differientiation.
 
 ```{r}
 #FUNCTION FOR GETTING SPEED VECTOR per 1000ms time
