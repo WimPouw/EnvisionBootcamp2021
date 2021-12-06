@@ -31,7 +31,7 @@
         <Int>434</Int>
     </pref>
     <pref key="SelectionEndTime">
-        <Long>142298</Long>
+        <Long>153770</Long>
     </pref>
     <pref key="ExportTabDialog.SelectTiersMode">
         <String>Tier</String>
@@ -82,7 +82,7 @@
         </pref>
     </prefGroup>
     <pref key="LayoutManager.TSWavSplitPaneDividerLocation">
-        <Int>229</Int>
+        <Int>187</Int>
     </pref>
     <prefList key="ExportTabDialog.selectedTiers">
         <String>annot_gesture_right</String>
@@ -117,7 +117,7 @@
         <Object class="java.awt.Rectangle">810,390,300,300</Object>
     </pref>
     <pref key="SelectionBeginTime">
-        <Long>141808</Long>
+        <Long>153760</Long>
     </pref>
     <prefGroup key="AAM-LR Phone level audio segmentation">
         <pref key="base_url">
@@ -132,10 +132,10 @@
         <Int>1</Int>
     </pref>
     <pref key="TimeScaleBeginTime">
-        <Long>135268</Long>
+        <Long>147520</Long>
     </pref>
     <pref key="MediaTime">
-        <Long>143857</Long>
+        <Long>153770</Long>
     </pref>
     <prefList key="MultiTierViewer.TierOrder">
         <String>General_Comments</String>
@@ -173,7 +173,7 @@
         </pref>
     </prefGroup>
     <pref key="LayoutManager.SplitPaneDividerLocation">
-        <Int>282</Int>
+        <Int>331</Int>
     </pref>
     <prefList key="CommentViewer.Columns.Hidden">
         <String>Sender</String>
