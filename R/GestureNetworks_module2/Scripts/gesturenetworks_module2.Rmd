@@ -20,14 +20,13 @@ output:
 
 ## Background
 
-Here we will generalize the gesture network approach for motion data with multiple persons who are interacting. So please inspect module 1 first (1. Pouw & Trujillo, 2021) before proceding with this module. We will also work with data that requires much more pre-processing as to show the complexities involved of more real-world data that was not originally collected for current purposes.
+Here we will generalize the gesture network approach for motion data with multiple persons who are interacting. So please inspect module 1 first (1. Pouw & Trujillo, 2021) before proceeding with this module. We will also work with data that requires much more pre-processing as to show the complexities involved of more real-world data that was not originally collected for current purposes.
 
 ## The dataset
-The dataset used here is a the original "Envision" dataset where a group of 3 team-members is designing a hypothetical product. Based on the range of annotations that were available for this ~30 min design session, we have cut those events from the videos that were re-edited as first-person perspective videos for each of the teammembers. So have various sorts of coded events, some of which are relevant for kinematics, such as information about gestures and actions such as writing and touching objects, and some that were generated but are not so relevant for us (e.g., talking about the usability of the object). Each of these subvideos were tracked using mediapipe hand tracking where asked to track 2 hands max. The videos are stored in the subfolder "./DataEnvision/MTvideos/" and the concomitant time series are in the subfolder "./DataEnvision/MTvideos/Timeseries/".
-
+The dataset used here is from the original "Envision" team design dataset where a group of 3 team-members is designing a hypothetical product. Based on the range of annotations that were available for this ~30 min design session, we have cut those events from the videos that were re-edited as first-person perspective videos for each of the teammembers. So have various sorts of coded events, some of which are relevant for kinematics, such as information about gestures and actions such as writing and touching objects, and some that were generated but are not so relevant for us (e.g., talking about the usability of the object). Each of these subvideos were tracked using mediapipe hand tracking where we set it to track 2 hands max. The videos are stored in the subfolder "./DataEnvision/MTvideos/" and the concomitant time series are in the subfolder "./DataEnvision/MTvideos/Timeseries/".
 
 ## Setting up
-As always lets start with initializing our folders and some basic packages.
+Per usual, lets start with initializing our folders and some basic packages.
 
 ```{r setup, message = FALSE, warning=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -42,12 +41,12 @@ library(plotly)     #plotting
 #set current as working drive via session -> set working drive -> source file location
 workingdrive <- getwd() 
 basefolder   <- dirname(workingdrive)
-timeserfolder <- paste0(basefolder, "/DataEnvision/Timeseries/")
-timeseriespfol <- paste0(basefolder, "/DataEnvision/TimeseriesAmenable/")
-animationsfol <-  paste0(basefolder, "/DataEnvision/AnimationsMT/")
+timeserfolder <- paste0(basefolder, "/DataEnvision/Timeseries/") #the original timeseries
+timeseriespfol <- paste0(basefolder, "/DataEnvision/TimeseriesAmenable/") #the time series that we eventually will analyze
+animationsfol <-  paste0(basefolder, "/DataEnvision/AnimationsMT/") #the animations that we will create
 timesers <- list.files(timeserfolder)
-distancematfolder <- paste0(basefolder, "/DataEnvision/DistanceMatrices/")
-anno <- read.csv(paste0(basefolder, "/DataEnvision/Annotation_info/group_10_recoding.csv"))
+distancematfolder <- paste0(basefolder, "/DataEnvision/DistanceMatrices/") #the DTW distance mattrix
+anno <- read.csv(paste0(basefolder, "/DataEnvision/Annotation_info/group_10_recoding.csv")) #original annotation information
 ```
 
 # Preprocessing
@@ -55,13 +54,13 @@ anno <- read.csv(paste0(basefolder, "/DataEnvision/Annotation_info/group_10_reco
 There are several issues that we need to consider for this data:
 
 * The hand motion tracking is not working as nicely for these videos, so we have a lot of missing frames or hands that are confused by machine labels (e.g., two left hands tracked), sometimes making it difficult to link the hands from frame to frame. 
-** To solve this we will only analyze gesture events of which 50% of the time we have some signal for both left and right hand, and the rest we interpolate using a linear interpolation. This is only for demonstration purposes; we do not advice using data with 50% loss.
+** To solve this we will only analyze gesture events of which 50% of the time we have some signal for both left and right hand, and the rest we interpolate using a linear interpolation. This is only for demonstration purposes; we do not advice using data with 50% loss and we have a mediapipe linking script in the envision toolbox that optimizes the linking of hand from frame to frame for mediapipe ouput.
 
 * We do not have codings about which hand is performing the action type (or whether both hands are performing it)
 ** To solve this we will identify which hand was moving the most during the coded event and then select that as our dominant hand
 
 * We want to treat left handed actions to be comparable to right handed actions
-** To solve this we will mirror the left hand trajectory, so that it can be directly compared to right handed gestures too
+** To solve this we will mirror the left hand trajectory about the vertical axis, so that it can be directly compared to right handed gestures too
 
 * The hand trajectories might start of at different points due to different initial posture conditions
 ** We will center the motion traces by the over all mean 
@@ -82,10 +81,10 @@ whichtypes <- c("feature", "scaffolds", "Use Case Scenario", "Usability", "Funct
   #arguments: data = motion tracking position data
             # timef = time variable with no missing frames included (for interpolation)
             # check which hand we are applying this procedure for
-preprocess.it <- function(data, timef, hand = "right")
+preprocess.it <- function(data, timef, hand)
 {
   #merge the original data with timef
-  mmt <- merge(timef, data,by.x="timef", by.y = "time", all = TRUE) 
+  mmt <- merge(timef, data, by.x="timef", by.y = "time", all = TRUE) 
   #interpolate NA's
   mmt[,6:ncol(mmt)] <- apply(mmt[,6:ncol(mmt)], 2, FUN = function(y){na.approx(y, x= mmt$timef, na.rm = FALSE)})
   #remove trailing NA's and only keep interpolated values
@@ -99,9 +98,10 @@ preprocess.it <- function(data, timef, hand = "right")
     }
     mmt[,indexx] <- mmt[,indexx]-mean(colMeans(mmt[,indexx]))     #center by the overall mean    
     #center, and flip y axis (to make sure hand is back in first person perspective)
-    indexy <- which(substr(colnames(mmt),1,1)%in% c("Y"))
+    indexy <- which(substr(colnames(mmt),1,1)%in% c("Y")) #check which column contain y data
     mmt[,indexy] <- mmt[,indexy]-mean(colMeans(mmt[,indexy]))     #center by the overall mean    
     mmt[,indexy] <- mmt[,indexy]*-1   
+    #note that the Z dimension that mediapipe already centered this (by the wrist as reference)
     return(mmt) #return the preprocessed dataframes
 }
 
@@ -118,8 +118,8 @@ for(j in c(1:nrow(anno)))
     mt$confidence <-  parse_number(mt$confidence) #change the confidence string into a number
     #remove all frames where there are not 2 left/right hands detected
     detected <- ave(mt$hand, mt$index, FUN = function(x)length(unique(x)))
-    mt <- mt[detected==2,] #keep when there are two unique handedness lables
-    #sepearte right and left hand motion
+    mt <- mt[detected==2,] #keep when there are two unique handedness labels
+    #separate right and left hand motion
     mtleft  <- mt[grepl("Right", mt$hand, fixed = TRUE),] #mediapipe assumes video is mirrored (so take opposite hand) 
     mtright <- mt[grepl("Left", mt$hand, fixed = TRUE),] #mediapipe assumes video is mirrored (so take opposite hand) 
     #prepare a full length time series
@@ -150,7 +150,7 @@ for(j in c(1:nrow(anno)))
 ```
 
 # Animating trajectories
-Sometimes it is helpful and simply crucial to check our data dynamically after all these operations (centering, mirroring, smoothing) and we can animate some datapoints as .gif files. We will therefore plot x an y trajectories for each of the amenable timeseries. The below code takes a long time, as we are rendering all the motion events to .gif files so that we can inspect and call them out if needed. However, we added a statement that this should only be run if there are no .gif files generated yet.
+Sometimes it is helpful and simply crucial to check our data dynamically after all these operations (centering, mirroring, smoothing) and we can animate some datapoints as .gif files. We will therefore plot x an y trajectories for each of the amenable timeseries. The below code takes a long time, as we are rendering all the motion events to .gif files so that we can inspect and call them out if needed. However, we added a statement that this should only be run if there are no .gif files generated yet (you can comment that statement out if you want to run this anyway, or delete the gif files in the folder to generate again).
 
 ```{r, eval =FALSE}
 library(gganimate) #for animating
@@ -199,7 +199,7 @@ for(ts1 in timeseriess) #loop through i
 }
 ```
 
-The above generates the preprocessed data. Lets compare the original video with mediapipe tracking, with the actual preprocessed data. Here are two examples. It looks OK for these examples. Some frames are clearly missing as you can see, but for further demonstration purposes we can proceed and assume that our preprocessing is not flawed in any major way.
+The above generates the preprocessed data. Lets compare the original video with mediapipe tracking, with the actual preprocessed data. Here are two examples. It looks OK for these examples. Some frames are clearly missing as you can see, but for further demonstration purposes we can proceed.
 
 <img src="Examples/group10_p2_638.gif" alt="Tracking Raw"  width="400" />
 <img src="AnimationsMT/638_group10.gif" alt="Tracking Raw"  width="400" />
@@ -209,9 +209,9 @@ The above generates the preprocessed data. Lets compare the original video with 
 
 # Constructing a distance matrix 
 
-So we are ready to go for computing some gesture networks. If you are already familliar with gesture networks module 1 (https://wimpouw.github.io/EnvisionBootcamp2021/gesturenetworks_module1.html) you will see clear commonolaties. There are some slight changes however. Firstly, we now do a completely dependent dynamic time warping versions, where we treat all hand coordinates as a single system. Further, we perform a DTW version which does not allow for a lot of errors to be accumulated at the beginning and end of the timeseries; this avoids problems of overestimating of kinematic distances because the events begin and end points are not well defined (see 5). We will perform this DTW forwards and backwards because it will have slightly different results depending on which time series you submit as referent and which as query. Finally, we submit to DTW all the time *differientated* motion traces of hand keypoints. So we submit the velocities of each keypoint of the hand to be compared to the velocities of the another hand.   
+So we are ready to go for computing some gesture networks. If you are already familiar with gesture networks module 1 (https://wimpouw.github.io/EnvisionBootcamp2021/gesturenetworks_module1.html) you will see clear commonalities. There are some slight changes however. Firstly, we now do a completely *dependent* dynamic time warping versions as we have one hand that we can treat as a single system with each joint position as defining its state space. Further, we perform a DTW version which does not allow for a lot of errors to be accumulated at the beginning and end of the timeseries; this avoids problems of overestimating of kinematic distances because the events begin and end points are not well defined (see 5). We will perform this DTW forwards and backwards because it can have different results depending on which time series you submit as referent and which as query. Finally, we submit to DTW all the time *differientated* motion traces of hand keypoints. So we submit the velocities of each keypoint of the hand to be compared to the velocities of the another hand.   
 
-This operation takes quite a bit to run (about 15/20 minutes for us) as we have a lot of datapoints for the hands (You could speed this operation up by using parallel computing; reducing the number of markers; or performing faster dtw calculation than the current). One day we will do a module on fast gesture network computation using parralel computing. For now we will run this (if the file is not generated yet).
+This operation takes quite a bit to run (about 15/20 minutes for us) as we have a lot of datapoints for the hands (You could speed this operation up by using parallel computing; reducing the number of markers; or performing faster dtw calculation than the current). One day we will do a module on fast gesture network computation using parallel computing. For now we will run this (if the file is not generated yet).
 
 ```{r}
 library(dtw) #our DTW package by Giorgino et al
@@ -294,9 +294,7 @@ plot.space <- function(top, title, feature1, sizepoint, timeline)
   pl <- ggplot(top, aes(x= Xpos, y = Ypos)) + geom_point(aes(color=feature1),size= sizepoint, alpha= 0.5)+theme(legend.position = "none")
   if(timeline == TRUE) #if we want to connect the nodes by their adjacent occurence in time
     {
-    rbPal <- colorRampPalette(c('red', 'yellow'))
-    col <- rbPal(20)[as.numeric(cut(1:nrow(top),breaks = 20))]
-    pl<- pl+geom_path(color= col)
+    pl<- pl+geom_path(alpha=0.5)
     }
   pl <- pl+  theme_bw() + ggtitle(title) + xlab("Dimension 1") + ylab("Dimension 2")
   return(pl)
@@ -305,10 +303,12 @@ plot.space <- function(top, title, feature1, sizepoint, timeline)
 #perform a dimensionality reduction on the distance matrix 
   #lets use something different: t-distributed stochastic nearest neighbor
 set.seed(1) #tsne uses random processes so set seed
-topology <- tsne(distmat, perplexity=12) #the topology changes drastically depending on perplexity
+topology <- tsne(distmat, perplexity=12) #the topology changes drastically depending on perplexity; 
+                                         #the value is parameter that changes the sensitivity 
+                                         #to what is considered a nearest neighbor
 ```
 
-Lets look at the gestures and enactments that were made, and also plot the original coding qualitative labels. The function for this plot is to see how the kinematic space relates to the qualitative labels. You can select and deselect specific labels. For example, it is clear that writing, touching, and sketching, occopy, a small region in the kinematic space, why gestures ("G-..") and enactments are much more varied.
+Lets look at the gestures and enactments that were made, and also plot the original coding qualitative labels. The function for this plot is to see how the kinematic space relates to the qualitative labels. You can select and deselect specific labels. For example, it is clear that writing, touching, and sketching, occupy, a small region in the kinematic space, why gestures ("G-..") and enactments are much more varied.
 
 ```{r, fig.width=10, fig.height=10}
 #plot the tsne 
@@ -319,7 +319,7 @@ ggplotly(plot.space(topology,
                     timeline = FALSE))
 ```
 
-Now, of course we are interested in team dynamics. So we should also visualize how persons were interrelating in the team. Lets only look at enactments and gestures, then color the nodes based on the person (1, 2, or 3). We also want some information about time. So we can connect the nodes so that each node is connected to the node belonging to the event that followed in time. One thing we noticed, is that especially in later moments there the gestures tended to occupy a clustered region; it seemed as if the diversity of the kinematic trajectories was decreasing and settling on something, as if common ground was achieved. This is all speculation of course; but something we can asses further in an explorative way. Further, note that one person is especially vigorously using their upper limbs (bit this might be biased by tracking issues we talked about earlier). In any case, you can imagine that each team will have different kinematic space topologies, and different division of labour and creativity, and these can in principle be operationalized by performing computations on the distance matrix (e.g., clustering). Another option is to transform the distance matrix in a real network representation and then computing classic network topology measures.   
+Now, of course we are interested in team dynamics. So we should also visualize how persons were interrelating in the team. Lets only look at enactments and gestures, then color the nodes based on the person (1, 2, or 3). We also want some information about time. So we can connect the nodes so that each node is connected to the node belonging to the event that followed in time. One thing we noticed, is that at some point in time gestures tended to occupy a clustered region; it may just be that the diversity of the kinematic trajectories were decreasing and settling on something, as if common ground was achieved. This is all speculation of course; but something we can asses further in an explorative way. Further, note that one person is especially vigorously moving (bit this might be biased by tracking issues we talked about earlier). In any case, you can imagine that each team will have different kinematic space topologies, and different division of labour and creativity, and these can in principle be operationalized by performing computations on the distance matrix (e.g., clustering). Another option is to transform the distance matrix in a real network representation and then computing classic network topology measures.   
 
 ```{r, fig.width=10, fig.height=10}
 enactments <- which(grepl("G-", features$coding, fixed = TRUE)|grepl("Enactment", features$coding, fixed = TRUE)) #lets only look at enactments
@@ -367,7 +367,7 @@ To inspect the result separately as html see here: https://wimpouw.github.io/Env
   
 ## Changes over time (convergence)
 
-Do people start to converge over time on a particular mode of gesturing? It seemed to be the case in one of the previous plots of the kinematic distances. Maybe, if we compute the euclidean distance from each event in the kinematic space (i.e., coordinates of the distance matrix) to the next, we will see that over time the traveled distances becomes less. If so, it seems that that the manual behaviors are are more convergent over time. Lets compute this from the distance matrix. From the figure below, it seems that the later an event in the team design session the less divergent a position in the kinematic space was as compared to the previous one.
+Does gesture start to converge over time in this team? It seemed to be the case in one of the previous plots of the kinematic distances. Maybe, if we compute the euclidean distance from each event in the kinematic space (i.e., coordinates of the distance matrix) to the next, we will see that over time the traveled distances becomes less. If so, it seems that that the manual behaviors are are more convergent over time. Lets compute this from the distance matrix. From the figure below, it seems that the later an event in the team design session the less divergent a position in the kinematic space was as compared to the previous one.
 
 ```{r}
 submat <- distmat[enactments, enactments] #only keep gesture/enactments events
