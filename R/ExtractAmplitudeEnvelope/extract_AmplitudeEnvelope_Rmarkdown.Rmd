@@ -19,7 +19,7 @@ output:
 
 * location Rmarkdown: https://github.com/WimPouw/EnvisionBootcamp2021/tree/main/R/ExtractAmplitudeEnvelope
 
-* citation: Pouw, W. & Trujillo, J. P. (`r Sys.Date()`). *Extracting a smoothed amplitude envelope from audio*. [the day you viewed the site]. Retrieved from: https://github.com/WimPouw/EnvisionBootcamp2021/tree/main/R/ExtractAmplitudeEnvelope
+* citation: Pouw, W. & Trujillo, J. P. (`r Sys.Date()`). *Extracting a smoothed amplitude envelope from audio*. [the day you viewed the site]. Retrieved from: https://wimpouw.github.io/EnvisionBootcamp2021/extract_AmplitudeEnvelope_Rmarkdown.html
 
 ## Smoothed amplitude envelope
 The smoothed amplitude envelope is an acoustic measure that is correlated with for example jaw motion of speech (1. Chandresekaran et al., 2009) and contains gross information about the amplitude of the most dominant frequency of the sound. The smoothed amplitude envelope contains key information about the quasi-rhythmic structure of speech (2. Poeppel & Assaneo, 2020), as well as complex prosodic modulations that occur at multiple time scales (e.g., 2. Tilsen & Arviniti, 2013).\linebreak
@@ -45,7 +45,7 @@ outputfolder <- paste0(curfolder, "/output/")
 
 ## Main function
 
-So there is more than one way to compute a smoothed amplitude envelope. We however follow the procedure originally coded in PRAAT by He & Dellwo (2017; ref 4.) which we reimplemented in R. The main function below follow their procedure. Firstly, we read in a sound file, and then apply a Hilbert transform to the waveform signal, which yields what is called a complex analytic signal (containing real and imaginary numbers). From this we can extract the amplitude information by applying what is called the complex modulus, and we are left with a 1D signal that will track the \emph{rough or more precise} contours of that audio waveform \emph{depending the amount of smoothing}. Following He & Dellwo, since we are interested in an approximation of the syllable cycles that tend to occur no shorter than 200ms, we will smooth the signal at a max 5Hz (1000ms/5Hz = 200ms) using a Hanning Window filter. We then downsample the smoothed amplitude envelope to something more workable, namely, to 100Hz time series, which we can later align for example with other signals (e.g., motion tracking data). For a more detailed information about the key procedure, the Hilbert transformation, see (5. Cohen, 20019) \linebreak
+So there is more than one way to compute a smoothed amplitude envelope. We however follow the procedure originally coded in PRAAT by He & Dellwo (2017; ref 4.) which we reimplemented in R. The main function below follow their procedure. Firstly, we read in a sound file, and then apply a Hilbert transform to the waveform signal, which yields what is called a complex analytic signal (containing real and imaginary numbers). From this we can extract the amplitude information by applying what is called the complex modulus, and we are left with a 1D signal that will track the \emph{rough or more precise} contours of that audio waveform \emph{depending the amount of smoothing}. Following He & Dellwo, since we are interested in an approximation of the syllable cycles that tend to occur no shorter than 200ms, we will smooth the signal at a max 5Hz (1000ms/5Hz = 200ms) using a Hanning Window filter. We then downsample the smoothed amplitude envelope to something more workable, namely, to 100Hz time series, which we can later align for example with other signals (e.g., motion tracking data). For a more information about the key procedure, the Hilbert transformation, see (5. Cohen, 20019) \linebreak
 
 Note, that the function below, allows you to set the resampling rate differently (e.g., 200Hz instead of 100Hz), as well as the hanning window settings (e.g., 8Hz instead of 5Hz).\linebreak
 
@@ -104,11 +104,11 @@ for(wav in list_wavs)
 
 ## A simple application (approximate syllables and syllable rhythm)
 
-With the smoothed amplitude envelope we can identify peaks in the acoustics that are roughly corresponding with syllable production. We can for example do a simple peak analysis to get an automatic approximation of syllable rate (i.e., speech rate). This is just an example, and for more complex analysis see for example (3. Tilsen & Arviniti, 2013).
+With the smoothed amplitude envelope we can identify peaks in the acoustics that are roughly corresponding with syllable production. We can for example do a simple peak analysis to get an automatic approximation of syllable rate (i.e., speech rate) or rhythmicity (standard deviation of the syllable interval). This is just an example, and for more complex analysis see for example (3. Tilsen & Arviniti, 2013).
 
 ```{r someplottingandapplication, warning=FALSE, message= FALSE}
 library(pracma) #package that has a peakfinding function
-library(ggplot2) #lets have some plotting
+library(ggplot2) #plotting
 library(gridExtra) #some plotting extras
 
 #lets read in an amplitude envelope time series
@@ -134,13 +134,13 @@ colnames(waveformdat) <- c("time_sec", "signal")
 b <- ggplot(waveformdat, aes(x=time_sec, y = signal))+ 
   geom_path()+ xlim(5, 10) + theme_bw() + ylim(-0.15, 0.15)
 
-grid.arrange(a, b)
+grid.arrange(a,b)
 ```
 
 
-We can further now have information about the syllable rate per seconds, as well as the interpeak interval deviation as some measure of rhythmicity, by the following simple queries.
+We can now extract information about the syllable rate per seconds, as well as the interpeak interval deviation as some measure of rhythmicity, by the following simple queries.
 ```{r numerical_info, warning=FALSE, message= FALSE}
-syllable_p_sec <- sum(!is.na(env_ts$peaks))/(max(env_ts$time_ms)/1000)
+syllable_p_sec <- sum(!is.na(env_ts$peaks))/(max(env_ts$time_ms)/diff(range(env_ts$time_ms)))
 print(paste0("N syllables produced p/s: ", syllable_p_sec))
 print(paste0("SD in ms syllable interval: ", sd(diff(env_ts$time_ms[!is.na(env_ts$peaks)]))))
 ```
