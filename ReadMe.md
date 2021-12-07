@@ -13,7 +13,7 @@ If you want to start to explore the envision toolbox in a hands-on way we advise
 
 If you just want to quickly overview the different coding modules of the envision toolbox without downloading the whole repository you can go to: https://wimpouw.github.io/EnvisionBootcamp2021/
             
- Info about the workshop: centerforadvanceddesignstudies.org/envision
+ Info about the workshop: https://centerforadvanceddesignstudies.org/envision
 
 You can reuse and adapt the code in any way. 
 
