@@ -12,6 +12,8 @@ The envision toolbox contains coding modules and lectures that are tailored for 
 If you want to start to explore the envision toolbox in a hands-on way we advise you to download/clone the repository in its entirety (https://github.com/WimPouw/EnvisionBootcamp2021). In the Python and R folders you will find folders that contain a single “module”, containing notebooks and sample data, so that each module can be run in a self-sufficient way.   
 
 If you just want to quickly overview the different coding modules of the envision toolbox without downloading the whole repository you can go to: https://wimpouw.github.io/EnvisionBootcamp2021/
+            
+ Info about the workshop: centerforadvanceddesignstudies.org/envision
 
 You can reuse and adapt the code in any way. 
 
