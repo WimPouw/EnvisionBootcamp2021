@@ -18,6 +18,9 @@ output:
 
 * citation: Pouw, W. & Trujillo, J. P. (`r Sys.Date()`). *Gesture Networks Module 2: Applications for team dynamics*. [the day you viewed the site]. Retrieved from: https://wimpouw.github.io/EnvisionBootcamp2021/gesturenetworks_module2.html
 
+## Video Tutorial
+<iframe width="950" height="534" src="https://www.youtube.com/embed/0uAa10VbVes?list=PL8vb5RWWmZQCWjjnP2HQT4kPI2Q5XKB0D" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Background
 
 Here we will generalize the gesture network approach for motion data with multiple persons who are interacting. So please inspect module 1 first (1. Pouw & Trujillo, 2021) before proceeding with this module. We will also work with data that requires much more pre-processing as to show the complexities involved of more real-world data that was not originally collected for current purposes.

@@ -21,6 +21,9 @@ output:
 
 * citation: Pouw, W. & Trujillo, J. P. (`r Sys.Date()`). *Extracting a smoothed amplitude envelope from audio*. [the day you viewed the site]. Retrieved from: https://wimpouw.github.io/EnvisionBootcamp2021/extract_AmplitudeEnvelope_Rmarkdown.html
 
+## Video Tutorial
+<iframe width="950" height="534" src="https://www.youtube.com/embed/0uAa10VbVes?list=PL8vb5RWWmZQCWjjnP2HQT4kPI2Q5XKB0D" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Smoothed amplitude envelope
 The smoothed amplitude envelope is an acoustic measure that is correlated with for example jaw motion of speech (1. Chandresekaran et al., 2009) and contains gross information about the amplitude of the most dominant frequency of the sound. The smoothed amplitude envelope contains key information about the quasi-rhythmic structure of speech (2. Poeppel & Assaneo, 2020), as well as complex prosodic modulations that occur at multiple time scales (e.g., 2. Tilsen & Arviniti, 2013).\linebreak
 
