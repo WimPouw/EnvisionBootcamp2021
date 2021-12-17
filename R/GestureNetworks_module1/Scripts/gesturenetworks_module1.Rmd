@@ -9,7 +9,6 @@ output:
 
 ![](./images/envision_banner.png)  
 
-
 ## Info documents
 
 * location Repository:  https://github.com/WimPouw/EnvisionBootcamp2021
@@ -37,8 +36,9 @@ distancematfolder <- paste0(basefolder, "/Distance_matrices/")
 iconicityratings <- read.csv(paste0(basefolder, "/IconicityRatings/Iconicity_ratings.csv"))
 ```
 
+## Video Tutorial
+<iframe width="1237" height="696" src="https://www.youtube.com/embed/s-XV4GCSjtc?start=5495" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 ## Background
-
 Human (communicative) body movements are often recurrent, such that they use similar shapes or trajectories to convey or act on something consistently. How can we make sense of the variability and consistency with which movement events are produced? One way to do this is by quantifying the similarities present between all the produced movement events. Once we have documented how similar each movement event is relative to all other events, we can then visualize and quantify the structure of these interrelationships and discover novel patterns that exist over the entire set of behaviors. For example, in previous work we have found that when communicative silent gestures have been practiced and communicated more, those silent gestures start to change their interrelationships in consistent ways (e.g., the kinematic space reduces in complexity) (see [3] Pouw, Dingemanse, Motamedi, Ozyurek, 2021).
 
 Note that this particular procedure outlined here, is introduced in [1] Pouw & Dixon (2020) and we advise you to read this first before starting (or [3]). The main procedure: we compute some distance measure between two N-dimenionsal time series *i* and *j*, and do this for all events *n*. Similar to previous work [1] we will use dynamic time warping (see [2] Giorgino, 2009) as the distance calculation. We then compute what is called a distance matrix (**M**) which has *n* rows and *n* columns containing for each cell M[*i*,*j*] the distance score between movement *i* and *j*. Then we can use dimensional reduction techniques (e.g., classic multidimenionsal scaling, t-sne, UMAP, PCA) to visualize in 2-dimensional space the interrelationships between all movement events.
