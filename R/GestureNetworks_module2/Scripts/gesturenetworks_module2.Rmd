@@ -19,7 +19,7 @@ output:
 * citation: Pouw, W. & Trujillo, J. P. (`r Sys.Date()`). *Gesture Networks Module 2: Applications for team dynamics*. [the day you viewed the site]. Retrieved from: https://wimpouw.github.io/EnvisionBootcamp2021/gesturenetworks_module2.html
 
 ## Video Tutorial
-<iframe width="950" height="534" src="https://www.youtube.com/embed/0uAa10VbVes?list=PL8vb5RWWmZQCWjjnP2HQT4kPI2Q5XKB0D" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="936" height="527" src="https://www.youtube.com/embed/s-XV4GCSjtc?start=9184" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Background
 
