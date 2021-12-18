@@ -23,6 +23,11 @@ library(papaja) #for using printnum
 
 * citation: Pouw, W. & Trujillo, J. P. (`r Sys.Date()`). *Selecting, smoothing, and deriving measures from motion tracking, and merging with acoustics and annotations*. [the day you viewed the site]. Retrieved from: https://wimpouw.github.io/EnvisionBootcamp2021/MergingAcousticsMT.html
 
+
+## Video Tutorial
+<iframe width="950" height="534" src="https://www.youtube.com/embed/0uAa10VbVes?list=PL8vb5RWWmZQCWjjnP2HQT4kPI2Q5XKB0D" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
 ## Background
 
 In multimodal analysis you will often encounter the situation that you have signals that are continuous but sampling at different rates, and such signals then also need to be related to qualitative codings such as ELAN gesture annotations, or trial information of your experiment. It is sometimes convenient to have everything you need in one time series file, so you can apply your multimodal analysis easily. A lot of the initial steps of even beginning to do some quantitative multimodal recording and analysis are covered in Pouw, Trujillo, Dixon (2020); here we provide some basic data wrangling steps that are often required to set up your dataset (e.g., merging data, smoothing data, extracting kinematic variables). 
