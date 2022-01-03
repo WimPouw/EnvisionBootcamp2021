@@ -7,7 +7,7 @@ output:
     theme:  tactile
 ---
 
-![](./images/envision_banner.png)  
+![](../../../images/envision_banner.png)  
 
 ## Info documents
 
@@ -25,15 +25,19 @@ library(dtw)         #for dynamic time warping
 library(rjson)       #for extracting json info
 library(stringr)     #for manipulations of strings
 library(ggplot2)     #plotting
-library(plotly)     #plotting
-library(htmltools)       #for dimensionality reduction
+library(plotly)      #plotting
+library(htmltools)   #for dimensionality reduction
+library(parallel)    #for parallel processing
+library(foreach)     #for parallel processing 
+library(doParallel)  #for parallel processing
+library(iterators)   #for parallel processing
 
 #set current as working drive via session -> set working drive -> source file location
 workingdrive <- getwd() 
 basefolder   <- dirname(workingdrive)
-timeserfolder <- paste0(basefolder, "/TimeSeries/")
-distancematfolder <- paste0(basefolder, "/Distance_matrices/")
-iconicityratings <- read.csv(paste0(basefolder, "/IconicityRatings/Iconicity_ratings.csv"))
+timeserfolder <- file.path(basefolder, "TimeSeries")
+distancematfolder <- file.path(basefolder, "Distance_matrices")
+iconicityratings <- read.csv(file.path(basefolder, "IconicityRatings", "Iconicity_ratings.csv"))
 ```
 
 ## Video Tutorial
@@ -59,7 +63,7 @@ The folder 'Time_series' is filled with mediapipe body tracking time series for 
 
 Figure 1. Example raw time series of SWIMMING for the right (red) and left hand (in blue)
 ```{r}
-MT <- read.csv(paste0(timeserfolder, "TO-SWIM_silentgesture.csv"))
+MT <- read.csv(file.path(timeserfolder, "TO-SWIM_silentgesture.csv"))
 
 a <- ggplot(MT, aes(x = time)) + 
                   geom_path(aes(y = X_RIGHT_INDEX), color = "red") + 
@@ -80,7 +84,7 @@ timeseriess <- list.files(timeserfolder)
 
 #########################FUNCTIONS
 
-#indentify which columns contain the relevant variables
+#identify which columns contain the relevant variables
 keypointsindex_right <- which(colnames(MT) %in% c("X_RIGHT_INDEX", "Y_RIGHT_INDEX", "Z_RIGHT_INDEX"))
 keypointsindex_left <- which(colnames(MT) %in% c("X_RIGHT_INDEX", "Y_RIGHT_INDEX", "Z_RIGHT_INDEX"))
 keypointselbow_right <- which(colnames(MT) %in% c("X_RIGHT_ELBOW", "Y_RIGHT_ELBOW", "Z_RIGHT_ELBOW"))
@@ -102,35 +106,70 @@ DTW.compare <- function(TS1, TS2)
 
 #########################MAIN ROUTINE
   #initialize some variables
-  numges <- length(timeseriess) #how many gestures (should be 110)
-  distmat <- matrix(nrow=numges, ncol=numges)  #110x110 matrix
-  diag(distmat) <- 0 #set diagonals to zero (as this is what you get when computing dtw(i, j)|i=j
-  catchnames <- vector() #get the names so that we know what columns/rows belong to which ID
-  n <- 0
+  #ncores: number of available cores for parallel processing--ideally one less than the
+  #number of available physical cores (one core for other applications). 
+  #MacOS, SunOS and Windows provide this number reliably via detectCores(logical=FALSE)
+  #Other systems: we assume 2 virtual cores per physical core to avoid resource-hogging, crashes, etc.
+  #However, users with familiar with their processors should adjust ncores as they see fit
+  ncores <- ifelse(Sys.info()["sysname"] %in% c("Darwin","SunOS","Windows"), detectCores(logical=FALSE)-1, detectCores()/2-1)
+  numges <- length(timeseriess) #how many gestures (should be 109)
+
+  catchnames <- substr(timeseriess,1,nchar(timeseriess)-4) #get vector of gesture IDs
+  #initially, we neglect the first row (numges-1 rows). this row is by definition 
+  # a single zero followed by numges-1 NAs, and can be added more efficiently later
+  distmat <- matrix(nrow=numges-1, ncol=numges) #108x109 matrix initially
+  
+  #load all time series into data frames for quick access
+  for(tsi in 1:length(timeseriess)) {
+    assign(catchnames[tsi], read.csv(file.path(timeserfolder, timeseriess[tsi])))
+  }
+  
+  if (ncores > 1) {              #if at least two devoted cores are available,  
+    cl <- makeCluster(ncores)    #set up a local cluster for parallel processing
+    registerDoParallel(ncores)
+    #first just calculate lower triangular matrix (can be reflected across diagonal later, since matrix is symmetric)
+    #create a parallel process for each row. On Windows, packages/data called by these procs must be named in the .packages/.export arguments
+    distmat <- foreach(TS1index = icount(numges-1), .combine = "rbind", .packages=c("foreach", "iterators", "dtw"), .export = catchnames) %dopar% {
+      #each parallel process produces a distance vector
+      distvec <- foreach(TS2index = icount(TS1index), .combine = "cbind") %do% {
+        #compute DTW. We start with "TS1index+1" because we are neglecting the first row (see above)
+        TS1 <- get(catchnames[TS1index+1])
+        TS2 <- get(catchnames[TS2index])
+        dtwoutput <- DTW.compare(TS1, TS2)
+      }
+      #ensure correct dimensions by filling any remaining empty cells in distvec with NAs
+      distvec <- cbind(distvec, t(rep(NA, numges-length(distvec)))) 
+    }
+    stopCluster(cl)
+  } else {           #serial version: used if only one single devoted or shared core is available
     #loop through all combinations and save DTW score
-    for(ts1 in timeseriess) #loop through i
+    #first loop through rows
+    #initially, we neglect the first row, so we start with "timeseriess[2]" (see above)
+    for(ts1 in timeseriess[2:length(timeseriess)]) #loop through i 
     {
-      TS1 <- read.csv(paste0(timeserfolder, ts1)) #read first time series
       TS1index <- which(timeseriess == ts1) #index of this gesture
-      catchnames <- c(catchnames, substr(ts1,1,nchar(ts1)-4)) #save the gesture ID
-      #some progress statement
-          #loop through j
-          for(ts2 in timeseriess)
-          {
-          TS2index <- which(timeseriess == ts2) #index of this gesture
-            if(is.na(distmat[TS2index,TS1index])) #pass only if calculation has not been done yet
-            {
-            TS2 <- read.csv(paste0(timeserfolder, ts2)) #read second time series
-            #compute DTW and save into matrix
-            dtwoutput <- DTW.compare(TS1, TS2)
-            distmat[TS1index,TS2index] <- dtwoutput
-            distmat[TS2index,TS1index] <- dtwoutput #its a symmetrical result so fill two cells
-          }
+      TS1 <- get(catchnames[TS1index]) #get first time series
+      #loop through columns. End index is "TS1index-1" because DTW.compare(TS1index,TS1index) is by definition zero
+      #so we can neglect the final column in every loop (the diagonal) and add the zeros later
+      for(ts2 in timeseriess[1:TS1index-1]) 
+      {
+      TS2index <- which(timeseriess == ts2) #index of this gesture
+        TS2 <- get(catchnames[TS2index]) #get second time series
+        #compute DTW and save into matrix
+        dtwoutput <- DTW.compare(TS1, TS2)
+        #"TS1index-1" because first row is initially neglected
+        distmat[TS1index-1,TS2index] <- dtwoutput
       }
     }
-    colnames(distmat) <- catchnames #attach the names to the distance matrix
+  }
+  #add previously neglected first row to matrix
+  distmat <- rbind(t(c(0, rep(NA, numges-1))), distmat) 
+  diag(distmat) <- 0  #set diagonal to zero: distance from self is by definition zero
+  distmat <- pmax(distmat, t(distmat), na.rm = T) #reflect values across diagonal
+  colnames(distmat) <- catchnames #attach the names to the distance matrix
   #save the distance matrix
-  write.csv(distmat,paste0(distancematfolder, "distance_matrix.csv"), row.names = FALSE)
+  write.csv(distmat,file.path(distancematfolder, "distance_matrix.csv"), row.names = FALSE)
+  rm(list=catchnames) #remove timeseries dataframes from memory
 ```
 
 
@@ -139,7 +178,7 @@ DTW.compare <- function(TS1, TS2)
 Now that we have produced a distance matrix containing all the dynamic time warping distances between the silent gestures, we can visualize how these gestures relate to one another. We do this by applying a dimensionality reduction technique to visualize the high-dimensional distance matrix into a 2D space using classic multidimensional scaling. We can now inspect some of the nodes. For example if we look up the gesture Accordian and Butterfly we see that both are judged by the current procedure to be very similar in nature as they are close in the kinematic space. Indeed, as seen in the gestures shown below these gestures are highly similar in nature.
 
 ```{r, message = FALSE, warning = FALSE, fig.width=10, fig.height=10}
-distmat <- read.csv(paste0(distancematfolder, "distance_matrix.csv"))
+distmat <- read.csv(file.path(distancematfolder, "distance_matrix.csv"))
 #plot distances
 plot.space <- function(top, title,cluster1, sizepoint)
 {
@@ -167,7 +206,7 @@ But we can do even better! We can position all gesture .gif files that we have i
 library(stringr) #for string manipulation
 library(scales)  #for rescaling 
 
-distmat <- read.csv(paste0(distancematfolder, "distance_matrix.csv")) #read in the distance matrix
+distmat <- read.csv(file.path(distancematfolder, "distance_matrix.csv")) #read in the distance matrix
 topology <- as.data.frame(cmdscale(as.matrix(log(distmat+1)))) #multidimenionsal scaling of the logarithmically transformed distance matrix
 topology[,1:2] <- apply(topology[,1:2], 2, FUN=function(x)scales::rescale(x, from=range(x), c(0, 1300))) #lets rescale the topology from 0 to 600 pixels
 nams <- colnames(distmat)
@@ -183,7 +222,7 @@ for(nam in topology$nams[1:(length(topology$nams)/3)])
 todraw <- paste0(todraw, paste0('<img src="Images/', nam, '.gif" style="position: absolute; top: ', round(topology[topology$nams==nam,1]+adjustvertical),'px; right:',  round(topology[topology$nams==nam,2]+adjustright), 'px; width: 6%; height: auto; zindex:',layer,'; border: solid 1px #CCC"/>'))
 layer <- layer+1
 }
-fileConn<-file("animated_kinematicspace.html") #save to a seperate html file
+fileConn<-file("animated_kinematicspace.html") #save to a separate html file
 writeLines(todraw, fileConn)
 close(fileConn)
 
