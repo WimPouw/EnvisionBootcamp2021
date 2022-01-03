@@ -15,7 +15,7 @@ output:
 
 * location Rmarkdown: https://github.com/WimPouw/EnvisionBootcamp2021/blob/main/R/GestureNetworks_module1/Scripts/gesturenetworks_module1.Rmd
 
-* citation: Pouw, W. & Trujillo, J. P. (`r Sys.Date()`). *Gesture Networks Module 1: Computing kinematic distances using dynamic time warping*. [the day you viewed the site]. Retrieved from: https://wimpouw.github.io/EnvisionBootcamp2021/gesturenetworks_module1.html
+* citation: Pouw, W., Tobin, S. J., & Trujillo, J. P. (`r Sys.Date()`). *Gesture Networks Module 1: Computing kinematic distances using dynamic time warping*. [the day you viewed the site]. Retrieved from: https://wimpouw.github.io/EnvisionBootcamp2021/gesturenetworks_module1.html
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
