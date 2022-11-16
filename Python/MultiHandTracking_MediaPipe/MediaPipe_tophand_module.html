@@ -13209,9 +13209,9 @@ First, let's load some packages and set our paths</li>
  <span class="s1">'PINKY_MCP'</span><span class="p">,</span> <span class="s1">'PINKY_PIP'</span><span class="p">,</span> <span class="s1">'PINKY_DIP'</span><span class="p">,</span> <span class="s1">'PINKY_TIP'</span><span class="p">]</span>
 
 <span class="c1">#make the stringifyd position traces into clean values</span>
-<span class="k">def</span> <span class="nf">listpostions</span><span class="p">(</span><span class="n">newsamplemaerks</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">listpostions</span><span class="p">(</span><span class="n">newsamplemarks</span><span class="p">):</span>
     <span class="n">tracking_p</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">newsamplelmarks</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">newsamplemarks</span><span class="p">:</span>
         <span class="n">stripped</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">':'</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
         <span class="n">stripped</span> <span class="o">=</span> <span class="n">stripped</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="c1">#remove spaces in the string if present</span>
         <span class="n">tracking_p</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stripped</span><span class="p">)</span> <span class="c1">#add to this list  </span>
