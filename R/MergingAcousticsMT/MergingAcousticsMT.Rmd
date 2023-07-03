@@ -129,7 +129,7 @@ So we provide two filters, and we also show some differences in settings. The am
   #take some time series, apply the filter, then return it
 library(signal)
 butter.it <- function(x, samplingrate, order, lowpasscutoff)
-{bf <- butter(order,lowpasscutoff/samplingrate, type="low") #normalized frequency
+{bf <- butter(order,lowpasscutoff/(samplingrate/2), type="low") #normalized frequency (cutoff divided by the nyquist frequency)
 x <<- as.numeric(signal::filtfilt(bf, x))} #apply forwards and backwards using filtfilt
 
 #Kolmogorov-Zurbenko filter
